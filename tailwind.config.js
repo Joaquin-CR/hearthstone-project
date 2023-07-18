@@ -8,12 +8,13 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+        bgImgHome: "url('/images/backgroundHome.png')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        'bgColor-Navbar': '#2c3858',
+        'bgColor-Blue': '#2c3858',
         'bgColor-mobileMenu': '#313f63',
         'Color-MenuHover': '#fcd52d',
         darkOpacity: 'rgba(44, 56, 88, 0.75)',
