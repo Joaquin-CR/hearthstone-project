@@ -18,6 +18,14 @@ module.exports = {
         'bgColor-mobileMenu': '#313f63',
         'Color-MenuHover': '#fcd52d',
         darkOpacity: 'rgba(44, 56, 88, 0.75)',
+        'colorText-Sadows': '#00d1ff',
+        gold: '#fcd52d',
+        gold_2: '#c09c31',
+        gold_3: '#fdd941',
+        'bgColor-Filters': '#594059',
+        bgOptions: '#3b2203',
+        ColorGold: '#ffe792',
+        'bgColor-CardDescroption': '#3c2203',
       },
       screens: {
         widescreen: { raw: '(min-aspect-ratio: 3/2)' },
@@ -35,6 +43,7 @@ module.exports = {
       },
       fontFamily: {
         AclonicaR: ['Aclonica'],
+        MonserratM: ['Monserrat'],
       },
     },
   },
