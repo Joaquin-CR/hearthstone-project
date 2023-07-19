@@ -61,7 +61,7 @@ export default function HomeSreen() {
         </div>
       </form>
 
-      <div className="grid grid-cols-5 w-4/5 mt-7">
+      <div className="grid grid-cols-2 md:grid-cols-5 w-4/5 mt-7">
         <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
           <Image className="hover:drop-shadow-blue" src={Mage} alt={''} />
           <p>Mage</p>
