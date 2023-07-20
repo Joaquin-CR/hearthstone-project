@@ -4,9 +4,24 @@ import { useState } from 'react';
 import FilterIcon from '../../../../public/images/filter.svg';
 import FilterBlackIcon from '../../../../public/images/filterBlack.svg';
 import Card from '../Card/Card';
+import DropDownBTN from '../DropDownBTN/DropDownBTN';
 
 export default function Favorites() {
   const [filtersActive, setFilterActive] = useState(false);
+  const showFilters = () => {
+    setFilterActive(!filtersActive);
+  };
+
+  const sortBy = [
+    {
+      name: 'Mana: Low to high',
+      value: 'low to high',
+    },
+    {
+      name: 'Mana: High to low',
+      value: 'high to low',
+    },
+  ];
   const list = [
     {
       cardId: 'KAR_009',
@@ -151,6 +166,7 @@ export default function Favorites() {
               </p>
               <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2">
                 <div className="bg-bgColor-Filters bg-opacity-80 px-6 py-4 font-AclonicaR text-white rounded-full">
+                  {/* hover:bg-ColorGold hover:text-black */}
                   <button className="mr-1 w-12 text-xl drop-shadow-lg">
                     0
                   </button>
@@ -189,25 +205,23 @@ export default function Favorites() {
             </div>
             <div className="flex items-center px-11">
               <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
-              <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2">
-                <select
-                  className="font-AclonicaR text-white w-60 py-4 px-6 bg-bgColor-Filters bg-opacity-80 rounded-full"
-                  name="Sort"
-                  id="Sort"
-                >
-                  <option className="bg-bgOptions p-2" value="" selected>
-                    Mana: Low to high
-                  </option>
-                  <option className="bg-bgOptions p-2" value="">
-                    Option 2
-                  </option>
-                </select>
-              </div>
+              <DropDownBTN
+                sortBy={sortBy}
+                label={sortBy[0].name}
+                onOptionClick={(option: any) => {
+                  console.log('Opcion seleccionada: ', option);
+                }}
+              />
             </div>
             <div className="">
-              <button className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2">
+              <button
+                className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2"
+                onClick={showFilters}
+              >
                 <div
-                  className={`bg-bgColor-Filters text-white ${
+                  className={`${
+                    !filtersActive && 'bg-bgColor-Filters text-white'
+                  } ${
                     filtersActive && 'bg-ColorGold text-black'
                   } flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-full`}
                 >
@@ -222,92 +236,64 @@ export default function Favorites() {
               </button>
             </div>
           </div>
-          <div className="flex mt-8" id="filtros">
-            <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 mx-5">
-              <select
-                className="font-AclonicaR text-white w-60 py-4 px-6 bg-bgColor-Filters bg-opacity-80 rounded-full"
-                name="Sort"
-                id="Sort"
-              >
-                <option className="bg-bgOptions p-2 mt-3" value="" selected>
-                  Attack
-                </option>
-                <option className="bg-bgOptions p-2" value="">
-                  Option 2
-                </option>
-              </select>
+          {filtersActive && (
+            <div className="flex mt-8" id="filtros">
+              <div className="mx-5">
+                <DropDownBTN
+                  sortBy={sortBy}
+                  label={sortBy[0].name}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
+              <div className="mx-5">
+                <DropDownBTN
+                  sortBy={sortBy}
+                  label={sortBy[0].name}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
+              <div className="mx-5">
+                <DropDownBTN
+                  sortBy={sortBy}
+                  label={sortBy[0].name}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
+              <div className="mx-5">
+                <DropDownBTN
+                  sortBy={sortBy}
+                  label={sortBy[0].name}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
+              <div className="mx-5">
+                <DropDownBTN
+                  sortBy={sortBy}
+                  label={sortBy[0].name}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
+              <div className="mx-5">
+                <DropDownBTN
+                  sortBy={sortBy}
+                  label={sortBy[0].name}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
             </div>
-            <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 mx-5">
-              <select
-                className="font-AclonicaR text-white w-60 py-4 px-6 bg-bgColor-Filters bg-opacity-80 rounded-full"
-                name="Sort"
-                id="Sort"
-              >
-                <option className="bg-bgOptions p-2" value="" selected>
-                  Mana: Low to high
-                </option>
-                <option className="bg-bgOptions p-2" value="">
-                  Option 2
-                </option>
-              </select>
-            </div>
-            <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 mx-5">
-              <select
-                className="font-AclonicaR text-white w-60 py-4 px-6 bg-bgColor-Filters bg-opacity-80 rounded-full"
-                name="Sort"
-                id="Sort"
-              >
-                <option className="bg-bgOptions p-2" value="" selected>
-                  Mana: Low to high
-                </option>
-                <option className="bg-bgOptions p-2" value="">
-                  Option 2
-                </option>
-              </select>
-            </div>
-            <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 mx-5">
-              <select
-                className="font-AclonicaR text-white w-60 py-4 px-6 bg-bgColor-Filters bg-opacity-80 rounded-full"
-                name="Sort"
-                id="Sort"
-              >
-                <option className="bg-bgOptions p-2" value="" selected>
-                  Mana: Low to high
-                </option>
-                <option className="bg-bgOptions p-2" value="">
-                  Option 2
-                </option>
-              </select>
-            </div>
-            <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 mx-5">
-              <select
-                className="font-AclonicaR text-white w-60 py-4 px-6 bg-bgColor-Filters bg-opacity-80 rounded-full"
-                name="Sort"
-                id="Sort"
-              >
-                <option className="bg-bgOptions p-2" value="" selected>
-                  Mana: Low to high
-                </option>
-                <option className="bg-bgOptions p-2" value="">
-                  Option 2
-                </option>
-              </select>
-            </div>
-            <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 mx-5">
-              <select
-                className="font-AclonicaR text-white w-60 py-4 px-6 bg-bgColor-Filters bg-opacity-80 rounded-full"
-                name="Sort"
-                id="Sort"
-              >
-                <option className="bg-bgOptions p-2" value="" selected>
-                  Mana: Low to high
-                </option>
-                <option className="bg-bgOptions p-2" value="">
-                  Option 2
-                </option>
-              </select>
-            </div>
-          </div>
+          )}
         </div>
         <div className="mt-14 flex">
           {list.map((card: any) => (
