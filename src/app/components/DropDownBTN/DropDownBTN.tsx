@@ -2,10 +2,9 @@ import Image from 'next/image';
 import { useState } from 'react';
 import ArrowDown from '../../../../public/images/KeyboardArrowDown.svg';
 import ArrowUp from '../../../../public/images/KeyboardArrowUp.svg';
-import { SortBy } from '../../../../types';
 
 export interface IDropDown {
-  sortBy: SortBy[];
+  sortBy: any[];
   label: string;
   onOptionClick: (option: any) => void;
 }
@@ -48,6 +47,7 @@ const DropDownBTN: React.FC<IDropDown> = ({ sortBy, label, onOptionClick }) => {
                   onClick={() => {
                     selectValue('Opcion 1');
                     setActiveDropdown(false);
+                    onOptionClick('Option 1');
                   }}
                 >
                   Opcion 1
