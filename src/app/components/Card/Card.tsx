@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import { useState } from 'react';
 import FavoriteIcon from '../../../../public/images/Favorite.svg';
 import FavoriteBorderIcon from '../../../../public/images/FavoriteBorder.svg';
 
@@ -20,13 +21,24 @@ const Card: React.FC<ICardInfo> = ({
   rarity,
   favorite,
 }) => {
+  const [favorites, setFavorites] = useState(favorite);
+
+  const likeDislike = () => {
+    setFavorites(!favorites);
+  };
+
   const content = (
     <>
       <div className="mx-3 flex flex-col items-center ">
         <img className="w-1/2" src={img} alt="card" />
-        <div>
-          <div>
-            <Image src={favorite ? FavoriteIcon : FavoriteBorderIcon} alt="" />
+        <div onClick={likeDislike}>
+          <div className="bg-ColorBorder-Card hover:bg-gradient-to-b hover:from-gold hover:via-gold_2 hover:to-gold_3 rounded-full p-1 w-full">
+            <div className="bg-bgColor-Card hover:bg-bgColor-CardDescroption rounded-full text-black hover:text-ColorGold p-1">
+              <Image
+                src={favorites ? FavoriteIcon : FavoriteBorderIcon}
+                alt=""
+              />
+            </div>
           </div>
         </div>
         <div className="bg-ColorBorder-Card hover:bg-gradient-to-b hover:from-gold hover:via-gold_2 hover:to-gold_3 rounded-2xl p-1 w-full">
