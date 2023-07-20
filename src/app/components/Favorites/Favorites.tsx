@@ -154,7 +154,7 @@ export default function Favorites() {
 
   const content = (
     <>
-      <div className="w-full flex flex-col items-center bg-bgImgHome">
+      <div className="w-full flex flex-col items-center bg-bgImgHome bg-scroll">
         <div className="mt-20">
           <p className="font-AclonicaR font-bold text-7xl text-white">
             FAVORITES

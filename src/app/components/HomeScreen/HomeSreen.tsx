@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Search from '../../../../public/images/Search.svg';
 import DemonHunter from '../../../../public/images/demonHunterEmblem.png';
@@ -63,49 +64,70 @@ export default function HomeSreen() {
 
       <div className="grid grid-cols-2 md:grid-cols-5 w-4/5 mt-7">
         <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
-          <Image className="hover:drop-shadow-blue" src={Mage} alt={''} />
-          <p>Mage</p>
+          <Link href={'/class/Mage'}>
+            <Image className="hover:drop-shadow-blue" src={Mage} alt={''} />
+            <p>Mage</p>
+          </Link>
         </div>
         <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
-          <Image className="hover:drop-shadow-blue" src={Druid} alt={''} />
-          <p>Druid</p>
+          <Link href={'/class/Druid'}>
+            <Image className="hover:drop-shadow-blue" src={Druid} alt={''} />
+            <p>Druid</p>
+          </Link>
         </div>
-        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
-          <Image className="hover:drop-shadow-blue" src={Hunter} alt={''} />
-          <p>Hunter</p>
-        </div>
-        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
-          <Image className="hover:drop-shadow-blue" src={Priest} alt={''} />
-          <p>Priest</p>
-        </div>
-        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
-          <Image className="hover:drop-shadow-blue" src={Rouge} alt={''} />
-          <p>Rouge</p>
-        </div>
-        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
-          <Image className="hover:drop-shadow-blue" src={Paladin} alt={''} />
-          <p>Paladin</p>
-        </div>
-        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
-          <Image className="hover:drop-shadow-blue" src={Shaman} alt={''} />
-          <p>Shaman</p>
-        </div>
-        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
-          <Image
-            className="hover:drop-shadow-blue"
-            src={DemonHunter}
-            alt={''}
-          />
-          <p>Demon Hunter</p>
-        </div>
-        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
-          <Image className="hover:drop-shadow-blue" src={Warlock} alt={''} />
-          <p>Warlock</p>
-        </div>
-        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
-          <Image className="hover:drop-shadow-blue" src={Warrior} alt={''} />
-          <p>Warrior</p>
-        </div>
+
+        <Link href={'/class/Hunter'}>
+          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+            <Image className="hover:drop-shadow-blue" src={Hunter} alt={''} />
+            <p>Hunter</p>
+          </div>
+        </Link>
+        <Link href={'/class/Priest'}>
+          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+            <Image className="hover:drop-shadow-blue" src={Priest} alt={''} />
+            <p>Priest</p>
+          </div>
+        </Link>
+        <Link href={'/class/Rouge'}>
+          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+            <Image className="hover:drop-shadow-blue" src={Rouge} alt={''} />
+            <p>Rouge</p>
+          </div>
+        </Link>
+        <Link href={'/class/Paladin'}>
+          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+            <Image className="hover:drop-shadow-blue" src={Paladin} alt={''} />
+            <p>Paladin</p>
+          </div>
+        </Link>
+        <Link href={'/class/Shaman'}>
+          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+            <Image className="hover:drop-shadow-blue" src={Shaman} alt={''} />
+            <p>Shaman</p>
+          </div>
+        </Link>
+        <Link href={'/class/Demon'}>
+          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+            <Image
+              className="hover:drop-shadow-blue"
+              src={DemonHunter}
+              alt={''}
+            />
+            <p>Demon Hunter</p>
+          </div>
+        </Link>
+        <Link href={'/class/Warlock'}>
+          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+            <Image className="hover:drop-shadow-blue" src={Warlock} alt={''} />
+            <p>Warlock</p>
+          </div>
+        </Link>
+        <Link href={'/class/Warrior'}>
+          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+            <Image className="hover:drop-shadow-blue" src={Warrior} alt={''} />
+            <p>Warrior</p>
+          </div>
+        </Link>
       </div>
     </div>
   );
