@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import FilterIcon from '../../../../public/images/filter.svg';
 import FilterBlackIcon from '../../../../public/images/filterBlack.svg';
-import Card from '../Card/Card';
+import Carrusel from '../Carousel/Carousel';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
 
 export default function Favorites() {
@@ -22,135 +22,163 @@ export default function Favorites() {
       value: 'high to low',
     },
   ];
-  const list = [
-    {
-      cardId: 'KAR_009',
-      dbfId: 39169,
-      name: 'Babbling Book',
-      cardSet: 'One Night in Karazhan',
-      type: 'Minion',
-      rarity: 'Rare',
-      cost: 1,
-      attack: 1,
-      health: 2,
-      text: '<b>Battlecry:</b> Add a random Mage spell to your hand.',
-      flavor:
-        "His idol is the Green Hills of Stranglethorn, and he won't shut up about it.",
-      artist: 'A. J. Nazzaro',
-      collectible: true,
-      playerClass: 'Mage',
-      howToGet: 'Unlocked in the Menagerie, in One Night in Karazhan.',
-      howToGetGold:
-        'Crafting unlocked in the Menagerie, in One Night in Karazhan.',
-      img: 'https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f37d46c1a0e83c19ddc271750d8c00ea08d8789ebed082206d92ac82735d5239.png',
-      locale: 'enUS',
-      mechanics: [
-        {
-          name: 'Battlecry',
-        },
-      ],
-    },
-    {
-      cardId: 'KAR_009',
-      dbfId: 39169,
-      name: 'Babbling Book',
-      cardSet: 'One Night in Karazhan',
-      type: 'Minion',
-      rarity: 'Rare',
-      cost: 1,
-      attack: 1,
-      health: 2,
-      text: '<b>Battlecry:</b> Add a random Mage spell to your hand.',
-      flavor:
-        "His idol is the Green Hills of Stranglethorn, and he won't shut up about it.",
-      artist: 'A. J. Nazzaro',
-      collectible: true,
-      playerClass: 'Mage',
-      howToGet: 'Unlocked in the Menagerie, in One Night in Karazhan.',
-      howToGetGold:
-        'Crafting unlocked in the Menagerie, in One Night in Karazhan.',
-      img: 'https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f37d46c1a0e83c19ddc271750d8c00ea08d8789ebed082206d92ac82735d5239.png',
-      locale: 'enUS',
-      mechanics: [
-        {
-          name: 'Battlecry',
-        },
-      ],
-    },
-    {
-      cardId: 'KAR_009',
-      dbfId: 39169,
-      name: 'Babbling Book',
-      cardSet: 'One Night in Karazhan',
-      type: 'Minion',
-      rarity: 'Rare',
-      cost: 1,
-      attack: 1,
-      health: 2,
-      text: '<b>Battlecry:</b> Add a random Mage spell to your hand.',
-      flavor:
-        "His idol is the Green Hills of Stranglethorn, and he won't shut up about it.",
-      artist: 'A. J. Nazzaro',
-      collectible: true,
-      playerClass: 'Mage',
-      howToGet: 'Unlocked in the Menagerie, in One Night in Karazhan.',
-      howToGetGold:
-        'Crafting unlocked in the Menagerie, in One Night in Karazhan.',
-      img: 'https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f37d46c1a0e83c19ddc271750d8c00ea08d8789ebed082206d92ac82735d5239.png',
-      locale: 'enUS',
-      mechanics: [
-        {
-          name: 'Battlecry',
-        },
-      ],
-    },
-    {
-      cardId: 'CORE_KAR_009',
-      dbfId: 69700,
-      name: 'Babbling Book',
-      cardSet: 'Core',
-      type: 'Minion',
-      rarity: 'Rare',
-      cost: 1,
-      attack: 1,
-      health: 2,
-      text: '<b>Battlecry:</b> Add a random Mage spell to your hand.',
-      flavor:
-        "His idol is the Green Hills of Stranglethorn, and he won't shut up about it.",
-      artist: 'A. J. Nazzaro',
-      collectible: true,
-      playerClass: 'Mage',
-      howToGet: 'Unlocked at level 7.',
-      howToGetGold: 'Unlocked after winning 100 games as Mage.',
-      img: 'https://d15f34w2p8l1cc.cloudfront.net/hearthstone/4483f615ae9168b316a9756ef1af1c9ab2f5c62cfbfda86e96b740d70ab7bf95.png',
-      locale: 'enUS',
-      mechanics: [
-        {
-          name: 'Battlecry',
-        },
-      ],
-    },
-    {
-      cardId: 'LT24_812H',
-      dbfId: 89886,
-      name: 'Babbling Book',
-      cardSet: 'Mercenaries',
-      type: 'Minion',
-      rarity: 'Legendary',
-      cost: 1,
-      attack: 1,
-      health: 1,
-      text: 'All Mercs in play start as Casters.',
-      elite: true,
-      locale: 'enUS',
-      img: 'https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f37d46c1a0e83c19ddc271750d8c00ea08d8789ebed082206d92ac82735d5239.png',
-      mechanics: [
-        {
-          name: 'Aura',
-        },
-      ],
-    },
+  const items = [
+    // Aquí coloca tus listas o elementos que desees mostrar en el carrusel
+    <ul key={1}>
+      <li>Elemento 1</li>
+      <li>Elemento 2</li>
+      <li>Elemento 3</li>
+    </ul>,
+    <ul key={2}>
+      <li>Elemento A</li>
+      <li>Elemento B</li>
+      <li>Elemento C</li>
+    </ul>,
+    <ul key={3}>
+      <li>Elemento 1</li>
+      <li>Elemento 2</li>
+      <li>Elemento 3</li>
+    </ul>,
+    <ul key={4}>
+      <li>Elemento A</li>
+      <li>Elemento B</li>
+      <li>Elemento C</li>
+    </ul>,
+    <ul key={5}>
+      <li>Elemento 1</li>
+      <li>Elemento 2</li>
+      <li>Elemento 3</li>
+    </ul>,
   ];
+  // const list = [
+  //   {
+  //     cardId: 'KAR_009',
+  //     dbfId: 39169,
+  //     name: 'Babbling Book',
+  //     cardSet: 'One Night in Karazhan',
+  //     type: 'Minion',
+  //     rarity: 'Rare',
+  //     cost: 1,
+  //     attack: 1,
+  //     health: 2,
+  //     text: '<b>Battlecry:</b> Add a random Mage spell to your hand.',
+  //     flavor:
+  //       "His idol is the Green Hills of Stranglethorn, and he won't shut up about it.",
+  //     artist: 'A. J. Nazzaro',
+  //     collectible: true,
+  //     playerClass: 'Mage',
+  //     howToGet: 'Unlocked in the Menagerie, in One Night in Karazhan.',
+  //     howToGetGold:
+  //       'Crafting unlocked in the Menagerie, in One Night in Karazhan.',
+  //     img: 'https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f37d46c1a0e83c19ddc271750d8c00ea08d8789ebed082206d92ac82735d5239.png',
+  //     locale: 'enUS',
+  //     mechanics: [
+  //       {
+  //         name: 'Battlecry',
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     cardId: 'KAR_009',
+  //     dbfId: 39169,
+  //     name: 'Babbling Book',
+  //     cardSet: 'One Night in Karazhan',
+  //     type: 'Minion',
+  //     rarity: 'Rare',
+  //     cost: 1,
+  //     attack: 1,
+  //     health: 2,
+  //     text: '<b>Battlecry:</b> Add a random Mage spell to your hand.',
+  //     flavor:
+  //       "His idol is the Green Hills of Stranglethorn, and he won't shut up about it.",
+  //     artist: 'A. J. Nazzaro',
+  //     collectible: true,
+  //     playerClass: 'Mage',
+  //     howToGet: 'Unlocked in the Menagerie, in One Night in Karazhan.',
+  //     howToGetGold:
+  //       'Crafting unlocked in the Menagerie, in One Night in Karazhan.',
+  //     img: 'https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f37d46c1a0e83c19ddc271750d8c00ea08d8789ebed082206d92ac82735d5239.png',
+  //     locale: 'enUS',
+  //     mechanics: [
+  //       {
+  //         name: 'Battlecry',
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     cardId: 'KAR_009',
+  //     dbfId: 39169,
+  //     name: 'Babbling Book',
+  //     cardSet: 'One Night in Karazhan',
+  //     type: 'Minion',
+  //     rarity: 'Rare',
+  //     cost: 1,
+  //     attack: 1,
+  //     health: 2,
+  //     text: '<b>Battlecry:</b> Add a random Mage spell to your hand.',
+  //     flavor:
+  //       "His idol is the Green Hills of Stranglethorn, and he won't shut up about it.",
+  //     artist: 'A. J. Nazzaro',
+  //     collectible: true,
+  //     playerClass: 'Mage',
+  //     howToGet: 'Unlocked in the Menagerie, in One Night in Karazhan.',
+  //     howToGetGold:
+  //       'Crafting unlocked in the Menagerie, in One Night in Karazhan.',
+  //     img: 'https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f37d46c1a0e83c19ddc271750d8c00ea08d8789ebed082206d92ac82735d5239.png',
+  //     locale: 'enUS',
+  //     mechanics: [
+  //       {
+  //         name: 'Battlecry',
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     cardId: 'CORE_KAR_009',
+  //     dbfId: 69700,
+  //     name: 'Babbling Book',
+  //     cardSet: 'Core',
+  //     type: 'Minion',
+  //     rarity: 'Rare',
+  //     cost: 1,
+  //     attack: 1,
+  //     health: 2,
+  //     text: '<b>Battlecry:</b> Add a random Mage spell to your hand.',
+  //     flavor:
+  //       "His idol is the Green Hills of Stranglethorn, and he won't shut up about it.",
+  //     artist: 'A. J. Nazzaro',
+  //     collectible: true,
+  //     playerClass: 'Mage',
+  //     howToGet: 'Unlocked at level 7.',
+  //     howToGetGold: 'Unlocked after winning 100 games as Mage.',
+  //     img: 'https://d15f34w2p8l1cc.cloudfront.net/hearthstone/4483f615ae9168b316a9756ef1af1c9ab2f5c62cfbfda86e96b740d70ab7bf95.png',
+  //     locale: 'enUS',
+  //     mechanics: [
+  //       {
+  //         name: 'Battlecry',
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     cardId: 'LT24_812H',
+  //     dbfId: 89886,
+  //     name: 'Babbling Book',
+  //     cardSet: 'Mercenaries',
+  //     type: 'Minion',
+  //     rarity: 'Legendary',
+  //     cost: 1,
+  //     attack: 1,
+  //     health: 1,
+  //     text: 'All Mercs in play start as Casters.',
+  //     elite: true,
+  //     locale: 'enUS',
+  //     img: 'https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f37d46c1a0e83c19ddc271750d8c00ea08d8789ebed082206d92ac82735d5239.png',
+  //     mechanics: [
+  //       {
+  //         name: 'Aura',
+  //       },
+  //     ],
+  //   },
+  // ];
 
   const content = (
     <>
@@ -302,8 +330,9 @@ export default function Favorites() {
             </div>
           )}
         </div>
-        <div className="mt-14 flex">
-          {list.map((card: any) => (
+        <div className="w-full px-8 mt-14 flex">
+          <Carrusel items={items} />
+          {/* {list.map((card: any) => (
             <>
               <Card
                 name={card.name}
@@ -314,7 +343,7 @@ export default function Favorites() {
                 favorite={true}
               ></Card>
             </>
-          ))}
+          ))} */}
         </div>
       </div>
     </>

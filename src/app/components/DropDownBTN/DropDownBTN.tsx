@@ -59,7 +59,7 @@ const DropDownBTN: React.FC<IDropDown> = ({
           </div>
         </button>
         {activeDropdown && (
-          <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-2xl p-1 w-full mt-2">
+          <div className="absolute bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-2xl p-1 mt-2">
             <div className="bg-bgColor-CardDescroption rounded-2xl py-3 text-white">
               <p className="font-AclonicaR hover:text-gold">
                 <button
