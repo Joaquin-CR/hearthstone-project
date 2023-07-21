@@ -154,7 +154,7 @@ export default function Favorites() {
 
   const content = (
     <>
-      <div className="w-full flex flex-col items-center bg-bgImgHome">
+      <div className="w-full flex flex-col items-center bg-bgImgHome bg-scroll">
         <div className="mt-20">
           <p className="font-AclonicaR font-bold text-7xl text-white">
             FAVORITES
@@ -206,6 +206,7 @@ export default function Favorites() {
             <div className="flex items-center px-11">
               <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
               <DropDownBTN
+                images={null}
                 sortBy={sortBy}
                 label={sortBy[0].name}
                 onOptionClick={(option: any) => {
@@ -240,6 +241,7 @@ export default function Favorites() {
             <div className="flex mt-8" id="filtros">
               <div className="mx-5">
                 <DropDownBTN
+                  images={null}
                   sortBy={sortBy}
                   label={sortBy[0].name}
                   onOptionClick={(option: any) => {
@@ -249,6 +251,7 @@ export default function Favorites() {
               </div>
               <div className="mx-5">
                 <DropDownBTN
+                  images={null}
                   sortBy={sortBy}
                   label={sortBy[0].name}
                   onOptionClick={(option: any) => {
@@ -258,6 +261,7 @@ export default function Favorites() {
               </div>
               <div className="mx-5">
                 <DropDownBTN
+                  images={null}
                   sortBy={sortBy}
                   label={sortBy[0].name}
                   onOptionClick={(option: any) => {
@@ -267,6 +271,7 @@ export default function Favorites() {
               </div>
               <div className="mx-5">
                 <DropDownBTN
+                  images={null}
                   sortBy={sortBy}
                   label={sortBy[0].name}
                   onOptionClick={(option: any) => {
@@ -276,6 +281,7 @@ export default function Favorites() {
               </div>
               <div className="mx-5">
                 <DropDownBTN
+                  images={null}
                   sortBy={sortBy}
                   label={sortBy[0].name}
                   onOptionClick={(option: any) => {
@@ -285,6 +291,7 @@ export default function Favorites() {
               </div>
               <div className="mx-5">
                 <DropDownBTN
+                  images={null}
                   sortBy={sortBy}
                   label={sortBy[0].name}
                   onOptionClick={(option: any) => {

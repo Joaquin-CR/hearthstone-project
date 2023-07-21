@@ -9,6 +9,16 @@ module.exports = {
     extend: {
       backgroundImage: {
         bgImgHome: "url('/images/backgroundHome.png')",
+        bgImgMage: "url('/images/backgroundMage.png')",
+        bgImgDemon: "url('/images/backgroundDemon.png')",
+        bgImgDruid: "url('/images/backgroundDruid.png')",
+        bgImgHunters: "url('/images/backgroundHunters.png')",
+        bgImgPaladin: "url('/images/backgroundPaladin.png')",
+        bgImgPriest: "url('/images/backgroundPriest.png')",
+        bgImgRogue: "url('/images/backgroundRogue.png')",
+        bgImgShaman: "url('/images/backgroundShaman.png')",
+        bgImgWarlock: "url('/images/backgroundWarlock.png')",
+        bgImgWarrior: "url('/images/backgroundWarrior.png')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
