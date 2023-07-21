@@ -3,12 +3,14 @@ import { useState } from 'react';
 import Image from 'next/image';
 import ArrowLeft from '../../../../public/images/ArrowLeft.svg';
 import ArrowRight from '../../../../public/images/ArrowRight.svg';
+import Card from '../Card/Card';
 
 export interface ICarousel {
   items: any[];
 }
 
 const Carrusel: React.FC<ICarousel> = ({ items }) => {
+  console.log(items);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
@@ -40,11 +42,19 @@ const Carrusel: React.FC<ICarousel> = ({ items }) => {
             transform: `translateX(-${currentIndex * 100}%)`,
           }}
         >
-          {items.map((item, index) => (
-            <div key={index} className="w-full flex-shrink-0">
+          {/* {items.map((item, index) => ( */}
+          <Card
+            name={items[currentIndex].name}
+            img={items[currentIndex].img}
+            cardSet={items[currentIndex].cardSet}
+            type={items[currentIndex].type}
+            rarity={items[currentIndex].rarity}
+            favorite={true}
+          ></Card>
+          {/* <div key={index} className="w-full flex-shrink-0">
               <div className="p-4 rounded-lg shadow-md">{item}</div>
-            </div>
-          ))}
+            </div> */}
+          {/* ))} */}
         </div>
       </div>
       {/* BUTTONS */}
