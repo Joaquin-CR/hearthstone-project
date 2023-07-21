@@ -1,0 +1,984 @@
+[
+  {
+    "cardId": "DALA_Druid_HPe",
+    "dbfId": 55940,
+    "name": "Druid Hero Power Watcher",
+    "cardSet": "Rise of Shadows",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1823aa13926b40933ca4a1b6c10e1eaf7c9034e7349e1eb411dd7995db755138.png",
+    "type": "Enchantment",
+    "playerClass": "Neutral",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "HERO_06j",
+    "dbfId": 73709,
+    "name": "Druid of the Flame Malfurion",
+    "cardSet": "Hero Skins",
+    "type": "Hero",
+    "faction": "Neutral",
+    "rarity": "Epic",
+    "health": 30,
+    "artist": "MAR Studio",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1823aa13926b40933ca4a1b6c10e1eaf7c9034e7349e1eb411dd7995db755138.png",
+    "collectible": true,
+    "playerClass": "Druid",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "AIBot_DruidTrainee_002_hb",
+    "dbfId": 91662,
+    "name": "Druid Trainee",
+    "cardSet": "Voyage to the Sunken City",
+    "type": "Hero",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1823aa13926b40933ca4a1b6c10e1eaf7c9034e7349e1eb411dd7995db755138.png",
+    "faction": "Neutral",
+    "health": 30,
+    "playerClass": "Druid",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "TB_Lunar_DiscoverDruid",
+    "dbfId": 60550,
+    "name": "Lunar New Year Discover - Druid - Not Player Facing",
+    "cardSet": "Tavern Brawl",
+    "type": "Enchantment",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1823aa13926b40933ca4a1b6c10e1eaf7c9034e7349e1eb411dd7995db755138.png",
+    "playerClass": "Neutral",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "FB_TagTeam_Druid_Ench",
+    "dbfId": 41003,
+    "name": "Next Hero: Druid Ench",
+    "cardSet": "Tavern Brawl",
+    "type": "Enchantment",
+    "faction": "Neutral",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1823aa13926b40933ca4a1b6c10e1eaf7c9034e7349e1eb411dd7995db755138.png",
+    "text": "Add Druid cards to your deck.",
+    "playerClass": "Druid",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "DED_001",
+    "dbfId": 65580,
+    "name": "Druid of the Reef",
+    "cardSet": "United in Stormwind",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 1,
+    "attack": 1,
+    "health": 1,
+    "text": "[x]<b>Choose One - </b>Transform into\na 3/1 Shark with <b>Rush</b>; or\na 1/3 Turtle with <b>Taunt</b>.",
+    "flavor": "“Wow, there’s a whole sunken city down here!”",
+    "artist": "Zoltan Boros",
+    "collectible": true,
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/0ac3c8988cb9a4d932b3be3cc127a1cf307952d7eaf1bc985f8375ed7aea7cfd.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Rush"
+      },
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "DED_001at",
+    "dbfId": 65586,
+    "name": "Druid of the Reef",
+    "cardSet": "United in Stormwind",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 1,
+    "attack": 3,
+    "health": 1,
+    "text": "<b>Rush</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/353c81a54ac9fec01a96bafe97f02fbd6a4d4ffb6eda2a5423cec9cd23098d54.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Rush"
+      }
+    ]
+  },
+  {
+    "cardId": "DED_001bt",
+    "dbfId": 65587,
+    "name": "Druid of the Reef",
+    "cardSet": "United in Stormwind",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 1,
+    "attack": 1,
+    "health": 3,
+    "text": "<b>Taunt</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/db28d2afc82f51aed868734f95b47643ba26d84099f5e726dadff305e5b1ade5.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "AT_042",
+    "dbfId": 2783,
+    "name": "Druid of the Saber",
+    "cardSet": "The Grand Tournament",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 2,
+    "health": 1,
+    "text": "[x]<b>Choose One -</b> Transform\ninto a 2/1 with <b>Charge</b>;\nor a 3/2 with <b>Stealth</b>.",
+    "flavor": "That's saberTEETH, not like curved pirate blades.  That's a different kind of druid.  Druid of the Curved Pirate Blades.",
+    "artist": "Arthur Gimaldinov",
+    "collectible": true,
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d4d74c20acf9295055cec1ac6c35f62bb85b3cfe52a29e53c886ce6ec622ea92.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Charge"
+      },
+      {
+        "name": "Stealth"
+      }
+    ]
+  },
+  {
+    "cardId": "AT_042t",
+    "dbfId": 2784,
+    "name": "Druid of the Saber",
+    "cardSet": "The Grand Tournament",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 2,
+    "health": 1,
+    "text": "<b>Charge</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d9afa4eced15cab8ec9eaf5025e8cf32b26f7ffba3d2ce216033872f5ae0ac9b.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Charge"
+      }
+    ]
+  },
+  {
+    "cardId": "AT_042t2",
+    "dbfId": 2860,
+    "name": "Druid of the Saber",
+    "cardSet": "The Grand Tournament",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 3,
+    "health": 2,
+    "text": "<b>Stealth</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/358a4ca7d61c60ba85c0cb1996444a3aedb9e737181e37b29793942b879489d2.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Stealth"
+      }
+    ]
+  },
+  {
+    "cardId": "OG_044c",
+    "dbfId": 38321,
+    "name": "Druid of the Saber",
+    "cardSet": "The Grand Tournament",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 3,
+    "health": 2,
+    "text": "<b>Charge</b>\n<b>Stealth</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/ce5ef314ef81321983607bdc7b603089e24944176de74055698b8a4b12e7c528.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Charge"
+      },
+      {
+        "name": "Stealth"
+      }
+    ]
+  },
+  {
+    "cardId": "ICC_051t2",
+    "dbfId": 46008,
+    "name": "Druid of the Swarm",
+    "cardSet": "Knights of the Frozen Throne",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 1,
+    "health": 5,
+    "text": "<b>Taunt</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/e2e9a53769c6e4a46b8512e807acfb524408b42b495cfddff63e4ba99497ca90.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "ICC_051t3",
+    "dbfId": 46009,
+    "name": "Druid of the Swarm",
+    "cardSet": "Knights of the Frozen Throne",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 1,
+    "health": 5,
+    "text": "<b>Taunt</b>\n<b>Poisonous</b>",
+    "artist": "Zoltan Boros",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b6810aeb00d4681a218ed9046a1c7868e5baa0074bab94105412d3dd1d4dedda.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Poisonous"
+      },
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "ICC_051t",
+    "dbfId": 42650,
+    "name": "Druid of the Swarm",
+    "cardSet": "Knights of the Frozen Throne",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 1,
+    "health": 2,
+    "text": "<b>Poisonous</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d51d3e581efadbac3291e37bf4cb6d5b5855103b57363e2da3222cfba39b084f.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Poisonous"
+      }
+    ]
+  },
+  {
+    "cardId": "ICC_051",
+    "dbfId": 42651,
+    "name": "Druid of the Swarm",
+    "cardSet": "Knights of the Frozen Throne",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 1,
+    "health": 2,
+    "text": "<b>Choose One -</b> Transform into a 1/2 with <b>Poisonous</b>; or a 1/5 with <b>Taunt</b>.",
+    "flavor": "The druid awoke from troubling dreams to find herself transformed into a giant spider.",
+    "artist": "Zoltan Boros",
+    "collectible": true,
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3fcd28bbba8a046b4c03cd314ead824d7aecc7dcae1e5b3f594c9c9cc0d623c3.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      },
+      {
+        "name": "Poisonous"
+      }
+    ]
+  },
+  {
+    "cardId": "PVPDR_Elise_HP2",
+    "dbfId": 85229,
+    "name": "Druidic Teaching",
+    "cardSet": "Tavern Brawl",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "[x]Restore #2 Health to a\ncharacter. If it's at full\nHealth, draw a card.",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3ec9d7ef46f8d4733687b57d07a09e49d5c5838e940336e448aec43a3c9fc7cb.png",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "WC_035",
+    "dbfId": 63432,
+    "name": "Archdruid Naralex",
+    "cardSet": "Forged in the Barrens",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 3,
+    "health": 3,
+    "text": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, add a\nDream card to your hand\n__at the end of your turn.",
+    "flavor": "\"Dormant? I think you mean naptime.\"",
+    "artist": "Arthur Bozonnet",
+    "collectible": true,
+    "elite": true,
+    "playerClass": "Neutral",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/9213fa11904ef7d361086194a1aa6de4d83623fd27b8496692392559f6c08d6b.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Dormant"
+      }
+    ]
+  },
+  {
+    "cardId": "BRM_010",
+    "dbfId": 2292,
+    "name": "Druid of the Flame",
+    "cardSet": "Blackrock Mountain",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 2,
+    "text": "<b>Choose One -</b> Transform into a 5/2 minion; or a 2/5 minion.",
+    "flavor": "Druids who fought too long in Northrend were easily seduced by Ragnaros; a mug of hot chocolate was generally all it took.",
+    "artist": "Stanley Lau",
+    "collectible": true,
+    "playerClass": "Druid",
+    "howToGet": "Unlocked in Molten Core, in the Blackrock Mountain adventure.",
+    "howToGetGold": "Crafting unlocked in Molten Core, in the Blackrock Mountain adventure.",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/2081a34fd45878d3a342cfd02526aad732c0b4520c87675b6b34bae88fb359f7.png",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "BRM_010t",
+    "dbfId": 2310,
+    "name": "Druid of the Flame",
+    "cardSet": "Blackrock Mountain",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 5,
+    "health": 2,
+    "artist": "Ben Zhang",
+    "race": "Beast",
+    "otherRaces": ["Elemental"],
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a4349cc22a3b736acb31ef872c239bd1c26fa06c6d140cac65d69751c4262be3.png",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "BRM_010t2",
+    "dbfId": 2311,
+    "name": "Druid of the Flame",
+    "cardSet": "Blackrock Mountain",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 5,
+    "artist": "Hideaki Takamura",
+    "race": "Beast",
+    "otherRaces": ["Elemental"],
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/74a7b6badeba4c9f05a6be9b50bdce6c4985cee82d8ec753af6c0563871d1a7f.png",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "OG_044b",
+    "dbfId": 38320,
+    "name": "Druid of the Flame",
+    "cardSet": "Blackrock Mountain",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 5,
+    "health": 5,
+    "race": "Beast",
+    "otherRaces": ["Elemental"],
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/22c0b9b42297f9e12b036892bab19aae4294443d46ab83c30501f71c3958ea96.png",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "GIL_188t",
+    "dbfId": 48305,
+    "name": "Druid of the Scythe",
+    "cardSet": "The Witchwood",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "text": "<b>Rush</b>",
+    "artist": "L. Lullabi & K. Turovec",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/5ec47233751e74faaee805ddc5f7a067e887472b2f8a4dbf3ae922a884269e1b.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Rush"
+      }
+    ]
+  },
+  {
+    "cardId": "GIL_188t2",
+    "dbfId": 48306,
+    "name": "Druid of the Scythe",
+    "cardSet": "The Witchwood",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "text": "<b>Taunt</b>",
+    "artist": "L. Lullabi & K. Turovec",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/4158cb560318781930751a92f004e35740ab9c18d4bb916ec4531284d767b18a.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "GIL_188t3",
+    "dbfId": 48307,
+    "name": "Druid of the Scythe",
+    "cardSet": "The Witchwood",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Rush</b>\n<b>Taunt</b>",
+    "artist": "L. Lullabi & K. Turovec",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/cc9a5519203a454c275bde475374709fbbc8eface9a06247e59f34d2bc91caa1.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Rush"
+      },
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "GIL_188",
+    "dbfId": 46859,
+    "name": "Druid of the Scythe",
+    "cardSet": "The Witchwood",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 2,
+    "text": "[x]<b>Choose One -</b> Transform\ninto a 4/2 with <b>Rush</b>;\nor a 2/4 with <b>Taunt</b>.",
+    "flavor": "She's a scythe for sore eyes.",
+    "artist": "Luke Mancini",
+    "collectible": true,
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/9d55d2b170c49dbdfeacb6d20a5a009bff410f0faa8e976aca553b2c5bace896.png",
+    "imgGold": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1481ae1ea142e2329200e1a36fcc0f392ec93bd80efdd5475a29c69dd726a5d7.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Rush"
+      },
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "WC_004",
+    "dbfId": 63329,
+    "name": "Fangbound Druid",
+    "cardSet": "Forged in the Barrens",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 4,
+    "health": 3,
+    "text": "<b>Taunt</b>\n<b>Deathrattle:</b> Reduce the Cost of a Beast in your hand by (2).",
+    "flavor": "Bound by the law of the fang, these druid floss their teeth twice a day.",
+    "artist": "Andrew Hou",
+    "collectible": true,
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3efba0befa5ecad9932554c9ea9744bf1091493400434f6246f72b9c065865da.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      },
+      {
+        "name": "Deathrattle"
+      }
+    ]
+  },
+  {
+    "cardId": "TRL_343",
+    "dbfId": 43310,
+    "name": "Wardruid Loti",
+    "cardSet": "Rastakhan's Rumble",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 1,
+    "health": 2,
+    "text": "<b>Choose One - </b>Transform into one of Loti's four dinosaur forms.",
+    "flavor": "“Ravasaur!”\n“Pretty scary”\n“…Blammodax!”\n“Is that a thing?”\n“SMAXODON!”\n“….now you’re just making those up.”",
+    "artist": "Zoltan Boros",
+    "collectible": true,
+    "elite": true,
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3dddf2e4d0801bd0f50642e4a54ad15b9718518c8b081c7e86b1f919979cd275.png",
+    "imgGold": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/e58b693e27b9a6a71d3e7b61f5bb33501123955b76b3520250b0aab642456280.png",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "TRL_343et1",
+    "dbfId": 43315,
+    "name": "Wardruid Loti",
+    "cardSet": "Rastakhan's Rumble",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 4,
+    "health": 6,
+    "text": "<b>Taunt</b>, <b>Rush</b>, <b>Poisonous</b>, <b>Stealth</b>, <b>Spell Damage +1</b>",
+    "artist": "Zoltan Boros",
+    "elite": true,
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/256bc6710a4f8fa818cf7b6175aeb057214c52a64464033bf05663dedac0c185.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      },
+      {
+        "name": "Poisonous"
+      },
+      {
+        "name": "Stealth"
+      },
+      {
+        "name": "Spell Damage"
+      },
+      {
+        "name": "Rush"
+      }
+    ]
+  },
+  {
+    "cardId": "TRL_343at2",
+    "dbfId": 54599,
+    "name": "Wardruid Loti",
+    "cardSet": "Rastakhan's Rumble",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 1,
+    "health": 6,
+    "text": "<b>Taunt</b>",
+    "elite": true,
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/8287c0e2ec78f341d2a6bb6005599e5eb7333cd86e0d3c02e3f28d4021608c3d.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "TRL_343bt2",
+    "dbfId": 54600,
+    "name": "Wardruid Loti",
+    "cardSet": "Rastakhan's Rumble",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "text": "<b>Rush</b>",
+    "elite": true,
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/5cc419e5eea6998f80d7b6cc6bb8237c7047ac9768ce71275f836a25beb8ff0b.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Rush"
+      }
+    ]
+  },
+  {
+    "cardId": "TRL_343ct2",
+    "dbfId": 54601,
+    "name": "Wardruid Loti",
+    "cardSet": "Rastakhan's Rumble",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 1,
+    "health": 4,
+    "text": "<b>Spell Damage +1</b>",
+    "elite": true,
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d855f8ee9982b00119f561d0b7f8074ef1f508e391f0efcde0e7ead34f8fb182.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Spell Damage"
+      }
+    ]
+  },
+  {
+    "cardId": "TRL_343dt2",
+    "dbfId": 54602,
+    "name": "Wardruid Loti",
+    "cardSet": "Rastakhan's Rumble",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 1,
+    "health": 2,
+    "text": "<b>Poisonous</b>, <b>Stealth</b>",
+    "elite": true,
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/eadac0561789e1da8a0fbfe49fa6909c4aff0aa1dd53b594f917d01f2f6e7e09.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Poisonous"
+      },
+      {
+        "name": "Stealth"
+      }
+    ]
+  },
+  {
+    "cardId": "CS3_012",
+    "dbfId": 89146,
+    "name": "Nordrassil Druid",
+    "cardSet": "Legacy",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 4,
+    "attack": 3,
+    "health": 5,
+    "text": "<b>Battlecry:</b> The next spell you cast this turn costs_(3)_less.",
+    "flavor": "The World Tree Nordrassil provides life-giving energy to the world--and excellent mana savings.",
+    "artist": "Dave Greco",
+    "collectible": true,
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/00aa0dca662255abd47125f766ea2ccbb49da8a7edcc4813a5a14b866430b1c6.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Battlecry"
+      }
+    ]
+  },
+  {
+    "cardId": "VAN_EX1_165",
+    "dbfId": 69872,
+    "name": "Druid of the Claw",
+    "cardSet": "Vanilla",
+    "type": "Minion",
+    "faction": "Neutral",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Choose One -</b> <b>Charge</b>; or +2 Health and <b>Taunt</b>.",
+    "flavor": "Cat or Bear?  Cat or Bear?!  I just cannot CHOOSE!",
+    "artist": "Luca Zontini",
+    "collectible": true,
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/e3cfee4a4356b1699a56c6b7d2c289e55629a1a8eabbce50cc71fed310036000.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      },
+      {
+        "name": "Charge"
+      }
+    ]
+  },
+  {
+    "cardId": "VAN_EX1_165t1",
+    "dbfId": 70464,
+    "name": "Druid of the Claw",
+    "cardSet": "Vanilla",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Charge</b>",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/9afb3e6b1df3b8c17f56027289408bc44240820482cc9cff90912e64ad097ee9.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Charge"
+      }
+    ]
+  },
+  {
+    "cardId": "VAN_EX1_165t2",
+    "dbfId": 70466,
+    "name": "Druid of the Claw",
+    "cardSet": "Vanilla",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 4,
+    "health": 6,
+    "text": "<b>Taunt</b>",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/e212ea7cc455d2a73dbefda39b01d11b54cb82ba2436e749f5d027cda192bc41.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "FB_Champs_EX1_165t2",
+    "dbfId": 49345,
+    "name": "Druid of the Claw",
+    "cardSet": "Tavern Brawl",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 4,
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1823aa13926b40933ca4a1b6c10e1eaf7c9034e7349e1eb411dd7995db755138.png",
+    "health": 6,
+    "text": "<b>Taunt</b>",
+    "playerClass": "Druid",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "GVG_080t",
+    "dbfId": 2230,
+    "name": "Druid of the Fang",
+    "cardSet": "Goblins vs Gnomes",
+    "type": "Minion",
+    "cost": 5,
+    "attack": 7,
+    "health": 7,
+    "artist": "Massive Black",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/8f2b117f352d94e727883a7d714cf1181ca1ad4662daed0a26c320c0dececaa0.png",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "GVG_080",
+    "dbfId": 2048,
+    "name": "Druid of the Fang",
+    "cardSet": "Goblins vs Gnomes",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Battlecry:</b> If you have a Beast, transform this minion into a 7/7.",
+    "flavor": "The Druids of the Fang live in the Wailing Caverns. They wear cool snake shirts and tell snake jokes and say \"bro\" a lot.",
+    "artist": "Brandon Kitkouski",
+    "collectible": true,
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b28d9f206cff28a0b50d30a4bf6d9131d0581d200a4d34d246df3ca0b199cea1.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Battlecry"
+      }
+    ]
+  },
+  {
+    "cardId": "LT23T_121_01",
+    "dbfId": 91032,
+    "name": "Tauren Druid",
+    "cardSet": "Mercenaries",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 2,
+    "health": 12,
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1823aa13926b40933ca4a1b6c10e1eaf7c9034e7349e1eb411dd7995db755138.png",
+    "locale": "enUS"
+  },
+  {
+    "cardId": "BG20_304",
+    "dbfId": 72230,
+    "name": "Archdruid Hamuul",
+    "cardSet": "Battlegrounds",
+    "type": "Minion",
+    "cost": 6,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Battlecry:</b> <b>Refresh</b> Bob's Tavern with minions of your most common type.",
+    "elite": true,
+    "playerClass": "Neutral",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/14c349ca865b5b5af6f652636a3aa09e133d5edd231d46138562ec13631ca89b.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Battlecry"
+      }
+    ]
+  },
+  {
+    "cardId": "BG20_304_G",
+    "dbfId": 72231,
+    "name": "Archdruid Hamuul",
+    "cardSet": "Battlegrounds",
+    "type": "Minion",
+    "cost": 6,
+    "attack": 8,
+    "health": 8,
+    "text": "<b>Battlecry:</b> <b>Refresh</b> Bob's Tavern with minions of your most common type.",
+    "elite": true,
+    "playerClass": "Neutral",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/40674905b356c495e21f5810882de021bcb417c4a71978c1b938f257ac2a749f.png",
+    "imgGold": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a775474760bb9457556687da6660146bd8bd574b4c9e647dedbc24012c94bedc.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Battlecry"
+      }
+    ]
+  },
+  {
+    "cardId": "EX1_165",
+    "dbfId": 692,
+    "name": "Druid of the Claw",
+    "cardSet": "Classic",
+    "type": "Minion",
+    "faction": "Neutral",
+    "rarity": "Common",
+    "cost": 6,
+    "attack": 4,
+    "health": 6,
+    "text": "[x]<b>Choose One -</b> Transform\ninto a 7/6 with <b>Rush</b>;\nor a 4/9 with <b>Taunt</b>.",
+    "flavor": "Cat or Bear?  Cat or Bear?!  I just cannot CHOOSE!",
+    "artist": "Luca Zontini",
+    "collectible": true,
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a7683c5d0d7d3a866c754f95db07c6639015e855977aba2aa6e5787b70956f52.png",
+    "imgGold": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/2d5e1ddc0ef57548645e739b8de26873ba0d8600c812be57045b71a81a2ce363.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      },
+      {
+        "name": "Rush"
+      }
+    ]
+  },
+  {
+    "cardId": "EX1_165t1",
+    "dbfId": 1681,
+    "name": "Druid of the Claw",
+    "cardSet": "Classic",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 6,
+    "attack": 7,
+    "health": 6,
+    "text": "<b>Rush</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/7e69ade3080c25013af9b2187cf003ed9705709748c0d4862a7a7bcad3dc63e8.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Rush"
+      }
+    ]
+  },
+  {
+    "cardId": "EX1_165t2",
+    "dbfId": 1682,
+    "name": "Druid of the Claw",
+    "cardSet": "Classic",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 6,
+    "attack": 4,
+    "health": 9,
+    "text": "<b>Taunt</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/c86da07e5d80928adef4e4e78dad95af10edf9a49ba03deb141eeedcc1484fa5.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      }
+    ]
+  },
+  {
+    "cardId": "OG_044a",
+    "dbfId": 38319,
+    "name": "Druid of the Claw",
+    "cardSet": "Classic",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 6,
+    "attack": 7,
+    "health": 9,
+    "text": "<b>Rush</b>\n<b>Taunt</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1823aa13926b40933ca4a1b6c10e1eaf7c9034e7349e1eb411dd7995db755138.png",
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Taunt"
+      },
+      {
+        "name": "Rush"
+      }
+    ]
+  }
+]

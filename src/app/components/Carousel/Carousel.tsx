@@ -35,30 +35,36 @@ const Carrusel: React.FC<ICarousel> = ({ items }) => {
         ))}
       </div>
       {/* BODY CAROUSEL */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden mx-40 z-10 mb-7">
         <div
-          className="flex transition-transform duration-300 ease-in-out"
+          className="transition-transform duration-300 ease-in-out grid grid-cols-5"
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
           }}
         >
-          {/* {items.map((item, index) => ( */}
-          <Card
-            name={items[currentIndex].name}
-            img={items[currentIndex].img}
-            cardSet={items[currentIndex].cardSet}
-            type={items[currentIndex].type}
-            rarity={items[currentIndex].rarity}
-            favorite={true}
-          ></Card>
-          {/* <div key={index} className="w-full flex-shrink-0">
-              <div className="p-4 rounded-lg shadow-md">{item}</div>
-            </div> */}
-          {/* ))} */}
+          {items.map(
+            (item) =>
+              item.carrouselview.map((card: any) => {
+                <div key={card.cardId}>
+                  <Card
+                    name={card.name}
+                    img={card.img}
+                    cardSet={card.cardSet}
+                    type={card.type}
+                    rarity={card.rarity}
+                    favorite={true}
+                  ></Card>
+                </div>;
+              })
+
+            // <div key={index} className="w-full flex-shrink-0">
+            //     <div className="p-4 rounded-lg shadow-md">{item}</div>
+            //   </div>
+          )}
         </div>
       </div>
       {/* BUTTONS */}
-      <div className="absolute top-1/2 -translate-y-1/2 flex justify-between w-full">
+      <div className="absolute top-1/2 -translate-y-1/2 flex justify-between w-full z-0">
         <button
           onClick={handlePrev}
           disabled={currentIndex === 0}
@@ -81,7 +87,7 @@ const Carrusel: React.FC<ICarousel> = ({ items }) => {
         </button>
       </div>
       {/* CHECAR SI SON NECESARIOS LOS NUMEROS EN LA PARTE INFERIOR */}
-      <div className="flex space-x-2 items-center justify-center mb-2">
+      <div className="flex space-x-2 items-center justify-center mb-2 z-20">
         {items.map((_, index) => (
           <>
             <button
@@ -90,7 +96,9 @@ const Carrusel: React.FC<ICarousel> = ({ items }) => {
                   ? 'bg-gradient-to-b from-gold via-gold_2 to-gold_3'
                   : 'bg-transparent'
               } rounded-xl p-1`}
-              //   onClick={clickNumber}
+              onClick={() => {
+                setCurrentIndex(index);
+              }}
             >
               <div
                 className={`${
