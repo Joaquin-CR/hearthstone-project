@@ -56,10 +56,9 @@ export default function Navbar() {
             className="flex flex-col min-h-screen items-center py-8"
             aria-label="mobile"
           >
-            <Link href={'/'}></Link>
             <a
-              className="w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR"
-              //   href="#hero"
+              href="/"
+              className="text-3xl w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR"
               onClick={() => {
                 setEffect(false);
                 setShow(show ? false : true);
@@ -67,10 +66,9 @@ export default function Navbar() {
             >
               Home
             </a>
-            <Link href={'/'}></Link>
             <a
-              className="w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR"
-              //   href="#rockets"
+              className="text-3xl w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR"
+              href="/favorites"
               onClick={() => {
                 setEffect(false);
                 setShow(show ? false : true);
@@ -78,9 +76,8 @@ export default function Navbar() {
             >
               FAVORITES
             </a>
-            <Link href={'/'}></Link>
             <a
-              className="w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR"
+              className="text-3xl w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR"
               //   href="#testimonials"
               onClick={() => {
                 setEffect(false);

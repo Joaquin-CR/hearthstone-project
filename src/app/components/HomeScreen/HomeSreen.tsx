@@ -35,7 +35,7 @@ export default function HomeSreen() {
   }, []);
 
   const content = (
-    <div className="w-full h-full flex flex-col items-center bg-bgImgHome">
+    <div className="w-full h-full flex flex-col items-center bg-bgImgHome bg-no-repeat bg-fixed bg-cover">
       <div className="flex-col justify-center items-center">
         <Image src={LogoHome} alt={''} />
       </div>
@@ -75,59 +75,65 @@ export default function HomeSreen() {
             <p>Druid</p>
           </Link>
         </div>
-
-        <Link href={'/class/Hunter'}>
-          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          <Link href={'/class/Hunter'}>
             <Image className="hover:drop-shadow-blue" src={Hunter} alt={''} />
             <p>Hunter</p>
-          </div>
-        </Link>
-        <Link href={'/class/Priest'}>
-          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          </Link>
+        </div>
+
+        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          <Link href={'/class/Priest'}>
             <Image className="hover:drop-shadow-blue" src={Priest} alt={''} />
             <p>Priest</p>
-          </div>
-        </Link>
-        <Link href={'/class/Rouge'}>
-          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          </Link>
+        </div>
+
+        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          <Link href={'/class/Rouge'}>
             <Image className="hover:drop-shadow-blue" src={Rouge} alt={''} />
             <p>Rouge</p>
-          </div>
-        </Link>
-        <Link href={'/class/Paladin'}>
-          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          </Link>
+        </div>
+
+        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          <Link href={'/class/Paladin'}>
             <Image className="hover:drop-shadow-blue" src={Paladin} alt={''} />
             <p>Paladin</p>
-          </div>
-        </Link>
-        <Link href={'/class/Shaman'}>
-          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          </Link>
+        </div>
+
+        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          <Link href={'/class/Shaman'}>
             <Image className="hover:drop-shadow-blue" src={Shaman} alt={''} />
             <p>Shaman</p>
-          </div>
-        </Link>
-        <Link href={'/class/Demon'}>
-          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          </Link>
+        </div>
+
+        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          <Link href={'/class/Demon'}>
             <Image
               className="hover:drop-shadow-blue"
               src={DemonHunter}
               alt={''}
             />
             <p>Demon Hunter</p>
-          </div>
-        </Link>
-        <Link href={'/class/Warlock'}>
-          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          </Link>
+        </div>
+
+        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          <Link href={'/class/Warlock'}>
             <Image className="hover:drop-shadow-blue" src={Warlock} alt={''} />
             <p>Warlock</p>
-          </div>
-        </Link>
-        <Link href={'/class/Warrior'}>
-          <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          </Link>
+        </div>
+
+        <div className="mx-20 my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          <Link href={'/class/Warrior'}>
             <Image className="hover:drop-shadow-blue" src={Warrior} alt={''} />
             <p>Warrior</p>
-          </div>
-        </Link>
+          </Link>
+        </div>
       </div>
     </div>
   );

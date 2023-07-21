@@ -2,9 +2,9 @@ import Classes from '@/app/components/ClassesView/Classes';
 
 function page() {
   return (
-    <div>
-      <Classes type={'Hunter'} />
-    </div>
+    <main className="w-full h-full max-h-screen text-center">
+      <Classes type={'Demon'} />
+    </main>
   );
 }
 
