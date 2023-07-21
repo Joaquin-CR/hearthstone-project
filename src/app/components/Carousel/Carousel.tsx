@@ -47,23 +47,6 @@ const Carrusel: React.FC<ICarousel> = ({ items }) => {
           ))}
         </div>
       </div>
-      {/* CHECAR SI SON NECESARIOS LOS NUMEROS EN LA PARTE INFERIOR */}
-      <div className="flex space-x-2 items-center justify-center mb-2">
-        {items.map((_, index) => (
-          <>
-            <button
-              className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-xl p-1"
-              //   onClick={openDropdown}
-            >
-              <div
-                className={`bg-bgColor-Filters text-white flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-xl`}
-              >
-                <p className={`pl-2 mr-2`}>{index + 1}</p>
-              </div>
-            </button>
-          </>
-        ))}
-      </div>
       {/* BUTTONS */}
       <div className="absolute top-1/2 -translate-y-1/2 flex justify-between w-full">
         <button
@@ -86,6 +69,31 @@ const Carrusel: React.FC<ICarousel> = ({ items }) => {
         >
           <Image src={ArrowRight} alt={''}></Image>
         </button>
+      </div>
+      {/* CHECAR SI SON NECESARIOS LOS NUMEROS EN LA PARTE INFERIOR */}
+      <div className="flex space-x-2 items-center justify-center mb-2">
+        {items.map((_, index) => (
+          <>
+            <button
+              className={`${
+                index === currentIndex
+                  ? 'bg-gradient-to-b from-gold via-gold_2 to-gold_3'
+                  : 'bg-transparent'
+              } rounded-xl p-1`}
+              //   onClick={clickNumber}
+            >
+              <div
+                className={`${
+                  index === currentIndex
+                    ? 'bg-bgColor-Filters'
+                    : 'bg-transparent'
+                } text-white flex text-center p-2  font-AclonicaR items-center bg-opacity-80 rounded-xl`}
+              >
+                <p className={`pl-2 mr-2`}>{index + 1}</p>
+              </div>
+            </button>
+          </>
+        ))}
       </div>
     </div>
   );
