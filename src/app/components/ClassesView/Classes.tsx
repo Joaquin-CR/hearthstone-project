@@ -1,6 +1,8 @@
 'use client';
 import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
+import ArrowDown from '../../../../public/images/KeyboardArrowDown.svg';
+import ArrowUp from '../../../../public/images/KeyboardArrowUp.svg';
 import DemonEmblem from '../../../../public/images/demonHunterEmblem.png';
 import DruidEmblem from '../../../../public/images/druidEmblem.png';
 import FilterIcon from '../../../../public/images/filter.svg';
@@ -13,7 +15,6 @@ import RougeEmblem from '../../../../public/images/rougeEmblem.png';
 import ShamanEmblem from '../../../../public/images/shamanEmblem.png';
 import WarlockEmblem from '../../../../public/images/warlockEmblem.png';
 import WarriorEmblem from '../../../../public/images/warriorEmblem.png';
-import Card from '../Card/Card';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
 
 export interface IClasses {
@@ -188,7 +189,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
     RougeEmblem,
   ];
   const backgroundClass = `bg-bgImg${type}`;
-  console.log(type);
+  // console.log(type);
 
   const emblem = (): StaticImageData => {
     switch (type) {
@@ -217,17 +218,53 @@ const Classes: React.FC<IClasses> = ({ type }) => {
     }
   };
 
+  const [activeFilters, setActiveFilters] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(false);
+
+  const openDropdown = () => {
+    setActiveDropdown(!activeDropdown);
+  };
+
+  const openFilters = () => {
+    setActiveFilters(!activeFilters);
+  };
+
   const content = (
     //   <div className="w-full flex flex-col items-center bg-bgImgHome bg-scroll"></div>
     <div
-      className={`${backgroundClass} bg-bgImgDemon w-full flex flex-col items-center bg-fix bg-no-repeat bg-cover`}
+      className={`${backgroundClass} bg-bgImgDemon w-full flex flex-col items-center bg-fix bg-no-repeat bg-cover bg-center min-h-screen`}
     >
-      <div className="w-11/12 flex justify-between mx">
-        <div className="flex items-center ml-12 mt-24">
+      <div
+        className={`${
+          activeFilters && 'hidden'
+        } w-11/12 flex flex-col items-center md:flex-row md:justify-between`}
+      >
+        <div className="flex items-center md:ml-12 mt-24">
           <Image className="w-64" src={emblem()} alt={'Emblem'} />
-          <p className="text-white font-AclonicaR text-7xl mx-8">{type}</p>
+          <p className="text-white font-AclonicaR text-4xl md:text-7xl mx-8">
+            {type}
+          </p>
         </div>
-        <div className="flex items-center justify-center">
+        <button
+          className="md:hidden bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 w-3/5 items-center mt-7"
+          onClick={openDropdown}
+        >
+          <div
+            className={`${!activeDropdown && 'bg-bgColor-Filters text-white'} ${
+              activeDropdown && 'bg-ColorGold text-black'
+            } flex justify-between text-center py-4 px-6 font-AclonicaR items-center bg-opacity-80 rounded-full`}
+          >
+            <p
+              className={`${
+                activeDropdown && ' text-black'
+              } items-center pl-2 mr-2`}
+            >
+              Classes
+            </p>
+            <Image src={activeDropdown ? ArrowUp : ArrowDown} alt={'Arrow'} />
+          </div>
+        </button>
+        <div className="hidden md:flex items-center justify-center">
           <DropDownBTN
             images={emblems}
             sortBy={listClases}
@@ -238,7 +275,11 @@ const Classes: React.FC<IClasses> = ({ type }) => {
           />
         </div>
       </div>
-      <div className="mt-60 items-center justify-center text-center w-3/4">
+      <div
+        className={`${
+          activeFilters && ' hidden'
+        } mt-60 items-center justify-center text-center w-3/4`}
+      >
         <div className="text-gold font-AclonicaR text-5xl">
           Nature will rise against you!
         </div>
@@ -249,7 +290,74 @@ const Classes: React.FC<IClasses> = ({ type }) => {
           repellat et.
         </div>
       </div>
-      <div className="mt-28">
+      <button
+        className="md:hidden bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 items-center mt-7"
+        onClick={openFilters}
+      >
+        <div
+          className={`${!activeFilters && 'bg-bgColor-Filters text-white'} ${
+            activeFilters && 'bg-ColorGold text-black'
+          } flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-full`}
+        >
+          <p className={`${activeFilters && ' text-black'} pl-2 mr-2`}>
+            Manage filters
+          </p>
+        </div>
+      </button>
+      <div
+        className={`${
+          !activeFilters && 'hidden'
+        } absolute top-68 bg-Color-FilterMobile w-full flex-col justify-center origin-top`}
+      >
+        <button
+          className="absolute top-0 right-0 mt-4 mr-4 text-white font-AclonicaR text-4xl"
+          onClick={openFilters}
+        >
+          X
+        </button>
+        <nav
+          className="flex flex-col min-h-screen items-center mt-12 py-8"
+          aria-label="mobile"
+        >
+          <div className="flex items-center">
+            <p className="font-AclonicaR text-colorText-Sadows mr-5 text-xl">
+              Mana
+            </p>
+          </div>
+          <div className="flex items-center px-11">
+            <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
+            {/* <DropDownBTN
+              images={null}
+              sortBy={sortBy}
+              label={sortBy[0].name}
+              onOptionClick={(option: any) => {
+                console.log('Opcion seleccionada: ', option);
+              }}
+            /> */}
+          </div>
+          <button
+            className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2"
+            onClick={showFilters}
+          >
+            <div
+              className={`${
+                !filtersActive && 'bg-bgColor-Filters text-white'
+              } ${
+                filtersActive && 'bg-ColorGold text-black'
+              } flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-full`}
+            >
+              <Image
+                src={filtersActive ? FilterBlackIcon : FilterIcon}
+                alt={''}
+              />{' '}
+              <p className={`${filtersActive && ' text-black'} pl-2`}>
+                Filters
+              </p>
+            </div>
+          </button>
+        </nav>
+      </div>
+      <div className="hidden md:block mt-28">
         <div className="mt-20 flex items-center justify-center" id="filtros">
           <div className="flex items-center">
             <p className="font-AclonicaR text-colorText-Sadows mr-5 text-xl">
@@ -375,14 +483,14 @@ const Classes: React.FC<IClasses> = ({ type }) => {
         <div className="mt-14 flex">
           {list.map((card: any) => (
             <>
-              <Card
+              {/* <Card
                 name={card.name}
                 img={card.img}
                 cardSet={card.cardSet}
                 type={card.type}
                 rarity={card.rarity}
                 favorite={true}
-              ></Card>
+              ></Card> */}
             </>
           ))}
         </div>

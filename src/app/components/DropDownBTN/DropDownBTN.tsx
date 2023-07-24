@@ -42,7 +42,7 @@ const DropDownBTN: React.FC<IDropDown> = ({
 
   const content = (
     <>
-      <div>
+      <div className="w-auto">
         <button
           className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2"
           onClick={openDropdown}
@@ -50,7 +50,7 @@ const DropDownBTN: React.FC<IDropDown> = ({
           <div
             className={`${!activeDropdown && 'bg-bgColor-Filters text-white'} ${
               activeDropdown && 'bg-ColorGold text-black'
-            } flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-full`}
+            } flex text-center py-4 px-6 font-AclonicaR items-center bg-opacity-80 rounded-full`}
           >
             <p className={`${activeDropdown && ' text-black'} pl-2 mr-2`}>
               {valueSelected}
