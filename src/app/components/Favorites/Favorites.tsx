@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-import dataList from '../../../../public/cardsInfo.json';
 import arcane from '../../../../public/images/arcane/Mask group.webp';
 import book from '../../../../public/images/book/Mask group.webp';
 import crow from '../../../../public/images/crow/Mask group.webp';
@@ -1083,27 +1082,6 @@ export default function Favorites() {
     },
   ];
 
-  const list = dataList;
-  let formatedList: any[] = [];
-
-  if (dataList.length > 0) {
-    let model: any = {
-      carrouselview: [],
-    };
-    for (let i = 0; i < dataList.length; i++) {
-      model.carrouselview.push(list[i]);
-      if (i == dataList.length - 1) {
-        formatedList.push(model);
-      } else if (i % 10 == 9 && i != 0) {
-        formatedList.push(model);
-        model = {
-          carrouselview: [],
-        };
-      }
-    }
-  }
-  console.log('Lista formateada', formatedList);
-
   const content = (
     <>
       <div className="w-full flex flex-col items-center bg-bgImgHome bg-scroll bg-no-repeat bg-cover">
@@ -1213,7 +1191,7 @@ export default function Favorites() {
             </div>
           </div>
           {filtersActive && (
-            <div className="flex mt-8" id="filtros">
+            <div className="hidden md:flex mt-8" id="filtros">
               <div className="mx-5">
                 <DropDownBTN
                   images={null}
@@ -1324,7 +1302,7 @@ export default function Favorites() {
               />
             </div>
             <button
-              className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2"
+              className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 mt-4"
               onClick={showFilters}
             >
               <div
