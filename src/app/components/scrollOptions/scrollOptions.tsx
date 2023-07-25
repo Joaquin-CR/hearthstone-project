@@ -65,18 +65,20 @@ export default function HearthScroll({
           return (
             <button
               key={item}
-              className="flex hover:text-gold text-white text-left px-2 py-1 font-AclonicaR items-center"
+              className="hover:text-gold text-white text-left px-2 py-1 font-AclonicaR "
               onClick={funct}
             >
-              {images && (
-                <Image
-                  className="mx-3"
-                  src={emblem(item)}
-                  alt={'Emblem'}
-                  height={50}
-                />
-              )}
-              {item}
+              <p className="flex items-center">
+                {images && (
+                  <Image
+                    className="mx-3 pointer-events-none"
+                    src={emblem(item)}
+                    alt={item}
+                    height={50}
+                  />
+                )}
+                {item}
+              </p>
             </button>
           );
         })}
