@@ -7,11 +7,74 @@ import book from '../../../../public/images/book/Mask group.webp';
 import crow from '../../../../public/images/crow/Mask group.webp';
 import FilterIcon from '../../../../public/images/filter.svg';
 import FilterBlackIcon from '../../../../public/images/filterBlack.svg';
-// import { CardClass } from '../../../../types';
-import GridContainer from '../Carousel/GridContainer';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
 
 export default function Favorites() {
+  const mana = ['Mana: low to high', 'Mana: high to low'];
+  const atk = [
+    'Any Attack',
+    'Attack: 0',
+    'Attack: 1',
+    'Attack: 2',
+    'Attack: 3',
+    'Attack: 4',
+    'Attack: 5',
+    'Attack: 6',
+    'Attack: 7',
+    'Attack: 8',
+    'Attack: 9',
+    'Attack: 10+',
+  ];
+  const health = [
+    'Any Health',
+    'Health: 0',
+    'Health: 1',
+    'Health: 2',
+    'Health: 3',
+    'Health: 4',
+    'Health: 5',
+    'Health: 6',
+    'Health: 7',
+    'Health: 8',
+    'Health: 9',
+    'Health: 10+',
+  ];
+  const cardType = [
+    'Any Type',
+    'Hero',
+    'Minion',
+    'Spell',
+    'Weapon',
+    'Location',
+  ];
+  const minionType = [
+    'Any Type',
+    'All',
+    'Beast',
+    'Demon',
+    'Dragon',
+    'Elemental',
+    'Mech',
+    'Murloc',
+    'Naga',
+    'Pirate',
+    'Quilboar',
+    'Totem',
+    'Undead',
+  ];
+  const rarity = ['Any Rarity', 'Common', 'Free', 'Rare', 'Epic', 'Legendary'];
+  const keywords = [
+    'Any Keyword',
+    'Adapt',
+    'Battlecry',
+    'Charge',
+    'Colosal +X',
+    'Combo',
+    'Corpse',
+    'Corrupt',
+    'Counter',
+    'Deathrattle',
+  ];
   const card = {
     cardId: 'EX1_271',
     cardName: 'Arcane Missiles',
@@ -1118,8 +1181,8 @@ export default function Favorites() {
                 </p>
                 <DropDownBTN
                   images={null}
-                  sortBy={sortBy}
-                  label={sortBy[0].name}
+                  sortBy={mana}
+                  label={mana[0]}
                   onOptionClick={(option: any) => {
                     console.log('Opcion seleccionada: ', option);
                   }}
@@ -1154,8 +1217,8 @@ export default function Favorites() {
               <div className="mx-5">
                 <DropDownBTN
                   images={null}
-                  sortBy={sortBy}
-                  label={sortBy[0].name}
+                  sortBy={atk}
+                  label={atk[0]}
                   onOptionClick={(option: any) => {
                     console.log('Opcion seleccionada: ', option);
                   }}
@@ -1164,8 +1227,8 @@ export default function Favorites() {
               <div className="mx-5">
                 <DropDownBTN
                   images={null}
-                  sortBy={sortBy}
-                  label={sortBy[0].name}
+                  sortBy={health}
+                  label={health[0]}
                   onOptionClick={(option: any) => {
                     console.log('Opcion seleccionada: ', option);
                   }}
@@ -1174,8 +1237,8 @@ export default function Favorites() {
               <div className="mx-5">
                 <DropDownBTN
                   images={null}
-                  sortBy={sortBy}
-                  label={sortBy[0].name}
+                  sortBy={cardType}
+                  label={cardType[0]}
                   onOptionClick={(option: any) => {
                     console.log('Opcion seleccionada: ', option);
                   }}
@@ -1184,8 +1247,8 @@ export default function Favorites() {
               <div className="mx-5">
                 <DropDownBTN
                   images={null}
-                  sortBy={sortBy}
-                  label={sortBy[0].name}
+                  sortBy={minionType}
+                  label={minionType[0]}
                   onOptionClick={(option: any) => {
                     console.log('Opcion seleccionada: ', option);
                   }}
@@ -1194,8 +1257,8 @@ export default function Favorites() {
               <div className="mx-5">
                 <DropDownBTN
                   images={null}
-                  sortBy={sortBy}
-                  label={sortBy[0].name}
+                  sortBy={rarity}
+                  label={rarity[0]}
                   onOptionClick={(option: any) => {
                     console.log('Opcion seleccionada: ', option);
                   }}
@@ -1204,8 +1267,8 @@ export default function Favorites() {
               <div className="mx-5">
                 <DropDownBTN
                   images={null}
-                  sortBy={sortBy}
-                  label={sortBy[0].name}
+                  sortBy={keywords}
+                  label={keywords[0]}
                   onOptionClick={(option: any) => {
                     console.log('Opcion seleccionada: ', option);
                   }}
@@ -1251,14 +1314,14 @@ export default function Favorites() {
             </div>
             <div className="flex items-center px-11">
               <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
-              {/* <DropDownBTN
-              images={null}
-              sortBy={sortBy}
-              label={sortBy[0].name}
-              onOptionClick={(option: any) => {
-                console.log('Opcion seleccionada: ', option);
-              }}
-            /> */}
+              <DropDownBTN
+                images={null}
+                sortBy={mana}
+                label={mana[0]}
+                onOptionClick={(option: any) => {
+                  console.log('Opcion seleccionada: ', option);
+                }}
+              />
             </div>
             <button
               className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2"
@@ -1282,7 +1345,7 @@ export default function Favorites() {
             </button>
           </nav>
         </div>
-        <GridContainer cards={cards}></GridContainer>
+        {/* <GridContainer cards={cards}></GridContainer> */}
       </div>
     </>
   );

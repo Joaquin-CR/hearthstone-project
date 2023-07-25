@@ -18,7 +18,6 @@ import RougeEmblem from '../../../../public/images/rougeEmblem.png';
 import ShamanEmblem from '../../../../public/images/shamanEmblem.png';
 import WarlockEmblem from '../../../../public/images/warlockEmblem.png';
 import WarriorEmblem from '../../../../public/images/warriorEmblem.png';
-import GridContainer from '../Carousel/GridContainer';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
 
 export interface IClasses {
@@ -26,6 +25,71 @@ export interface IClasses {
 }
 
 const Classes: React.FC<IClasses> = ({ type }) => {
+  const mana = ['Mana: low to high', 'Mana: high to low'];
+  const atk = [
+    'Any Attack',
+    'Attack: 0',
+    'Attack: 1',
+    'Attack: 2',
+    'Attack: 3',
+    'Attack: 4',
+    'Attack: 5',
+    'Attack: 6',
+    'Attack: 7',
+    'Attack: 8',
+    'Attack: 9',
+    'Attack: 10+',
+  ];
+  const health = [
+    'Any Health',
+    'Health: 0',
+    'Health: 1',
+    'Health: 2',
+    'Health: 3',
+    'Health: 4',
+    'Health: 5',
+    'Health: 6',
+    'Health: 7',
+    'Health: 8',
+    'Health: 9',
+    'Health: 10+',
+  ];
+  const cardType = [
+    'Any Type',
+    'Hero',
+    'Minion',
+    'Spell',
+    'Weapon',
+    'Location',
+  ];
+  const minionType = [
+    'Any Type',
+    'All',
+    'Beast',
+    'Demon',
+    'Dragon',
+    'Elemental',
+    'Mech',
+    'Murloc',
+    'Naga',
+    'Pirate',
+    'Quilboar',
+    'Totem',
+    'Undead',
+  ];
+  const rarity = ['Any Rarity', 'Common', 'Free', 'Rare', 'Epic', 'Legendary'];
+  const keywords = [
+    'Any Keyword',
+    'Adapt',
+    'Battlecry',
+    'Charge',
+    'Colosal +X',
+    'Combo',
+    'Corpse',
+    'Corrupt',
+    'Counter',
+    'Deathrattle',
+  ];
   const [filtersActive, setFilterActive] = useState(false);
   const showFilters = () => {
     setFilterActive(!filtersActive);
@@ -291,7 +355,6 @@ const Classes: React.FC<IClasses> = ({ type }) => {
     playerClass: 'Mage',
     img: book,
   };
-
   const cards = [
     card,
     card2,
@@ -1182,14 +1245,14 @@ const Classes: React.FC<IClasses> = ({ type }) => {
           </div>
           <div className="flex items-center px-11">
             <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
-            {/* <DropDownBTN
+            <DropDownBTN
               images={null}
-              sortBy={sortBy}
-              label={sortBy[0].name}
+              sortBy={mana}
+              label={mana[0]}
               onOptionClick={(option: any) => {
                 console.log('Opcion seleccionada: ', option);
               }}
-            /> */}
+            />
           </div>
           <button
             className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2"
@@ -1242,8 +1305,8 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
             <DropDownBTN
               images={null}
-              sortBy={sortBy}
-              label={sortBy[0].name}
+              sortBy={mana}
+              label={mana[0]}
               onOptionClick={(option: any) => {
                 console.log('Opcion seleccionada: ', option);
               }}
@@ -1277,8 +1340,8 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             <div className="mx-5">
               <DropDownBTN
                 images={null}
-                sortBy={sortBy}
-                label={sortBy[0].name}
+                sortBy={atk}
+                label={atk[0]}
                 onOptionClick={(option: any) => {
                   console.log('Opcion seleccionada: ', option);
                 }}
@@ -1287,8 +1350,8 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             <div className="mx-5">
               <DropDownBTN
                 images={null}
-                sortBy={sortBy}
-                label={sortBy[0].name}
+                sortBy={health}
+                label={health[0]}
                 onOptionClick={(option: any) => {
                   console.log('Opcion seleccionada: ', option);
                 }}
@@ -1297,8 +1360,8 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             <div className="mx-5">
               <DropDownBTN
                 images={null}
-                sortBy={sortBy}
-                label={sortBy[0].name}
+                sortBy={cardType}
+                label={cardType[0]}
                 onOptionClick={(option: any) => {
                   console.log('Opcion seleccionada: ', option);
                 }}
@@ -1307,8 +1370,8 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             <div className="mx-5">
               <DropDownBTN
                 images={null}
-                sortBy={sortBy}
-                label={sortBy[0].name}
+                sortBy={minionType}
+                label={minionType[0]}
                 onOptionClick={(option: any) => {
                   console.log('Opcion seleccionada: ', option);
                 }}
@@ -1317,8 +1380,8 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             <div className="mx-5">
               <DropDownBTN
                 images={null}
-                sortBy={sortBy}
-                label={sortBy[0].name}
+                sortBy={rarity}
+                label={rarity[0]}
                 onOptionClick={(option: any) => {
                   console.log('Opcion seleccionada: ', option);
                 }}
@@ -1327,8 +1390,8 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             <div className="mx-5">
               <DropDownBTN
                 images={null}
-                sortBy={sortBy}
-                label={sortBy[0].name}
+                sortBy={keywords}
+                label={keywords[0]}
                 onOptionClick={(option: any) => {
                   console.log('Opcion seleccionada: ', option);
                 }}
@@ -1349,7 +1412,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
               ></Card>
             </>
           ))} */}
-          <GridContainer cards={cards}></GridContainer>
+          {/* <GridContainer cards={cards}></GridContainer> */}
         </div>
       </div>
     </div>
