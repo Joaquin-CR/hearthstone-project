@@ -11,16 +11,18 @@ export interface ICardInfo {
   type: string;
   rarity: string;
   favorite: boolean;
+  text: string;
 }
 
-const Card: React.FC<ICardInfo> = ({
+export default function Card({
   name,
   img,
   cardSet,
   type,
   rarity,
   favorite,
-}) => {
+  text,
+}: ICardInfo) {
   const [favorites, setFavorites] = useState(favorite);
 
   const likeDislike = () => {
@@ -53,6 +55,4 @@ const Card: React.FC<ICardInfo> = ({
     </>
   );
   return content;
-};
-
-export default Card;
+}
