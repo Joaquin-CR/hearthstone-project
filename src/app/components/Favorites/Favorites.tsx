@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import arcane from '../../../../public/images/arcane/Mask group.webp';
 import book from '../../../../public/images/book/Mask group.webp';
 import crow from '../../../../public/images/crow/Mask group.webp';
@@ -1082,6 +1082,24 @@ export default function Favorites() {
     },
   ];
 
+  const [manaLabel, setManaLabel] = useState(mana[0]);
+  const [atkLabel, setatkLabel] = useState(atk[0]);
+  const [healthLabel, sethealthLabel] = useState(health[0]);
+  const [cardTypeLabel, setcardTypeLabel] = useState(cardType[0]);
+  const [minionTypeLabel, setminionTypeLabel] = useState(minionType[0]);
+  const [rarityLabel, setrarityLabel] = useState(rarity[0]);
+  const [keywordsLabel, setkeywordsLabel] = useState(keywords[0]);
+
+  useEffect(() => {
+    setManaLabel(manaLabel);
+    setatkLabel(atkLabel);
+    sethealthLabel(healthLabel);
+    setcardTypeLabel(cardTypeLabel);
+    setminionTypeLabel(minionTypeLabel);
+    setrarityLabel(rarityLabel);
+    setkeywordsLabel(keywordsLabel);
+  }, []);
+
   const content = (
     <>
       <div className="w-full flex flex-col items-center bg-bgImgHome bg-scroll bg-no-repeat bg-cover">
@@ -1158,10 +1176,11 @@ export default function Favorites() {
                   Sort By:
                 </p>
                 <DropDownBTN
-                  images={null}
+                  images={false}
                   sortBy={mana}
-                  label={mana[0]}
+                  label={manaLabel}
                   onOptionClick={(option: any) => {
+                    setManaLabel(option);
                     console.log('Opcion seleccionada: ', option);
                   }}
                 />
@@ -1194,60 +1213,66 @@ export default function Favorites() {
             <div className="hidden md:flex mt-8" id="filtros">
               <div className="mx-5">
                 <DropDownBTN
-                  images={null}
+                  images={false}
                   sortBy={atk}
-                  label={atk[0]}
+                  label={atkLabel}
                   onOptionClick={(option: any) => {
+                    setatkLabel(option);
                     console.log('Opcion seleccionada: ', option);
                   }}
                 />
               </div>
               <div className="mx-5">
                 <DropDownBTN
-                  images={null}
+                  images={false}
                   sortBy={health}
-                  label={health[0]}
+                  label={healthLabel}
                   onOptionClick={(option: any) => {
+                    sethealthLabel(option);
                     console.log('Opcion seleccionada: ', option);
                   }}
                 />
               </div>
               <div className="mx-5">
                 <DropDownBTN
-                  images={null}
+                  images={false}
                   sortBy={cardType}
-                  label={cardType[0]}
+                  label={cardTypeLabel}
                   onOptionClick={(option: any) => {
+                    setcardTypeLabel(option);
                     console.log('Opcion seleccionada: ', option);
                   }}
                 />
               </div>
               <div className="mx-5">
                 <DropDownBTN
-                  images={null}
+                  images={false}
                   sortBy={minionType}
-                  label={minionType[0]}
+                  label={minionTypeLabel}
                   onOptionClick={(option: any) => {
+                    setminionTypeLabel(option);
                     console.log('Opcion seleccionada: ', option);
                   }}
                 />
               </div>
               <div className="mx-5">
                 <DropDownBTN
-                  images={null}
+                  images={false}
                   sortBy={rarity}
-                  label={rarity[0]}
+                  label={rarityLabel}
                   onOptionClick={(option: any) => {
+                    setrarityLabel(option);
                     console.log('Opcion seleccionada: ', option);
                   }}
                 />
               </div>
               <div className="mx-5">
                 <DropDownBTN
-                  images={null}
+                  images={false}
                   sortBy={keywords}
-                  label={keywords[0]}
+                  label={keywordsLabel}
                   onOptionClick={(option: any) => {
+                    setkeywordsLabel(option);
                     console.log('Opcion seleccionada: ', option);
                   }}
                 />
@@ -1293,7 +1318,7 @@ export default function Favorites() {
             <div className="flex items-center px-11">
               <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
               <DropDownBTN
-                images={null}
+                images={false}
                 sortBy={mana}
                 label={mana[0]}
                 onOptionClick={(option: any) => {

@@ -90,6 +90,19 @@ const Classes: React.FC<IClasses> = ({ type }) => {
     'Counter',
     'Deathrattle',
   ];
+
+  const classes = [
+    'Mage',
+    'Druid',
+    'Hunter',
+    'Priest',
+    'Rouge',
+    'Paladin',
+    'Shaman',
+    'Demon Hunter',
+    'Warlock',
+    'Warrior',
+  ];
   const [filtersActive, setFilterActive] = useState(false);
   const showFilters = () => {
     setFilterActive(!filtersActive);
@@ -1075,7 +1088,6 @@ const Classes: React.FC<IClasses> = ({ type }) => {
     card15,
     card20,
   ];
-
   const sortBy = [
     {
       name: 'Mana: Low to high',
@@ -1096,16 +1108,6 @@ const Classes: React.FC<IClasses> = ({ type }) => {
       name: 'Demon',
       imgUrl: '../../../../public/images/demonHunterEmblem.png',
     },
-  ];
-
-  const emblems = [
-    MageEmblem,
-    PriestEmblem,
-    WarriorEmblem,
-    PaladinEmblem,
-    WarlockEmblem,
-    ShamanEmblem,
-    RougeEmblem,
   ];
   const backgroundClass = `bg-bgImg${type}`;
   // console.log(type);
@@ -1185,11 +1187,12 @@ const Classes: React.FC<IClasses> = ({ type }) => {
         </button>
         <div className="hidden md:flex items-center justify-center">
           <DropDownBTN
-            images={emblems}
-            sortBy={listClases}
+            images={true}
+            sortBy={classes}
             label={'Classes'}
             onOptionClick={(option: any) => {
-              console.log('Opcion seleccionada: ', option);
+              console.log('Clase seleccionada: ', option);
+              window.location.href = '/class/' + option;
             }}
           />
         </div>
@@ -1246,7 +1249,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
           <div className="flex items-center px-11">
             <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
             <DropDownBTN
-              images={null}
+              images={false}
               sortBy={mana}
               label={mana[0]}
               onOptionClick={(option: any) => {
@@ -1304,7 +1307,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
           <div className="flex items-center px-11">
             <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
             <DropDownBTN
-              images={null}
+              images={false}
               sortBy={mana}
               label={mana[0]}
               onOptionClick={(option: any) => {
@@ -1339,7 +1342,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
           <div className="flex mt-8" id="filtros">
             <div className="mx-5">
               <DropDownBTN
-                images={null}
+                images={false}
                 sortBy={atk}
                 label={atk[0]}
                 onOptionClick={(option: any) => {
@@ -1349,7 +1352,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             </div>
             <div className="mx-5">
               <DropDownBTN
-                images={null}
+                images={false}
                 sortBy={health}
                 label={health[0]}
                 onOptionClick={(option: any) => {
@@ -1359,7 +1362,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             </div>
             <div className="mx-5">
               <DropDownBTN
-                images={null}
+                images={false}
                 sortBy={cardType}
                 label={cardType[0]}
                 onOptionClick={(option: any) => {
@@ -1369,7 +1372,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             </div>
             <div className="mx-5">
               <DropDownBTN
-                images={null}
+                images={false}
                 sortBy={minionType}
                 label={minionType[0]}
                 onOptionClick={(option: any) => {
@@ -1379,7 +1382,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             </div>
             <div className="mx-5">
               <DropDownBTN
-                images={null}
+                images={false}
                 sortBy={rarity}
                 label={rarity[0]}
                 onOptionClick={(option: any) => {
@@ -1389,7 +1392,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             </div>
             <div className="mx-5">
               <DropDownBTN
-                images={null}
+                images={false}
                 sortBy={keywords}
                 label={keywords[0]}
                 onOptionClick={(option: any) => {

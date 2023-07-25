@@ -1,14 +1,58 @@
+import Image, { StaticImageData } from 'next/image';
 import { useRef } from 'react';
 import useDraggableScroll from 'use-draggable-scroll';
+import DemonEmblem from '../../../../public/images/demonHunterEmblem.png';
+import DruidEmblem from '../../../../public/images/druidEmblem.png';
+import HunterEmblem from '../../../../public/images/hunterEmblem.png';
+import MageEmblem from '../../../../public/images/mageEmblem.png';
+import PaladinEmblem from '../../../../public/images/paladinEmblem.png';
+import PriestEmblem from '../../../../public/images/priestEmblem.png';
+import RougeEmblem from '../../../../public/images/rougeEmblem.png';
+import ShamanEmblem from '../../../../public/images/shamanEmblem.png';
+import WarlockEmblem from '../../../../public/images/warlockEmblem.png';
+import WarriorEmblem from '../../../../public/images/warriorEmblem.png';
+
 type HearthScrollProps = {
   list: Array<string>;
-  funct?: () => void;
+  funct?: (item: any) => void;
+  images?: boolean;
 };
 
-export default function HearthScroll({ list, funct }: HearthScrollProps) {
+export default function HearthScroll({
+  list,
+  funct,
+  images,
+}: HearthScrollProps) {
   const ref = useRef(null);
 
   const { onMouseDown } = useDraggableScroll(ref);
+
+  const emblem = (type: string): StaticImageData => {
+    switch (type) {
+      case 'Mage':
+        return MageEmblem;
+      case 'Hunter':
+        return HunterEmblem;
+      case 'Druid':
+        return DruidEmblem;
+      case 'Priest':
+        return PriestEmblem;
+      case 'Rouge':
+        return RougeEmblem;
+      case 'Paladin':
+        return PaladinEmblem;
+      case 'Shaman':
+        return ShamanEmblem;
+      case 'Demon':
+        return DemonEmblem;
+      case 'Warlock':
+        return WarlockEmblem;
+      case 'Warrior':
+        return WarriorEmblem;
+      default:
+        return DemonEmblem;
+    }
+  };
 
   return (
     <div className="absolute mt-2 bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 h-auto z-10 max-sm:hidden rounded-xl flex flex-col items-center p-1">
@@ -17,15 +61,25 @@ export default function HearthScroll({ list, funct }: HearthScrollProps) {
         ref={ref}
         onMouseDown={onMouseDown}
       >
-        {list.map((item) => (
-          <button
-            key={item}
-            className=" hover:text-gold text-white text-left px-2 py-1 font-AclonicaR"
-            onClick={funct}
-          >
-            {item}
-          </button>
-        ))}
+        {list.map((item, index) => {
+          return (
+            <button
+              key={item}
+              className="flex hover:text-gold text-white text-left px-2 py-1 font-AclonicaR items-center"
+              onClick={funct}
+            >
+              {images && (
+                <Image
+                  className="mx-3"
+                  src={emblem(item)}
+                  alt={'Emblem'}
+                  height={50}
+                />
+              )}
+              {item}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

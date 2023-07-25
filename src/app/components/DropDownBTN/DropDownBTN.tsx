@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { useState } from 'react';
 import ArrowDown from '../../../../public/images/KeyboardArrowDown.svg';
 import ArrowUp from '../../../../public/images/KeyboardArrowUp.svg';
@@ -7,7 +7,7 @@ import HearthScroll from '../scrollOptions/scrollOptions';
 export interface IDropDown {
   sortBy: any[];
   label: string;
-  images: StaticImageData[] | null;
+  images: boolean;
   onOptionClick: (option: any) => void;
 }
 
@@ -49,10 +49,11 @@ const DropDownBTN: React.FC<IDropDown> = ({
         </button>
         {activeDropdown && (
           <HearthScroll
+            images={images}
             list={sortBy}
-            funct={() => {
+            funct={(item) => {
               selectValue;
-              onOptionClick(sortBy);
+              onOptionClick(item.target.innerText);
             }}
           ></HearthScroll>
         )}
