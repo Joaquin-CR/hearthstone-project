@@ -1,13 +1,13 @@
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { useState } from 'react';
 import ArrowDown from '../../../../public/images/KeyboardArrowDown.svg';
 import ArrowUp from '../../../../public/images/KeyboardArrowUp.svg';
-import Emblema from '../../../../public/images/druidEmblem.png';
+import HearthScroll from '../scrollOptions/scrollOptions';
 
 export interface IDropDown {
   sortBy: any[];
   label: string;
-  images: StaticImageData[] | null;
+  images: boolean;
   onOptionClick: (option: any) => void;
 }
 
@@ -17,17 +17,6 @@ const DropDownBTN: React.FC<IDropDown> = ({
   images,
   onOptionClick,
 }) => {
-  const sortby = [
-    {
-      name: 'Mana: Low to high',
-      value: 'low to high',
-    },
-    {
-      name: 'Mana: High to low',
-      value: 'high to low',
-    },
-  ];
-
   const [activeDropdown, setActiveDropdown] = useState(false);
   const [valueSelected, setValueSelected] = useState(label);
   const [includeImages, setIncludesImages] = useState(images != null);
@@ -42,7 +31,7 @@ const DropDownBTN: React.FC<IDropDown> = ({
 
   const content = (
     <>
-      <div>
+      <div className="w-auto">
         <button
           className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2"
           onClick={openDropdown}
@@ -50,7 +39,7 @@ const DropDownBTN: React.FC<IDropDown> = ({
           <div
             className={`${!activeDropdown && 'bg-bgColor-Filters text-white'} ${
               activeDropdown && 'bg-ColorGold text-black'
-            } flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-full`}
+            } flex text-center py-4 px-6 font-AclonicaR items-center bg-opacity-80 rounded-full`}
           >
             <p className={`${activeDropdown && ' text-black'} pl-2 mr-2`}>
               {valueSelected}
@@ -59,41 +48,14 @@ const DropDownBTN: React.FC<IDropDown> = ({
           </div>
         </button>
         {activeDropdown && (
-          <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-2xl p-1 w-full mt-2">
-            <div className="bg-bgColor-CardDescroption rounded-2xl py-3 text-white">
-              <p className="font-AclonicaR hover:text-gold">
-                <button
-                  className={`${
-                    includeImages && 'flex'
-                  } items-center justify-center`}
-                  onClick={() => {
-                    selectValue('Opcion 1');
-                    setActiveDropdown(false);
-                    onOptionClick('Option 1');
-                  }}
-                >
-                  {includeImages && (
-                    <Image src={Emblema} alt="" className="w-1/5 mr-3"></Image>
-                  )}
-                  Opcion 1
-                </button>
-              </p>
-              <p className="font-AclonicaR hover:text-gold">
-                <button
-                  className="items-center justify-center"
-                  onClick={() => {
-                    selectValue('Opcion 2');
-                    setActiveDropdown(false);
-                  }}
-                >
-                  Opcion 2
-                </button>
-              </p>
-              {/* {sortBy.map((options: any) => {
-                <p>{options.name}</p>;
-              })} */}
-            </div>
-          </div>
+          <HearthScroll
+            images={images}
+            list={sortBy}
+            funct={(item) => {
+              selectValue;
+              onOptionClick(item.target.innerText);
+            }}
+          ></HearthScroll>
         )}
       </div>
     </>
