@@ -4,7 +4,7 @@ import { useState } from 'react';
 import ArrowDown from '../../../../public/images/KeyboardArrowDown.svg';
 import ArrowUp from '../../../../public/images/KeyboardArrowUp.svg';
 import arcane from '../../../../public/images/arcane/Mask group.webp';
-import book from '../../../../public/images/book/Mask group.webp';
+import book from '../../../../public/images/book/Book.webp';
 import crow from '../../../../public/images/crow/Mask group.webp';
 import DemonEmblem from '../../../../public/images/demonHunterEmblem.png';
 import DruidEmblem from '../../../../public/images/druidEmblem.png';
@@ -18,6 +18,7 @@ import RougeEmblem from '../../../../public/images/rougeEmblem.png';
 import ShamanEmblem from '../../../../public/images/shamanEmblem.png';
 import WarlockEmblem from '../../../../public/images/warlockEmblem.png';
 import WarriorEmblem from '../../../../public/images/warriorEmblem.png';
+import GridContainer from '../Carousel/GridContainer';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
 
 export interface IClasses {
@@ -1153,7 +1154,7 @@ const Classes: React.FC<IClasses> = ({ type }) => {
   const content = (
     //   <div className="w-full flex flex-col items-center bg-bgImgHome bg-scroll"></div>
     <div
-      className={`${backgroundClass} bg-bgImgDemon w-full flex flex-col items-center bg-fix bg-no-repeat bg-cover bg-center min-h-screen`}
+      className={`${backgroundClass} bg-bgImgDemon w-full flex flex-col items-center bg-fix bg-no-repeat bg-cover bg-center min-h-screen overflow-x-hidden`}
     >
       <div
         className={`${
@@ -1402,20 +1403,8 @@ const Classes: React.FC<IClasses> = ({ type }) => {
             </div>
           </div>
         )}
-        <div className="mt-14 ">
-          {/* {list.map((card: any) => (
-            <>
-              <Card
-                name={card.name}
-                img={card.img}
-                cardSet={card.cardSet}
-                type={card.type}
-                rarity={card.rarity}
-                favorite={true}
-              ></Card>
-            </>
-          ))} */}
-          {/* <GridContainer cards={cards}></GridContainer> */}
+        <div className="mt-14">
+          <GridContainer cards={cards}></GridContainer>
         </div>
       </div>
     </div>

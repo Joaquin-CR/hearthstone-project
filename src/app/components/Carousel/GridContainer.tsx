@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import left from '../../../../public/images/ArrowLeft.svg';
 import right from '../../../../public/images/ArrowRight.svg';
 import { CardClass, SplitIntoSmallerLists } from '../../../../types';
+import Carousel from './Carousel';
 
 type CarouselProps = {
   cards: CardClass[];
@@ -13,9 +14,8 @@ export default function GridContainer({ cards }: CarouselProps) {
   let [endIndex, setEndIndex] = useState(4);
   const [currentSlide, setCurrentSlide] = useState(1);
   const smallerLists = SplitIntoSmallerLists(cards, 10);
-  console.log(smallerLists.getItemsBetweenIndexes(startIndex, endIndex));
-  // const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
-  // const last = smallerLists.getTail();
+  const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
+  const last = smallerLists.getTail();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -70,10 +70,10 @@ export default function GridContainer({ cards }: CarouselProps) {
   return (
     <>
       <div
-        className="grid grid-cols-8 gap-x-[900px] xl:gap-x-[1600px] lg:gap-x-[1200px] 2xl:gap-x-[2000px] no-scrollbar overflow-x-scroll overflow-y-hidden w-screen items-center"
+        className="grid grid-cols-8 gap-x-[900px] xl:gap-x-[1600px] lg:gap-x-[1200px] 2xl:gap-x-[2000px] no-scrollbar overflow-x-hidden overflow-y-hidden w-screen items-center h-full"
         ref={containerRef}
       >
-        {/* {eight.map((list, index) => (
+        {eight.map((list, index) => (
           <div
             key={index}
             id={index.toString()}
@@ -81,7 +81,7 @@ export default function GridContainer({ cards }: CarouselProps) {
           >
             <Carousel cardList={list} />
           </div>
-        ))} */}
+        ))}
         <div className="relative bottom-14" id="6">
           {/* <Carousel cardList={last ? last : []} /> */}
         </div>

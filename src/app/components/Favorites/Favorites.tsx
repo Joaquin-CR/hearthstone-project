@@ -2,10 +2,11 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import arcane from '../../../../public/images/arcane/Mask group.webp';
-import book from '../../../../public/images/book/Mask group.webp';
+import book from '../../../../public/images/book/Book.webp';
 import crow from '../../../../public/images/crow/Mask group.webp';
 import FilterIcon from '../../../../public/images/filter.svg';
 import FilterBlackIcon from '../../../../public/images/filterBlack.svg';
+import GridContainer from '../Carousel/GridContainer';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
 
 export default function Favorites() {
@@ -1102,7 +1103,7 @@ export default function Favorites() {
 
   const content = (
     <>
-      <div className="w-full flex flex-col items-center bg-bgImgHome bg-scroll bg-no-repeat bg-cover">
+      <div className="w-full flex flex-col items-center bg-bgImgHome bg-scroll bg-no-repeat bg-cover gap-10 min-h-screen relative">
         <div className="mt-20">
           <p className="font-AclonicaR font-bold text-5xl md:text-7xl text-white">
             FAVORITES
@@ -1280,21 +1281,6 @@ export default function Favorites() {
             </div>
           )}
         </div>
-        <div className="w-full px-8 mt-14 flex">
-          {/* <Carrusel items={formatedList} /> */}
-          {/* {list.map((card: any) => (
-            <>
-              <Card
-                name={card.name}
-                img={card.img}
-                cardSet={card.cardSet}
-                type={card.type}
-                rarity={card.rarity}
-                favorite={true}
-              ></Card>
-            </>
-          ))} */}
-        </div>
         <div
           className={`${
             !activeFilters && 'hidden'
@@ -1348,7 +1334,9 @@ export default function Favorites() {
             </button>
           </nav>
         </div>
-        {/* <GridContainer cards={cards}></GridContainer> */}
+        <div className="w-full px-8 overflow-x-hidden">
+          <GridContainer cards={cards}></GridContainer>
+        </div>
       </div>
     </>
   );
