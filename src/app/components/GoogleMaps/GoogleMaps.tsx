@@ -11,17 +11,35 @@ const center = {
   lng: 20.64866,
 };
 
+const openSlide = () => {
+  console.log('open slide');
+};
+
 export default function GoogleMaps() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyAnAA0HBfHN8fzBCB-vmvT-oPHX16dkN4E-xskas', //AIzaSyAN5d8mbHoDJAmVEqoCxIFIYMLm6KwcwYk
+    googleMapsApiKey: 'AIzaSyAnAA0HBfHN8fzBCB-vmvT-oPHX16dkN4E',
   });
+
+  const handleZoomChanged = () => {
+    console.log('Zoom');
+  };
+
   return isLoaded ? (
     <>
-      <div className="gap-10 min-h-screen overflow-y-none">
-        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
+      <div className="overflow-y-none">
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={10}
+          onZoomChanged={handleZoomChanged}
+        >
           {/* Puedes agregar marcadores u otros elementos aquí */}
-          <Marker position={center} />
+          <Marker
+            position={center}
+            onClick={openSlide}
+            // icon={{ url: '../../../../public/images/MarkerMaps.png' }}
+          />
         </GoogleMap>
       </div>
     </>
