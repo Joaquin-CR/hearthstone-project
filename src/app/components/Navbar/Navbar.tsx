@@ -9,7 +9,7 @@ export default function Navbar() {
   const [show, setShow] = useState(false);
   const content = (
     <>
-      <header className="bg-bgColor-Blue text-white sticky top-0 z-20 w-full h-20 shadow-lg drop-shadow-lg">
+      <header className="bg-bgColor-Blue text-white sticky top-0 z-30 w-full h-20 shadow-lg drop-shadow-lg">
         <section className="mx-auto px-6 pb-1 flex justify-between items-center">
           <Link href={'/'}>
             <Image src={Logo} alt={'Logo'} />
