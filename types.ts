@@ -1,20 +1,30 @@
-export type SortBy = {
-  name: string;
-  value: string;
-};
+import { JsonProperty, Serializable } from 'ts-jackson';
 
+@Serializable()
 export class CardClass {
+  @JsonProperty('cardId')
   cardId: any;
+  @JsonProperty('name')
   cardName: any;
+  @JsonProperty('cardSet')
   cardSet: any;
+  @JsonProperty('type')
   type: any;
+  @JsonProperty('rarity')
   rarity: any;
+  @JsonProperty('attack')
   attack: any;
+  @JsonProperty('health')
   health: any;
+  @JsonProperty('text')
   text: any;
+  @JsonProperty('race')
   race: any;
+  @JsonProperty('playerClass')
   playerClass: any;
-  img: any;
+  @JsonProperty('img')
+  img?: any;
+  @JsonProperty('mechanics')
   mechanics?: string[];
 }
 
@@ -113,3 +123,20 @@ export const SplitIntoSmallerLists = (
 
   return linkedList;
 };
+
+export class ClassType {
+  name: string;
+  icon: string;
+
+  constructor(name: string, icon: string) {
+    this.name = name;
+    this.icon = icon;
+  }
+}
+
+export const classes: ClassType[] = [
+  new ClassType('Mage', 'public/mage_emblem/mage emblem@3x.webp'),
+  new ClassType('Druid', 'public/druid_emblem/druid emblem@3x.webp'),
+  new ClassType('Hunter', 'public/hunter_emblem/hunter emblem@3x.webp'),
+  new ClassType('Priest', 'public/priest_emblem/preist emblem@3x.webp'),
+];

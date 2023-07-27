@@ -61,7 +61,7 @@ export default function HearthScroll({
         ref={ref}
         onMouseDown={onMouseDown}
       >
-        {list.map((item, index) => {
+        {list.map((item) => {
           return (
             <button
               key={item}

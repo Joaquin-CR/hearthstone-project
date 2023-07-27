@@ -16,7 +16,7 @@ module.exports = {
         bgImgHunters: "url('/images/backgroundHunters.png')",
         bgImgPaladin: "url('/images/backgroundPaladin.png')",
         bgImgPriest: "url('/images/backgroundPriest.png')",
-        bgImgRogue: "url('/images/backgroundRogue.png')",
+        bgImgRouge: "url('/images/backgroundRouge.png')",
         bgImgShaman: "url('/images/backgroundShaman.png')",
         bgImgWarlock: "url('/images/backgroundWarlock.png')",
         bgImgWarrior: "url('/images/backgroundWarrior.png')",
