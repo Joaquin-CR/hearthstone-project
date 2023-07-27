@@ -6,7 +6,7 @@ type CarouselProps = {
 };
 
 export default function Carousel({ cardList }: CarouselProps) {
-  console.log(cardList);
+  // console.log(cardList);
   return (
     <div className="grid grid-cols-5 w-screen">
       {cardList.map((card, index) => (
