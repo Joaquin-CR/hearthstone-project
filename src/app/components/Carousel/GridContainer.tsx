@@ -98,43 +98,71 @@ export default function GridContainer({ cards }: CarouselProps) {
       <div className="flex flex-row  justify-center items-centerrounded-full px-1 text-white h-16">
         <div className=" flex flex-row justify-between gap-10 rounded-full h-[58px] ">
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
             onClick={() => handleFirst()}
           >
-            1
+            <div
+              className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              1
+            </div>
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
             onClick={() => handleSecond()}
           >
-            2
+            <div
+              className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              2
+            </div>
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
             onClick={() => handleThird()}
           >
-            3
+            <div
+              className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              3
+            </div>
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
             onClick={() => handleFourth()}
           >
-            4
+            <div
+              className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              4
+            </div>
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
             onClick={() => handleFifth()}
           >
-            5
+            <div
+              className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              5
+            </div>
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
             onClick={() => handleNextIndex()}
           >
-            ...
+            <div
+              className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              ...
+            </div>
           </button>
-          <button className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg">
-            100
+          <button className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-lg drop-shadow-lg p-1">
+            <div
+              className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              100
+            </div>
           </button>
         </div>
       </div>

@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         bgImgHome: "url('/images/backgroundHome.png')",
+        bgSideShop: "url('/images/BgSideShop.png')",
         bgImgMage: "url('/images/backgroundMage.png')",
         bgImgDemon: "url('/images/backgroundDemon.png')",
         bgImgDruid: "url('/images/backgroundDruid.png')",

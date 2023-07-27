@@ -9,7 +9,7 @@ export default function Navbar() {
   const [show, setShow] = useState(false);
   const content = (
     <>
-      <header className="bg-bgColor-Blue text-white sticky top-0 z-10 w-full h-20 shadow-lg drop-shadow-lg">
+      <header className="bg-bgColor-Blue text-white sticky top-0 z-30 w-full h-20 shadow-lg drop-shadow-lg">
         <section className="mx-auto px-6 pb-1 flex justify-between items-center">
           <Link href={'/'}>
             <Image src={Logo} alt={'Logo'} />
@@ -39,7 +39,7 @@ export default function Navbar() {
                   FAVORITES
                 </p>
               </Link>
-              <Link href={'/'} className="mx-36">
+              <Link href={'/shop'} className="mx-36">
                 <p className="hover:opacity-90 hover:text-Color-MenuHover font-AclonicaR">
                   SHOPS
                 </p>
@@ -78,7 +78,7 @@ export default function Navbar() {
             </a>
             <a
               className="text-3xl w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR"
-              //   href="#testimonials"
+              href="/shop"
               onClick={() => {
                 setEffect(false);
                 setShow(show ? false : true);
