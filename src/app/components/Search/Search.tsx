@@ -1,4 +1,3 @@
-'use client';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import arcane from '../../../../public/images/arcane/Mask group.webp';
@@ -8,6 +7,7 @@ import FilterIcon from '../../../../public/images/filter.svg';
 import FilterBlackIcon from '../../../../public/images/filterBlack.svg';
 import GridContainer from '../Carousel/GridContainer';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
+
 const mana = ['Mana: low to high', 'Mana: high to low'];
 const atk = [
   'Any Attack',
@@ -1048,7 +1048,12 @@ const cards = [
   card20,
 ];
 
-export default function Favorites() {
+type SearchProps = {
+  search: string[];
+};
+
+export default function Search({ search }: SearchProps) {
+  console.log(search);
   const [filtersActive, setFilterActive] = useState(false);
   const showFilters = () => {
     setFilterActive(!filtersActive);
@@ -1117,7 +1122,6 @@ export default function Favorites() {
                 </p>
                 <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2">
                   <div className="bg-bgColor-Filters bg-opacity-80 px-6 py-4 font-AclonicaR text-white rounded-full">
-                    {/* hover:bg-ColorGold hover:text-black */}
                     <button className="mr-1 w-12 text-xl drop-shadow-lg">
                       0
                     </button>
