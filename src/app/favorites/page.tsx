@@ -1,11 +1,11 @@
+import { getAllCards } from '@/lib/getClassCard';
 import Favorites from '../components/Favorites/Favorites';
 
-function page() {
+export default async function Page() {
+  const cards = await getAllCards();
   return (
     <main className="w-full h-full max-h-screen text-center">
-      <Favorites />
+      <Favorites cards={cards ? cards : []} />
     </main>
   );
 }
-
-export default page;

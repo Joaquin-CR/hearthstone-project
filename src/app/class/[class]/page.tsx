@@ -1,6 +1,6 @@
 'use client';
 import Classes from '@/app/components/ClassesView/Classes';
-import { useSearchParams } from 'next/navigation';
+import { getCards } from '@/lib/getClassCard';
 
 export async function generateStaticParams(): Promise<any[]> {
   const response = await fetch(
@@ -24,21 +24,19 @@ export async function generateStaticParams(): Promise<any[]> {
   return paths;
 }
 
-export default function Page({ params }: { params: { class: string } }) {
-  const searchParams = useSearchParams();
-  const search = searchParams.get('text');
-  const search2 = searchParams.get('text2');
-  const title = searchParams.get('class');
+export default async function Page({ params }: { params: { class: string } }) {
+  // const searchParams = useSearchParams();
   const { class: cardClass } = params;
+  let cards = null;
+  if (cardClass == 'Demon') {
+    cards = await getCards('Demon Hunter');
+  } else {
+    cards = await getCards(cardClass);
+  }
 
   return (
     <main className="w-full h-full max-h-screen text-center">
-      <Classes
-        type={cardClass}
-        className={title}
-        title={search}
-        description={search2}
-      />
+      <Classes className={cardClass} cards={cards ? cards : []} />
     </main>
   );
 }

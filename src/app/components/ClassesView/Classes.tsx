@@ -3,9 +3,6 @@ import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
 import ArrowDown from '../../../../public/images/KeyboardArrowDown.svg';
 import ArrowUp from '../../../../public/images/KeyboardArrowUp.svg';
-import arcane from '../../../../public/images/arcane/Mask group.webp';
-import book from '../../../../public/images/book/Book.webp';
-import crow from '../../../../public/images/crow/Mask group.webp';
 import DemonEmblem from '../../../../public/images/demonHunterEmblem.png';
 import DruidEmblem from '../../../../public/images/druidEmblem.png';
 import FilterIcon from '../../../../public/images/filter.svg';
@@ -18,14 +15,13 @@ import RougeEmblem from '../../../../public/images/rougeEmblem.png';
 import ShamanEmblem from '../../../../public/images/shamanEmblem.png';
 import WarlockEmblem from '../../../../public/images/warlockEmblem.png';
 import WarriorEmblem from '../../../../public/images/warriorEmblem.png';
+import { CardClass } from '../../../../types';
 import GridContainer from '../Carousel/GridContainer';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
 
 export interface IClasses {
-  type: string;
+  cards: CardClass[];
   className: any;
-  title: any;
-  description: any;
 }
 
 const mana = ['Mana: low to high', 'Mana: high to low'];
@@ -100,1116 +96,68 @@ const classes = [
   'Warrior',
 ];
 
-const card = {
-  cardId: 'EX1_271',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: arcane,
-};
-const card2 = {
-  cardId: 'EX1_272',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: arcane,
-};
-const card3 = {
-  cardId: 'EX1_273',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: arcane,
-};
-const card4 = {
-  cardId: 'EX1_274',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: crow,
-};
-const card5 = {
-  cardId: 'EX1_275',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: arcane,
-};
-const card6 = {
-  cardId: 'EX1_276',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: crow,
-};
-const card7 = {
-  cardId: 'EX1_277',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: arcane,
-};
-const card8 = {
-  cardId: 'EX1_278',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: crow,
-};
-const card9 = {
-  cardId: 'EX1_279',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: arcane,
-};
-const card10 = {
-  cardId: 'EX1_280',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: arcane,
-};
-const card11 = {
-  cardId: 'EX1_281',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: book,
-};
-const card12 = {
-  cardId: 'EX1_282',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: crow,
-};
-const card13 = {
-  cardId: 'EX1_283',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: book,
-};
-const card14 = {
-  cardId: 'EX1_284',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: book,
-};
-const card15 = {
-  cardId: 'EX1_285',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: crow,
-};
-const card16 = {
-  cardId: 'EX1_286',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: book,
-};
-const card17 = {
-  cardId: 'EX1_287',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: book,
-};
-const card18 = {
-  cardId: 'EX1_288',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: book,
-};
-const card19 = {
-  cardId: 'EX1_289',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: crow,
-};
-const card20 = {
-  cardId: 'EX1_290',
-  cardName: 'Arcane Missiles',
-  cardSet: 'Classic',
-  type: 'Spell',
-  rarity: 'Common',
-  attack: 0,
-  health: 0,
-  text: 'Deal $3 damage randomly split among all enemies.',
-  race: 'Undead',
-  playerClass: 'Mage',
-  img: book,
-};
-const cards = [
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-
-  card20,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-
-  card20,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card16,
-  card17,
-  card18,
-  card19,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card16,
-  card17,
-  card18,
-  card19,
-  card20,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card,
-  card2,
-  card3,
-  card4,
-  card5,
-  card6,
-  card7,
-  card8,
-  card9,
-  card10,
-  card11,
-  card12,
-  card13,
-  card14,
-  card15,
-  card20,
-];
-
 function changeClass(option: string) {
-  console.log('Cambiando de clase', option);
   interface Params {
     pathname: string;
-    query: {
-      class: string;
-      text: string;
-      text2: string;
-    };
   }
   let params: Params | null = null;
   switch (option) {
     case 'Mage':
       params = {
         pathname: '/class/Mage',
-        query: {
-          class: 'Mage',
-          text: 'My magic will tear you apart!',
-          text2:
-            'No other hero wields the arcane with as much skill and raw power as a Mage. Using their unrivaled array of spells, Mages can wipe entire boards of minions, deal devastating amounts of damage directly to their enemy, or summon creatures of pure energy to do their bidding.',
-        },
       };
       break;
     case 'Hunter':
       params = {
         pathname: '/class/Hunter',
-        query: {
-          class: 'Hunter',
-          text: 'Let the hunt begin!',
-          text2:
-            'According to Hunters, a ruthless offense of tooth and claw is better than any defense. These lone survivalists tap into their feral nature to take down their prey with hidden traps, tamed beasts, and volleys of baleful arrows.',
-        },
       };
       break;
     case 'Druid':
       params = {
         pathname: '/class/Druid',
-        query: {
-          class: 'Druid',
-          text: 'Nature will rise against you!',
-          text2:
-            'Preserve the balance by taking on the many forms of the wild and unleashing nature’s wrath upon your enemies. Druids are flexible combatants with nearly limitless choice in how to handle their opponents. Employ buffs, compel beasts, harness healing powers, or sling damaging spells against anything that threatens the natural order.',
-        },
       };
       break;
     case 'Priest':
       params = {
         pathname: '/class/Priest',
-        query: {
-          class: 'Priest',
-          text: 'Light smiles upon the just!',
-          text2:
-            'The Light calls, but shadows whisper. Heroes of righteousness, Priests have unmatched healing potential and can bestow powerful holy enchantments on their minions. However, there is no light without dark. Priests can also tap into the shadows to manipulate the minds of their enemies and deal mortifying psychic damage.',
-        },
       };
       break;
     case 'Rouge':
       params = {
         pathname: '/class/Rouge',
-        query: {
-          class: 'Rouge',
-          text: 'Watch your back!',
-          text2:
-            'Using unseen blade, blinding speed, and subtle poison, Rouges can dispatch their enemies before escaping without a trace. Unleash a devastating chain of minions, spells, and attacks all within a single turn.',
-        },
       };
       break;
     case 'Paladin':
       params = {
         pathname: '/class/Paladin',
-        query: {
-          class: 'Paladin',
-          text: 'The Light protects those who wield it.',
-          text2:
-            'Fearsome holy knights, Paladins make use of emboldened minions, healing spells, and Divine Shields to stand stalwart against their enemies and hold out for victory.',
-        },
       };
       break;
     case 'Shaman':
       params = {
         pathname: '/class/Shaman',
-        query: {
-          class: 'Shaman',
-          text: 'Storm, earth and fire, heed my call!',
-          text2:
-            'Masters of the primal elements, Shaman manipulate nature’s forces to call up healing rains, unleash torrents of lava, or conjure spiritual allies to aid them in battle. A Shaman’s arsenal reflects the balance of the natural forces they wield: versatile and powerful minions, spells, buffs and damage.',
-        },
       };
       break;
     case 'Demon':
       params = {
         pathname: '/class/Demon',
-        query: {
-          class: 'Demon Hunter',
-          text: 'You are not prepared!',
-          text2:
-            'Turn the destructive forces of chaos against your enemies as the Demon Hunter. Using quick and devastating attacks, enormous demonic allies, and chaotic fel magics, show your enemies the hatred of 10,000 years!',
-        },
       };
       break;
     case 'Warlock':
       params = {
         pathname: '/class/Warlock',
-        query: {
-          class: 'Warlock',
-          text: 'I am your nightmare!',
-          text2:
-            'Power-hungry practitioners of the fel arts, Warlocks have no qualms unleashing debilitating curses, reckless demons, or violent waves of hellfire. They’ll sacrifice anything to take down those who stand in their way, including their own vitality.',
-        },
       };
       break;
     case 'Warrior':
       params = {
         pathname: '/class/Warrior',
-        query: {
-          class: 'Warrior',
-          text: 'Victory or death!',
-          text2:
-            'Seasoned fighters of unparalleled prowess, Warriors have mastery over an arsenal of weaponry and armor, allowing them to be both deadly combatants and formidable defenders. Taking damage only serves to enrage the Warrior and his Minions, triggering powerful effects that further enhance their fearsome abilities.',
-        },
       };
       break;
     default:
       return {};
   }
-  const searchParams = new URLSearchParams(params.query);
 
   // Build the complete URL with the base path, class name, and query parameters
-  const url = `${params.pathname}?${searchParams.toString()}`;
+  const url = `${params.pathname}`;
 
   // Redirect to the new URL
   window.location.href = url;
@@ -1242,19 +190,145 @@ function getBackgroundClass(classId: string): string {
   }
 }
 
-const Classes: React.FC<IClasses> = ({
-  type,
-  className,
-  title,
-  description,
-}) => {
+function getTitlDescription(classId: string) {
+  switch (classId) {
+    case 'Mage':
+      return {
+        name: 'Mage',
+        title: 'My magic will tear you apart!',
+        description:
+          'No other hero wields the arcane with as much skill and raw power as a Mage. Using their unrivaled array of spells, Mages can wipe entire boards of minions, deal devastating amounts of damage directly to their enemy, or summon creatures of pure energy to do their bidding.',
+      };
+    case 'Hunter':
+      return {
+        name: 'Hunter',
+        title: 'Let the hunt begin!',
+        description:
+          'According to Hunters, a ruthless offense of tooth and claw is better than any defense. These lone survivalists tap into their feral nature to take down their prey with hidden traps, tamed beasts, and volleys of baleful arrows.',
+      };
+    case 'Druid':
+      return {
+        name: 'Druid',
+        title: 'Nature will rise against you!',
+        description:
+          'Preserve the balance by taking on the many forms of the wild and unleashing nature’s wrath upon your enemies. Druids are flexible combatants with nearly limitless choice in how to handle their opponents. Employ buffs, compel beasts, harness healing powers, or sling damaging spells against anything that threatens the natural order.',
+      };
+    case 'Priest':
+      return {
+        name: 'Priest',
+        title: 'Light smiles upon the just!',
+        description:
+          'The Light calls, but shadows whisper. Heroes of righteousness, Priests have unmatched healing potential and can bestow powerful holy enchantments on their minions. However, there is no light without dark. Priests can also tap into the shadows to manipulate the minds of their enemies and deal mortifying psychic damage.',
+      };
+    case 'Rouge':
+      return {
+        name: 'Rouge',
+        title: 'Watch your back!',
+        description:
+          'Using unseen blade, blinding speed, and subtle poison, Rogues can dispatch their enemies before escaping without a trace. Unleash a devastating chain of minions, spells, and attacks all within a single turn.',
+      };
+    case 'Paladin':
+      return {
+        name: 'Paladin',
+        title: 'The Light protects those who wield it.',
+        description:
+          'Fearsome holy knights, Paladins make use of emboldened minions, healing spells, and Divine Shields to stand stalwart against their enemies and hold out for victory.',
+      };
+    case 'Shaman':
+      return {
+        name: 'Shaman',
+        title: 'Storm, earth and fire, heed my call!',
+        description:
+          'Masters of the primal elements, Shaman manipulate nature’s forces to call up healing rains, unleash torrents of lava, or conjure spiritual allies to aid them in battle. A Shaman’s arsenal reflects the balance of the natural forces they wield: versatile and powerful minions, spells, buffs and damage.',
+      };
+    case 'Demon':
+      return {
+        name: 'Demon Hunter',
+        title: 'You are not prepared!',
+        description:
+          'Turn the destructive forces of chaos against your enemies as the Demon Hunter. Using quick and devastating attacks, enormous demonic allies, and chaotic fel magics, show your enemies the hatred of 10,000 years!',
+      };
+    case 'Warlock':
+      return {
+        name: 'Warlock',
+        title: 'I am your nightmare!',
+        description:
+          'Power-hungry practitioners of the fel arts, Warlocks have no qualms unleashing debilitating curses, reckless demons, or violent waves of hellfire. They’ll sacrifice anything to take down those who stand in their way, including their own vitality.',
+      };
+    case 'Warrior':
+      return {
+        name: 'Warrior',
+        title: 'Victory or death!',
+        description:
+          'Seasoned fighters of unparalleled prowess, Warriors have mastery over an arsenal of weaponry and armor, allowing them to be both deadly combatants and formidable defenders. Taking damage only serves to enrage the Warrior and his Minions, triggering powerful effects that further enhance their fearsome abilities.',
+      };
+    default:
+      return {
+        name: '',
+        title: '',
+        description: '',
+      };
+  }
+}
+
+export default function Classes({ cards, className }: IClasses) {
+  // const currentClassData = classData[className];
+
+  const [filterToggle, userFilterToggle] = useState(false);
+  const [manaToggle, userManaToggle] = useState(false);
+  const [attackToggle, userAttackToggle] = useState(false);
+  const [healthToggle, userHealthToggle] = useState(false);
+  const [cardTypeToggle, userCardTypeToggle] = useState(false);
+  const [minionTypeToggle, userMinionTypeToggle] = useState(false);
+  const [rarityToggle, userRarityToggle] = useState(false);
+  const [keywordsToggle, userKeywordsToggle] = useState(false);
+
+  const [manafilter, userManafilter] = useState(mana[0]);
+
+  //Toggle functions
+  function toggleFilter() {
+    filterToggle ? userFilterToggle(false) : userFilterToggle(true);
+  }
+  function toggleMana() {
+    userManaToggle(manaToggle ? false : true);
+  }
+  function toggleAttack() {
+    userAttackToggle(attackToggle ? false : true);
+  }
+  function toggleHealth() {
+    userHealthToggle(healthToggle ? false : true);
+  }
+  function toggleCardType() {
+    userCardTypeToggle(cardTypeToggle ? false : true);
+  }
+  function toggleMinionType() {
+    userMinionTypeToggle(minionTypeToggle ? false : true);
+  }
+  function toggleRarity() {
+    userRarityToggle(rarityToggle ? false : true);
+  }
+  function toggleKeywords() {
+    userKeywordsToggle(keywordsToggle ? false : true);
+  }
+
+  //Filter functions
+  function userManaFilter() {
+    if (manafilter === mana[0]) {
+      toggleMana();
+      userManafilter(mana[1]);
+      toggleMana();
+    } else if (manafilter === mana[1]) {
+      userManafilter(mana[0]);
+    }
+  }
+
   const [filtersActive, setFilterActive] = useState(false);
   const showFilters = () => {
     setFilterActive(!filtersActive);
   };
 
   const emblem = (): StaticImageData => {
-    switch (type) {
+    switch (className) {
       case 'Mage':
         return MageEmblem;
       case 'Hunter':
@@ -1292,10 +366,9 @@ const Classes: React.FC<IClasses> = ({
   };
 
   const content = (
-    //   <div className="w-full flex flex-col items-center bg-bgImgHome bg-scroll"></div>
     <div
       className={`${getBackgroundClass(
-        type
+        className
       )} bg-bgImgDemon w-full flex flex-col items-center bg-fix bg-no-repeat bg-cover bg-center min-h-screen overflow-x-hidden`}
     >
       <div
@@ -1306,7 +379,7 @@ const Classes: React.FC<IClasses> = ({
         <div className="flex items-center md:ml-12 mt-24">
           <Image className="w-64" src={emblem()} alt={'Emblem'} />
           <p className="text-white font-AclonicaR text-4xl md:text-7xl mx-8">
-            {className}
+            {getTitlDescription(className).name}
           </p>
         </div>
         <button
@@ -1334,7 +407,10 @@ const Classes: React.FC<IClasses> = ({
             sortBy={classes}
             label={'Classes'}
             onOptionClick={(option: any) => {
-              if (option != type) {
+              if (option != className) {
+                if (option == 'Demon Hunter') {
+                  option = 'Demon';
+                }
                 changeClass(option);
               }
             }}
@@ -1346,9 +422,11 @@ const Classes: React.FC<IClasses> = ({
           activeFilters && ' hidden'
         } mt-60 items-center justify-center text-center w-3/4`}
       >
-        <div className="text-gold font-AclonicaR text-5xl">{title}</div>
+        <div className="text-gold font-AclonicaR text-5xl">
+          {getTitlDescription(className).title}
+        </div>
         <div className="text-white font-MonserratM text-xl my-6">
-          {description}
+          {getTitlDescription(className).description}
         </div>
       </div>
       <button
@@ -1486,6 +564,7 @@ const Classes: React.FC<IClasses> = ({
                 label={atk[0]}
                 onOptionClick={(option: any) => {
                   console.log('Opcion seleccionada: ', option);
+                  toggleAttack;
                 }}
               />
             </div>
@@ -1548,6 +627,4 @@ const Classes: React.FC<IClasses> = ({
     </div>
   );
   return content;
-};
-
-export default Classes;
+}
