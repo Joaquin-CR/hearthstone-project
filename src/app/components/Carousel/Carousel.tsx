@@ -12,13 +12,11 @@ export default function Carousel({ cardList }: CarouselProps) {
       {cardList.map((card, index) => (
         <div key={index}>
           <Card
-            img={card.img}
+            pic={card.img}
             name={card.cardName}
             type={card.type}
             rarity={card.rarity}
             text={card.text}
-            cardSet={''}
-            favorite={false}
           />
         </div>
       ))}
