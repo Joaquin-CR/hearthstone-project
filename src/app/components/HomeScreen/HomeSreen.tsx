@@ -34,7 +34,6 @@ export default function HomeSreen() {
   const searchingData = (e: React.FormEvent<HTMLFormElement>) => {
     setSearching(true);
     e.preventDefault();
-    console.log('Entrando a buscar', search);
   };
 
   useEffect(() => {

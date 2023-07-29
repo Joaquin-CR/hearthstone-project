@@ -6,12 +6,11 @@ import LeftArrow from '../../../../public/images/leftArrowGold.svg';
 import ShopCard from '../ShopCard/ShopCard';
 import ShopDetail from '../ShopCard/ShopDetail';
 
-// type MapsScrollProps = {
-//   list?: Array<string>;
-//   funct?: (item: any) => void;
-// };
+type MapsScrollProps = {
+  clickBack: (show: boolean) => void;
+};
 
-export default function ScrollMaps() {
+export default function ScrollMaps({ clickBack }: MapsScrollProps) {
   const ref = useRef(null);
 
   const [showDetail, setShowDetail] = useState(false);
@@ -25,7 +24,7 @@ export default function ScrollMaps() {
     if (showDetail) {
       setShowDetail(!showDetail);
     } else {
-      console.log('Close the sideMenuShops');
+      clickBack(false);
     }
   };
 

@@ -36,11 +36,11 @@ export default function ShopDetail({
           />
           <p className="text-2xl mx-3">{name}</p>
         </div>
-        <div className="flex my-14">
+        <div className="flex mt-14">
           <Image src={MapPin} alt={'Lef Arrow Icon'} />
           <p className="mx-3">{address}</p>
         </div>
-        <div className="flex">
+        <div className="flex mt-5">
           <Image src={Clock} alt={'Lef Arrow Icon'} />
           <p
             className={`${
@@ -50,14 +50,14 @@ export default function ShopDetail({
             {open}
           </p>
         </div>
-        <div className="flex mt-6">
+        <div className="flex mt-6 w-full">
           <table className="mx-8">
-            <tbody>
+            <tbody className="text-lg">
               <tr>
                 <td>
                   <p>Monday</p>
                 </td>
-                <td>
+                <td className="w-full">
                   <p className="mx-6">11AM-6PM</p>
                 </td>
               </tr>
@@ -116,7 +116,7 @@ export default function ShopDetail({
           <Image src={NetIcon} alt={'Lef Arrow Icon'} />
           <p className="mx-3">{net}</p>
         </div>
-        <div className="flex mt-12">
+        <div className="flex mt-12 md:mt-8">
           <Image src={Phone} alt={'Lef Arrow Icon'} />
           <p className="mx-3">{phone}</p>
         </div>

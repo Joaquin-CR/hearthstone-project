@@ -15,7 +15,7 @@ export default function GridContainer({ cards }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(1);
   const smallerLists = SplitIntoSmallerLists(cards, 10);
   const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
-  const last = smallerLists.getTail();
+  // const last = smallerLists.getTail();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

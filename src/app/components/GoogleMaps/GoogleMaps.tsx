@@ -7,11 +7,15 @@ const containerStyle = {
   height: '925px',
 };
 
-const openSlide = () => {
-  console.log('open slide');
+type GoogleMapsProps = {
+  clicknMarker: (show: boolean) => void;
 };
 
-export default function GoogleMaps() {
+export default function GoogleMaps({ clicknMarker }: GoogleMapsProps) {
+  const openCloseSlide = () => {
+    clicknMarker(true);
+  };
+
   const [userPosition, setUserPosition] = useState<{
     lat: number;
     lng: number;
@@ -23,6 +27,7 @@ export default function GoogleMaps() {
 
   const handleZoomChanged = () => {
     console.log('Zoom');
+    // clicknMarker(true);
   };
 
   useEffect(() => {
@@ -88,31 +93,20 @@ export default function GoogleMaps() {
   return isLoaded ? (
     <>
       <div className="overflow-y-none">
-        {/* <LoadScript googleMapsApiKey={''} libraries={['places']}>
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={userPosition ? userPosition : undefined}
-            zoom={10}
-          >
-            {userPosition && (
-              <Marker
-                position={{ lat: userPosition.lat, lng: userPosition.lng }}
-              />
-            )}
-            {nearbyCardShops.map((shop, index) => (
-              <Marker key={index} position={{ lat: shop.lat, lng: shop.lng }} />
-            ))}
-          </GoogleMap>
-        </LoadScript> */}
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
           zoom={10}
           onZoomChanged={handleZoomChanged}
+          onClick={() => {
+            clicknMarker(false);
+          }}
         >
           {userPosition && (
             <Marker
               position={{ lat: userPosition.lat, lng: userPosition.lng }}
+              onClick={openCloseSlide}
+              icon={{ url: '/images/MarkerMaps.png' }}
             />
           )}
           {nearbyCardShops.map((shop, index) => (
@@ -121,8 +115,8 @@ export default function GoogleMaps() {
           {/* Puedes agregar marcadores u otros elementos aquí */}
           <Marker
             position={center}
-            onClick={openSlide}
-            // icon={{ url: '../../../../public/images/MarkerMaps.png' }}
+            onClick={openCloseSlide}
+            icon={{ url: '/images/MarkerMaps.png' }}
           />
         </GoogleMap>
       </div>
