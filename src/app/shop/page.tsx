@@ -5,6 +5,8 @@ import ScrollMaps from '../components/scrollOptions/scrollMaps';
 
 export default function Page() {
   const [showSide, setShowSide] = useState(false);
+  // const markers = await getPlaces({ lat: '25.690559', lng: '-100.312982' });
+  // console.log('ya en el componente', markers);
   return (
     <>
       <div className="w-full overflow-y-hidden flex flex-col">

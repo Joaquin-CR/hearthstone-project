@@ -43,3 +43,21 @@ export async function getAllCards() {
     console.error(error);
   }
 }
+
+type propsPlaces = {
+  lat: string;
+  lng: string;
+};
+
+export async function getPlaces({ lat, lng }: propsPlaces) {
+  const url =
+    'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' +
+    lat +
+    ',' +
+    lng +
+    '&radius=1000&type=store&key=';
+
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(data);
+}
