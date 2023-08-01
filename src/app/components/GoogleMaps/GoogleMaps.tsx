@@ -1,5 +1,10 @@
 'use client';
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  InfoWindow,
+  Marker,
+  useJsApiLoader,
+} from '@react-google-maps/api';
 import { useEffect, useMemo, useState } from 'react';
 import { PlaceClass } from '../../../../types';
 
@@ -10,21 +15,30 @@ const containerStyle = {
 
 type GoogleMapsProps = {
   places: PlaceClass[];
-  clicknMarker: (show: boolean) => void;
+  center: any;
 };
 
-export default function GoogleMaps({ places, clicknMarker }: GoogleMapsProps) {
+const openSlide = (name: string, vicinity: string, rating: string) => {
+  return (
+    <InfoWindow>
+      <div>{name}</div>
+      <div>{vicinity}</div>
+      <div>{rating}</div>
+    </InfoWindow>
+  );
+};
+
+export default function GoogleMaps({ places, center }: GoogleMapsProps) {
   const libraries = useMemo(() => ['places'], []);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
-  const [isMarkerHovered, setIsMarkerHovered] = useState(false);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: '',
+    googleMapsApiKey: process.env.PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries: libraries as any,
   });
-  let center = { lat: 26.3389184, lng: -98.2122496 };
 
+  // CHECAR SI SIGUE SIENDO UTIL
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLatitude(position.coords.latitude);
@@ -33,7 +47,7 @@ export default function GoogleMaps({ places, clicknMarker }: GoogleMapsProps) {
   }, []);
 
   const openCloseSlide = () => {
-    clicknMarker(true);
+    // clicknMarker(true);
   };
 
   const handleZoomChanged = () => {
@@ -46,48 +60,16 @@ export default function GoogleMaps({ places, clicknMarker }: GoogleMapsProps) {
       <div className="overflow-y-none">
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={{ lat: latitude, lng: longitude }}
+          center={center}
           zoom={10}
           onZoomChanged={handleZoomChanged}
-          onClick={() => {
-            clicknMarker(false);
-          }}
         >
           {/* Puedes agregar marcadores u otros elementos aquí */}
-          {/* TEST MARKER */}
-          <Marker
-            position={center}
-            onMouseOver={() => {
-              setIsMarkerHovered(true);
-            }}
-            onMouseOut={() => {
-              setIsMarkerHovered(false);
-            }}
-            icon={{ url: '/images/MarkerMaps.png' }}
-            options={
-              isMarkerHovered
-                ? { animation: window.google.maps.Animation.BOUNCE }
-                : { animation: window.google.maps.Animation.DROP }
-            }
-            onClick={openCloseSlide}
-          ></Marker>
-          {/* END TEST MARKER */}
           {places.map((place, index) => (
-            <div key={index} className=" hover:drop-shadow-blue">
+            <div key={index} className=" hover:bg-colorText-Sadows">
               <Marker
                 position={place.geometry.location}
-                onMouseOver={() => {
-                  setIsMarkerHovered(true);
-                }}
-                onMouseOut={() => {
-                  setIsMarkerHovered(false);
-                }}
                 icon={{ url: '/images/MarkerMaps.png' }}
-                options={
-                  isMarkerHovered
-                    ? { animation: window.google.maps.Animation.BOUNCE }
-                    : { animation: window.google.maps.Animation.DROP }
-                }
                 onClick={openCloseSlide}
               ></Marker>
             </div>

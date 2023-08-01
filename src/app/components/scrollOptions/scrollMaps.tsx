@@ -1,22 +1,41 @@
 'use client';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useDraggableScroll from 'use-draggable-scroll';
 import LeftArrow from '../../../../public/images/leftArrowGold.svg';
+import { PlaceClass } from '../../../../types';
+import GoogleMaps from '../GoogleMaps/GoogleMaps';
 import ShopCard from '../ShopCard/ShopCard';
 import ShopDetail from '../ShopCard/ShopDetail';
 
 type MapsScrollProps = {
-  clickBack: (show: boolean) => void;
+  places: PlaceClass[];
 };
 
-export default function ScrollMaps({ clickBack }: MapsScrollProps) {
+export default function ScrollMaps({ places }: MapsScrollProps) {
   const ref = useRef(null);
+  const { onMouseDown } = useDraggableScroll(ref);
 
   const [showDetail, setShowDetail] = useState(false);
+  const [place, setPlace] = useState<PlaceClass>();
+  const [center, setCenter] = useState({ lat: 0, lng: 0 });
 
-  const goToDetail = (card: any) => {
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setCenter({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  }, []);
+
+  const goToDetail = (card: PlaceClass) => {
+    setCenter({
+      lat: card.geometry.location.lat,
+      lng: card.geometry.location.lng,
+    });
     console.log('Go To Detail', card);
+    setPlace(card);
     setShowDetail(!showDetail);
   };
 
@@ -24,119 +43,59 @@ export default function ScrollMaps({ clickBack }: MapsScrollProps) {
     if (showDetail) {
       setShowDetail(!showDetail);
     } else {
-      clickBack(false);
+      // clickBack(false);
     }
   };
 
-  const { onMouseDown } = useDraggableScroll(ref);
   return (
-    <div
-      className="w-full fixed top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-bgSideShop shadow-black no-scrollbar py-3 text-white md:w-1/4 h-screen"
-      ref={ref}
-      onMouseDown={onMouseDown}
-    >
-      <div className="flex items-center mt-12 md:justify-center">
-        <Image
-          className="md:hidden mx-9"
-          src={LeftArrow}
-          alt={''}
-          onClick={goToList}
-        />
-        <h1 className="text-5xl flex font-AclonicaR z-10 md:text-7xl text-white drop-shadow-lg">
-          SHOPS
-        </h1>
-      </div>
-      {showDetail ? (
-        <div className="mt-12 mx-9">
-          <ShopDetail
-            name={'Anvil Cards'}
-            address={'2356 Bisonnet St.'}
-            open={'Open'}
-            schedule={''}
-            phone={'(832) 371-7488'}
-            net={'gemmintcardhouse.com'}
-            clickBack={() => {
-              setShowDetail(!showDetail);
-            }}
+    <>
+      <div
+        className="w-full fixed top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-bgSideShop shadow-black no-scrollbar py-3 text-white md:w-1/4 h-screen"
+        ref={ref}
+        onMouseDown={onMouseDown}
+      >
+        <div className="flex items-center mt-12 md:justify-center">
+          <Image
+            className="md:hidden mx-9"
+            src={LeftArrow}
+            alt={''}
+            onClick={goToList}
           />
+          <h1 className="text-5xl flex font-AclonicaR z-10 md:text-7xl text-white drop-shadow-lg">
+            SHOPS
+          </h1>
         </div>
-      ) : (
-        <div className="mt-12 mx-9">
-          {/* ISERT A LOOP TO POPULATE THE SIDE MENU */}
-          <div className="">
-            <ShopCard
-              name={'Anvil Cards'}
-              address={'2356 Bisonnet St.'}
-              open={'Closed'}
-              schedule={'Opens 12pm'}
-              phone={'(832) 371-7488'}
-              clickCard={(card: any) => {
-                goToDetail(card);
+        {showDetail ? (
+          <div className="mt-12 mx-9">
+            <ShopDetail
+              place={place as PlaceClass}
+              clickBack={() => {
+                setShowDetail(!showDetail);
               }}
             />
           </div>
-          <div>
-            <ShopCard
-              name={'Anvil Cards'}
-              address={'2356 Bisonnet St.'}
-              open={'Open'}
-              schedule={'Close 6pm'}
-              phone={'(832) 371-7488'}
-              clickCard={function (card: any): void {
-                goToDetail(card);
-              }}
-            />
+        ) : (
+          <div className="mt-12 mx-9">
+            {/* ISERT A LOOP TO POPULATE THE SIDE MENU */}
+            {places.map((place, index) => (
+              <div key={index}>
+                <ShopCard
+                  name={place.name}
+                  address={place.vicinity}
+                  open={place.opening_hours.open_now ? 'Open' : 'Closed'}
+                  schedule={place.opening_hours.weekday_text[0].replace(
+                    'Monday:',
+                    ''
+                  )}
+                  phone={place.phone}
+                  clickCard={() => goToDetail(place)}
+                />
+              </div>
+            ))}
           </div>
-          <div className="">
-            <ShopCard
-              name={'Anvil Cards'}
-              address={'2356 Bisonnet St.'}
-              open={'Closed'}
-              schedule={'Opens 12pm'}
-              phone={'(832) 371-7488'}
-              clickCard={function (card: any): void {
-                goToDetail(card);
-              }}
-            />
-          </div>
-          <div>
-            <ShopCard
-              name={'Anvil Cards'}
-              address={'2356 Bisonnet St.'}
-              open={'Open'}
-              schedule={'Close 6pm'}
-              phone={'(832) 371-7488'}
-              clickCard={function (card: any): void {
-                goToDetail(card);
-              }}
-            />
-          </div>
-          <div className="">
-            <ShopCard
-              name={'Anvil Cards'}
-              address={'2356 Bisonnet St.'}
-              open={'Closed'}
-              schedule={'Opens 12pm'}
-              phone={'(832) 371-7488'}
-              clickCard={function (card: any): void {
-                goToDetail(card);
-              }}
-            />
-          </div>
-          <div>
-            <ShopCard
-              name={'Anvil Cards'}
-              address={'2356 Bisonnet St.'}
-              open={'Open'}
-              schedule={'Close 6pm'}
-              phone={'(832) 371-7488'}
-              clickCard={function (card: any): void {
-                goToDetail(card);
-              }}
-            />
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+      <GoogleMaps places={places} center={center} />
+    </>
   );
 }

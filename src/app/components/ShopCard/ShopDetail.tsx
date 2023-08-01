@@ -1,29 +1,25 @@
 import Image from 'next/image';
+import {
+  JSXElementConstructor,
+  Key,
+  PromiseLikeOfReactNode,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+} from 'react';
 import LeftArrow from '../../../../public/images/arrowLeftIcon.svg';
 import Clock from '../../../../public/images/clockIcon.svg';
 import MapPin from '../../../../public/images/mapPinIcon.svg';
 import NetIcon from '../../../../public/images/netIcon.svg';
 import Phone from '../../../../public/images/phoneIcon.svg';
+import { PlaceClass } from '../../../../types';
 
 type DetailShopProps = {
-  name: string;
-  address: string;
-  open: string;
-  schedule: string;
-  phone: string;
-  net: string;
+  place: PlaceClass;
   clickBack: () => void;
 };
 
-export default function ShopDetail({
-  name,
-  address,
-  open,
-  schedule,
-  phone,
-  net,
-  clickBack,
-}: DetailShopProps) {
+export default function ShopDetail({ place, clickBack }: DetailShopProps) {
   return (
     <>
       <div className="text-white font-AclonicaR">
@@ -34,91 +30,54 @@ export default function ShopDetail({
             alt={'Lef Arrow Icon'}
             onClick={clickBack}
           />
-          <p className="text-2xl mx-3">{name}</p>
+          <p className="text-2xl mx-3">{place.name}</p>
         </div>
         <div className="flex mt-14">
-          <Image src={MapPin} alt={'Lef Arrow Icon'} />
-          <p className="mx-3">{address}</p>
+          <Image src={MapPin} alt={'Map Pin'} />
+          <p className="mx-3">{place.vicinity}</p>
         </div>
         <div className="flex mt-5">
-          <Image src={Clock} alt={'Lef Arrow Icon'} />
+          <Image src={Clock} alt={'Clock Icon'} />
           <p
             className={`${
-              open == 'Open' ? 'text-colorText-Sadows' : 'text-gold'
+              place.opening_hours.open_now == true
+                ? 'text-colorText-Sadows'
+                : 'text-gold'
             } mx-3`}
           >
-            {open}
+            {place.opening_hours.open_now == true ? 'Open' : 'Closed'}
           </p>
         </div>
         <div className="flex mt-6 w-full">
           <table className="mx-8">
-            <tbody className="text-lg">
-              <tr>
-                <td>
-                  <p>Monday</p>
-                </td>
-                <td className="w-full">
-                  <p className="mx-6">11AM-6PM</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Tuesday</p>
-                </td>
-                <td>
-                  <p className="mx-6">11AM-6PM</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Wednesday</p>
-                </td>
-                <td>
-                  <p className="mx-6">11AM-6PM</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Thursday</p>
-                </td>
-                <td>
-                  <p className="mx-6">11AM-6PM</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Friday</p>
-                </td>
-                <td>
-                  <p className="mx-6">11AM-6PM</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Saturday</p>
-                </td>
-                <td>
-                  <p className="mx-6">11AM-6PM</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Sunday</p>
-                </td>
-                <td>
-                  <p className="mx-6">12AM-4PM</p>
-                </td>
-              </tr>
-            </tbody>
+            {place.opening_hours.weekday_text.map(
+              (
+                day:
+                  | string
+                  | number
+                  | boolean
+                  | ReactElement<any, string | JSXElementConstructor<any>>
+                  | Iterable<ReactNode>
+                  | ReactPortal
+                  | PromiseLikeOfReactNode
+                  | null
+                  | undefined,
+                index: Key | null | undefined
+              ) => (
+                <div className="py-5" key={index}>
+                  {day}
+                </div>
+              )
+            )}
           </table>
         </div>
         <div className="flex mt-12">
           <Image src={NetIcon} alt={'Lef Arrow Icon'} />
-          <p className="mx-3">{net}</p>
+          <p className="mx-3">{place.website}</p>
         </div>
         <div className="flex mt-12 md:mt-8">
           <Image src={Phone} alt={'Lef Arrow Icon'} />
-          <p className="mx-3">{phone}</p>
+          <p className="mx-3">{place.phone}</p>
         </div>
       </div>
     </>
