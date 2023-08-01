@@ -6,7 +6,7 @@ export async function getCards(className: string) {
       `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/${className}`,
       {
         headers: {
-          'X-RapidAPI-Key': '',
+          'X-RapidAPI-Key': process.env.HEARTHSTONE_API_KEY as string,
           'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com',
         },
       }
@@ -28,7 +28,7 @@ export async function getAllCards() {
       `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards`,
       {
         headers: {
-          'X-RapidAPI-Key': '',
+          'X-RapidAPI-Key': process.env.HEARTHSTONE_API_KEY as string,
           'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com',
         },
       }

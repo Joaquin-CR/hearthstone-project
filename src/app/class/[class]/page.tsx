@@ -1,4 +1,3 @@
-'use client';
 import Classes from '@/app/components/ClassesView/Classes';
 import { getCards } from '@/lib/getClassCard';
 
