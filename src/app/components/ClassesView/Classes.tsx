@@ -3,8 +3,6 @@ import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
 import DemonEmblem from '../../../../public/images/demonHunterEmblem.png';
 import DruidEmblem from '../../../../public/images/druidEmblem.png';
-import FilterIcon from '../../../../public/images/filter.svg';
-import FilterBlackIcon from '../../../../public/images/filterBlack.svg';
 import HunterEmblem from '../../../../public/images/hunterEmblem.png';
 import MageEmblem from '../../../../public/images/mageEmblem.png';
 import PaladinEmblem from '../../../../public/images/paladinEmblem.png';
@@ -17,6 +15,7 @@ import { CardClass } from '../../../../types';
 import GridContainer from '../Carousel/GridContainer';
 import MobileCorusel from '../Carousel/MobileCorusel';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
+import Filters from '../Filters/Filters';
 
 export interface IClasses {
   cards: CardClass[];
@@ -409,200 +408,17 @@ export default function Classes({ cards, className }: IClasses) {
           {getTitlDescription(className).description}
         </div>
       </div>
-      <button
-        className="md:hidden bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 items-center mt-7"
-        onClick={openFilters}
-      >
-        <div
-          className={`${!activeFilters && 'bg-bgColor-Filters text-white'} ${
-            activeFilters && 'bg-ColorGold text-black'
-          } flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-full`}
-        >
-          <p className={`${activeFilters && ' text-black'} pl-2 mr-2`}>
-            Manage filters
-          </p>
-        </div>
-      </button>
-      <div
-        className={`${
-          !activeFilters && 'hidden'
-        } absolute top-68 bg-Color-FilterMobile w-full flex-col justify-center origin-top`}
-      >
-        <button
-          className="absolute top-0 right-0 mt-4 mr-4 text-white font-AclonicaR text-4xl"
-          onClick={openFilters}
-        >
-          X
-        </button>
-        <nav
-          className="flex flex-col min-h-screen items-center mt-12 py-8"
-          aria-label="mobile"
-        >
-          <div className="flex items-center">
-            <p className="font-AclonicaR text-colorText-Sadows mr-5 text-xl">
-              Mana
-            </p>
-          </div>
-          <div className="flex items-center px-11">
-            <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
-            <DropDownBTN
-              images={false}
-              sortBy={mana}
-              label={mana[0]}
-              onOptionClick={(option: any) => {
-                console.log('Opcion seleccionada: ', option);
-              }}
-            />
-          </div>
-          <button
-            className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2"
-            onClick={showFilters}
-          >
-            <div
-              className={`${
-                !filtersActive && 'bg-bgColor-Filters text-white'
-              } ${
-                filtersActive && 'bg-ColorGold text-black'
-              } flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-full`}
-            >
-              <Image
-                src={filtersActive ? FilterBlackIcon : FilterIcon}
-                alt={''}
-              />{' '}
-              <p className={`${filtersActive && ' text-black'} pl-2`}>
-                Filters
-              </p>
-            </div>
-          </button>
-        </nav>
-      </div>
+      <Filters
+        manaLabel={'manaLabel'}
+        atkLabel={'atkLabel'}
+        healthLabel={'healthLabel'}
+        cardTypeLabel={'cardTypeLabel'}
+        minionTypeLabel={'minionTypeLabel'}
+        rarityLabel={'rarityLabel'}
+        keywordsLabel={'keywordsLabel'}
+      ></Filters>
+
       <div className="md:mt-28">
-        <div
-          className="hidden md:flex mt-20 items-center justify-center"
-          id="filtros"
-        >
-          <div className="flex items-center">
-            <p className="font-AclonicaR text-colorText-Sadows mr-5 text-xl">
-              Mana
-            </p>
-            <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2">
-              <div className="bg-bgColor-Filters bg-opacity-80 px-6 py-4 font-AclonicaR text-white rounded-full">
-                {/* hover:bg-ColorGold hover:text-black */}
-                <button className="mr-1 w-12 text-xl drop-shadow-lg">0</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">1</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">2</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">3</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">4</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">5</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">6</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">7</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">8</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">9</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                  10+
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center px-11">
-            <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
-            <DropDownBTN
-              images={false}
-              sortBy={mana}
-              label={mana[0]}
-              onOptionClick={(option: any) => {
-                console.log('Opcion seleccionada: ', option);
-              }}
-            />
-          </div>
-          <div className="">
-            <button
-              className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2"
-              onClick={showFilters}
-            >
-              <div
-                className={`${
-                  !filtersActive && 'bg-bgColor-Filters text-white'
-                } ${
-                  filtersActive && 'bg-ColorGold text-black'
-                } flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-full`}
-              >
-                <Image
-                  src={filtersActive ? FilterBlackIcon : FilterIcon}
-                  alt={''}
-                />{' '}
-                <p className={`${filtersActive && ' text-black'} pl-2`}>
-                  Filters
-                </p>
-              </div>
-            </button>
-          </div>
-        </div>
-        {filtersActive && (
-          <div className="flex mt-8" id="filtros">
-            <div className="mx-5">
-              <DropDownBTN
-                images={false}
-                sortBy={atk}
-                label={atk[0]}
-                onOptionClick={(option: any) => {
-                  console.log('Opcion seleccionada: ', option);
-                  toggleAttack;
-                }}
-              />
-            </div>
-            <div className="mx-5">
-              <DropDownBTN
-                images={false}
-                sortBy={health}
-                label={health[0]}
-                onOptionClick={(option: any) => {
-                  console.log('Opcion seleccionada: ', option);
-                }}
-              />
-            </div>
-            <div className="mx-5">
-              <DropDownBTN
-                images={false}
-                sortBy={cardType}
-                label={cardType[0]}
-                onOptionClick={(option: any) => {
-                  console.log('Opcion seleccionada: ', option);
-                }}
-              />
-            </div>
-            <div className="mx-5">
-              <DropDownBTN
-                images={false}
-                sortBy={minionType}
-                label={minionType[0]}
-                onOptionClick={(option: any) => {
-                  console.log('Opcion seleccionada: ', option);
-                }}
-              />
-            </div>
-            <div className="mx-5">
-              <DropDownBTN
-                images={false}
-                sortBy={rarity}
-                label={rarity[0]}
-                onOptionClick={(option: any) => {
-                  console.log('Opcion seleccionada: ', option);
-                }}
-              />
-            </div>
-            <div className="mx-5">
-              <DropDownBTN
-                images={false}
-                sortBy={keywords}
-                label={keywords[0]}
-                onOptionClick={(option: any) => {
-                  console.log('Opcion seleccionada: ', option);
-                }}
-              />
-            </div>
-          </div>
-        )}
         <div className="hidden md:block mt-14">
           <GridContainer cards={cards}></GridContainer>
         </div>
