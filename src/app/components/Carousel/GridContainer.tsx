@@ -95,7 +95,7 @@ export default function GridContainer({ cards }: CarouselProps) {
           <Image src={right} alt="right"></Image>
         </button>
       </div>
-      <div className="flex flex-row  justify-center items-centerrounded-full px-1 text-white h-16">
+      <div className="flex flex-row justify-center items-centerrounded-full px-1 text-white h-16">
         <div className=" flex flex-row justify-between gap-10 rounded-full h-[58px] ">
           <button
             className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"

@@ -1,8 +1,6 @@
 'use client';
 import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
-import ArrowDown from '../../../../public/images/KeyboardArrowDown.svg';
-import ArrowUp from '../../../../public/images/KeyboardArrowUp.svg';
 import DemonEmblem from '../../../../public/images/demonHunterEmblem.png';
 import DruidEmblem from '../../../../public/images/druidEmblem.png';
 import FilterIcon from '../../../../public/images/filter.svg';
@@ -17,6 +15,7 @@ import WarlockEmblem from '../../../../public/images/warlockEmblem.png';
 import WarriorEmblem from '../../../../public/images/warriorEmblem.png';
 import { CardClass } from '../../../../types';
 import GridContainer from '../Carousel/GridContainer';
+import MobileCorusel from '../Carousel/MobileCorusel';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
 
 export interface IClasses {
@@ -382,26 +381,7 @@ export default function Classes({ cards, className }: IClasses) {
             {getTitlDescription(className).name}
           </p>
         </div>
-        <button
-          className="md:hidden bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 w-3/5 items-center mt-7"
-          onClick={openDropdown}
-        >
-          <div
-            className={`${!activeDropdown && 'bg-bgColor-Filters text-white'} ${
-              activeDropdown && 'bg-ColorGold text-black'
-            } flex justify-between text-center py-4 px-6 font-AclonicaR items-center bg-opacity-80 rounded-full`}
-          >
-            <p
-              className={`${
-                activeDropdown && ' text-black'
-              } items-center pl-2 mr-2`}
-            >
-              Classes
-            </p>
-            <Image src={activeDropdown ? ArrowUp : ArrowDown} alt={'Arrow'} />
-          </div>
-        </button>
-        <div className="hidden md:flex items-center justify-center">
+        <div className="md:flex items-center justify-center">
           <DropDownBTN
             images={true}
             sortBy={classes}
@@ -420,7 +400,7 @@ export default function Classes({ cards, className }: IClasses) {
       <div
         className={`${
           activeFilters && ' hidden'
-        } mt-60 items-center justify-center text-center w-3/4`}
+        } mt-8 md:mt-60 items-center justify-center text-center w-3/4`}
       >
         <div className="text-gold font-AclonicaR text-5xl">
           {getTitlDescription(className).title}
@@ -496,8 +476,11 @@ export default function Classes({ cards, className }: IClasses) {
           </button>
         </nav>
       </div>
-      <div className="hidden md:block mt-28">
-        <div className="mt-20 flex items-center justify-center" id="filtros">
+      <div className="md:mt-28">
+        <div
+          className="hidden md:flex mt-20 items-center justify-center"
+          id="filtros"
+        >
           <div className="flex items-center">
             <p className="font-AclonicaR text-colorText-Sadows mr-5 text-xl">
               Mana
@@ -620,8 +603,11 @@ export default function Classes({ cards, className }: IClasses) {
             </div>
           </div>
         )}
-        <div className="mt-14">
+        <div className="hidden md:block mt-14">
           <GridContainer cards={cards}></GridContainer>
+        </div>
+        <div className="md:hidden">
+          <MobileCorusel cardList={cards} />
         </div>
       </div>
     </div>

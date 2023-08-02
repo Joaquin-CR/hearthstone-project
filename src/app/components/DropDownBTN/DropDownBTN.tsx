@@ -19,7 +19,6 @@ const DropDownBTN: React.FC<IDropDown> = ({
 }) => {
   const [activeDropdown, setActiveDropdown] = useState(false);
   const [valueSelected, setValueSelected] = useState(label);
-  const [includeImages, setIncludesImages] = useState(images != null);
 
   const selectValue = (opcion: any) => {
     setValueSelected(opcion);
