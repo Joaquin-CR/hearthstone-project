@@ -17,6 +17,7 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
   const { onMouseDown } = useDraggableScroll(ref);
 
   const [showDetail, setShowDetail] = useState(false);
+  const [showSide, setShowSide] = useState(true);
   const [place, setPlace] = useState<PlaceClass>();
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
 
@@ -43,14 +44,17 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
     if (showDetail) {
       setShowDetail(!showDetail);
     } else {
-      // clickBack(false);
+      setShowSide(false);
+      setShowDetail(false);
     }
   };
 
   return (
     <>
       <div
-        className="w-full fixed top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-bgSideShop shadow-black no-scrollbar py-3 text-white md:w-1/4 h-screen"
+        className={`${
+          showSide ? 'md:flex' : 'hidden'
+        } w-full fixed top-20 z-10 flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-bgSideShop shadow-black no-scrollbar py-3 text-white md:w-1/4 h-screen`}
         ref={ref}
         onMouseDown={onMouseDown}
       >
@@ -76,7 +80,6 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
           </div>
         ) : (
           <div className="mt-12 mx-9">
-            {/* ISERT A LOOP TO POPULATE THE SIDE MENU */}
             {places.map((place, index) => (
               <div key={index}>
                 <ShopCard
@@ -95,7 +98,17 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
           </div>
         )}
       </div>
-      <GoogleMaps places={places} center={center} />
+      <GoogleMaps
+        places={places}
+        center={center}
+        clickMarker={() => {
+          setShowSide(true);
+        }}
+        clickMap={() => {
+          setShowSide(false);
+          setShowDetail(false);
+        }}
+      />
     </>
   );
 }

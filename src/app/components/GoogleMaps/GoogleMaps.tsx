@@ -5,7 +5,7 @@ import {
   Marker,
   useJsApiLoader,
 } from '@react-google-maps/api';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { PlaceClass } from '../../../../types';
 
 const containerStyle = {
@@ -16,6 +16,8 @@ const containerStyle = {
 type GoogleMapsProps = {
   places: PlaceClass[];
   center: any;
+  clickMarker: () => void;
+  clickMap: () => void;
 };
 
 const openSlide = (name: string, vicinity: string, rating: string) => {
@@ -28,32 +30,18 @@ const openSlide = (name: string, vicinity: string, rating: string) => {
   );
 };
 
-export default function GoogleMaps({ places, center }: GoogleMapsProps) {
+export default function GoogleMaps({
+  places,
+  center,
+  clickMarker,
+  clickMap,
+}: GoogleMapsProps) {
   const libraries = useMemo(() => ['places'], []);
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries: libraries as any,
   });
-
-  // CHECAR SI SIGUE SIENDO UTIL
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(position.coords.latitude);
-      setLongitude(position.coords.longitude);
-    });
-  }, []);
-
-  const openCloseSlide = () => {
-    // clicknMarker(true);
-  };
-
-  const handleZoomChanged = () => {
-    console.log('Zoom');
-    // clicknMarker(true);
-  };
 
   return isLoaded ? (
     <>
@@ -62,15 +50,18 @@ export default function GoogleMaps({ places, center }: GoogleMapsProps) {
           mapContainerStyle={containerStyle}
           center={center}
           zoom={10}
-          onZoomChanged={handleZoomChanged}
+          onClick={clickMap}
         >
           {/* Puedes agregar marcadores u otros elementos aquí */}
           {places.map((place, index) => (
-            <div key={index} className=" hover:bg-colorText-Sadows">
+            <div key={index} className="hover:bg-colorText-Sadows">
               <Marker
                 position={place.geometry.location}
                 icon={{ url: '/images/MarkerMaps.png' }}
-                onClick={openCloseSlide}
+                onMouseDown={() => {
+                  openSlide(place.name, place.vicinity, place.rating);
+                }}
+                onClick={clickMarker}
               ></Marker>
             </div>
           ))}

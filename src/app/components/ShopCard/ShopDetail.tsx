@@ -48,7 +48,7 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
             {place.opening_hours.open_now == true ? 'Open' : 'Closed'}
           </p>
         </div>
-        <div className="flex mt-6 w-full">
+        <div className="flex mt-4 w-full">
           <table className="mx-8">
             {place.opening_hours.weekday_text.map(
               (
@@ -71,7 +71,7 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
             )}
           </table>
         </div>
-        <div className="flex mt-12">
+        <div className="flex mt-5">
           <Image src={NetIcon} alt={'Lef Arrow Icon'} />
           <p className="mx-3">{place.website}</p>
         </div>
