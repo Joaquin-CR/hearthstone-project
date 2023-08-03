@@ -121,8 +121,9 @@ export default function Favorites({ cards }: FavoritesProps) {
           cardTypeLabel={cardTypeLabel}
           minionTypeLabel={minionTypeLabel}
           rarityLabel={rarityLabel}
-          keywordsLabel={keywordsLabel}
-        ></Filters>
+          keywordsLabel={keywordsLabel} activeFiltersBTN={function (active: boolean): void {
+            throw new Error('Function not implemented.');
+          } }        ></Filters>
         <div className="hidden md:block w-full px-8 overflow-x-hidden">
           <GridContainer cards={cards ? cards : []}></GridContainer>
         </div>
