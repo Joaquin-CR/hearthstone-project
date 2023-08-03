@@ -14,6 +14,7 @@ type FilteProps = {
   minionTypeLabel: string;
   rarityLabel: string;
   keywordsLabel: string;
+  activeFiltersBTN: (active: boolean) => void;
 };
 
 const manaSort = ['Mana: low to high', 'Mana: high to low'];
@@ -85,9 +86,9 @@ export default function Filters({
   minionTypeLabel,
   rarityLabel,
   keywordsLabel,
+  activeFiltersBTN,
 }: FilteProps) {
   const [activeFilters, setActiveFilters] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(false);
   const [filtersActive, setFilterActive] = useState(false);
   const openFilters = () => {
     setActiveFilters(!activeFilters);

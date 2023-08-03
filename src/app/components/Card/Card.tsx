@@ -12,6 +12,7 @@ export interface ICardInfo {
   rarity: string;
   text: string;
   effect?: string;
+  like: (like: boolean) => void;
 }
 
 export default function Card({
@@ -21,12 +22,9 @@ export default function Card({
   rarity,
   text,
   effect,
+  like,
 }: ICardInfo) {
   const [favorites, setFavorites] = useState(false);
-
-  const likeDislike = () => {
-    setFavorites(!favorites);
-  };
 
   text = text?.replace(/<b>/g, '');
   text = text?.replace(/<\/b>/g, '');
@@ -62,7 +60,13 @@ export default function Card({
         )}
         <div className="relative bg-ColorBorder-Card hover:bg-gradient-to-b hover:from-gold hover:via-gold_2 hover:to-gold_3 rounded-2xl p-1 w-full">
           <div className="bg-bgColor-Card hover:bg-bgColor-CardDescroption rounded-2xl py-3 text-black hover:text-ColorGold">
-            <div className="absolute -top-6 -right-3" onClick={likeDislike}>
+            <div
+              className="absolute -top-6 -right-3"
+              onClick={() => {
+                setFavorites(!favorites);
+                like(!favorites);
+              }}
+            >
               <div className=" bg-ColorBorder-Card hover:bg-gradient-to-b hover:from-gold hover:via-gold_2 hover:to-gold_3 rounded-full p-1 w-full">
                 <div className="bg-bgColor-Card hover:bg-bgColor-CardDescroption rounded-full text-black hover:text-ColorGold p-1">
                   <Image

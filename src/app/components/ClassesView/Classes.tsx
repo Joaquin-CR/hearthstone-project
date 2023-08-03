@@ -270,8 +270,6 @@ function getTitlDescription(classId: string) {
 }
 
 export default function Classes({ cards, className }: IClasses) {
-  // const currentClassData = classData[className];
-
   const [filterToggle, userFilterToggle] = useState(false);
   const [manaToggle, userManaToggle] = useState(false);
   const [attackToggle, userAttackToggle] = useState(false);
@@ -416,6 +414,9 @@ export default function Classes({ cards, className }: IClasses) {
         minionTypeLabel={'minionTypeLabel'}
         rarityLabel={'rarityLabel'}
         keywordsLabel={'keywordsLabel'}
+        activeFiltersBTN={function (active: boolean): void {
+          throw new Error('Function not implemented.');
+        }}
       ></Filters>
 
       <div className="md:mt-28">

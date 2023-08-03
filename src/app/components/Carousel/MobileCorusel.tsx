@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import left from '../../../../public/images/ArrowLeft.svg';
 import right from '../../../../public/images/ArrowRight.svg';
-import { CardClass, SplitIntoSmallerLists } from '../../../../types';
+import { CardClass } from '../../../../types';
 import Card from '../Card/Card';
 
 type CarouselProps = {
@@ -13,9 +13,6 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   let [startIndex, setStartIndex] = useState(0);
   let [endIndex, setEndIndex] = useState(4);
-  const [currentSlide, setCurrentSlide] = useState(1);
-  const smallerLists = SplitIntoSmallerLists(cardList, 10);
-  const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex); //checar
 
   function handleNextIndex() {
     startIndex = startIndex + 5;
@@ -60,6 +57,9 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
           type={cardList[currentIndex].type}
           rarity={cardList[currentIndex].rarity}
           text={cardList[currentIndex].text}
+          like={function (like: boolean): void {
+            console.log(like);
+          }}
         ></Card>
       </div>
     </>
