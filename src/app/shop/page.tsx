@@ -1,8 +1,20 @@
 import { getPlaceDetail } from '@/lib/getPlaces';
 import ScrollMaps from '../components/scrollOptions/scrollMaps';
 
-export default async function Page() {
-  let places = await getPlaceDetail({ lat: '26.3389184', lng: '-98.2122496' });
+interface MapProps {
+  params: {};
+  searchParams: {
+    lat: string;
+    lng: string;
+  };
+}
+
+export default async function Page(props: MapProps) {
+  let places = await getPlaceDetail({
+    lat: props.searchParams.lat,
+    lng: props.searchParams.lng,
+  });
+
   return (
     <>
       <div className="w-full overflow-y-hidden flex flex-col">
