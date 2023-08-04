@@ -14,19 +14,6 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
   let [startIndex, setStartIndex] = useState(0);
   let [endIndex, setEndIndex] = useState(4);
 
-  function handleNextIndex() {
-    startIndex = startIndex + 5;
-    endIndex = endIndex + 5;
-    setStartIndex(startIndex);
-    setEndIndex(endIndex);
-  }
-  function handlePreviousIndex() {
-    startIndex = startIndex - 5;
-    endIndex = endIndex - 5;
-    setStartIndex(startIndex);
-    setEndIndex(endIndex);
-  }
-
   function handleSlideRight() {
     if (currentIndex === cardList.length - 1) {
       setCurrentIndex(0);
@@ -44,7 +31,7 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
 
   return (
     <>
-      <div className="">
+      <div className="mb-3">
         <button className="absolute left-0" onClick={() => handleSlideLeft()}>
           <Image src={left} alt="left"></Image>
         </button>
@@ -52,7 +39,7 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
           <Image src={right} alt="right"></Image>
         </button>
         <Card
-          pic={cardList[currentIndex].img}
+          pic={cardList[currentIndex].img ? cardList[currentIndex].img : null}
           name={cardList[currentIndex].cardName}
           type={cardList[currentIndex].type}
           rarity={cardList[currentIndex].rarity}
