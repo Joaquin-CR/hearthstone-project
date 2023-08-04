@@ -1,11 +1,6 @@
 'use client';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import NotFound from '../../../../public/images/no_cards_found/noCardsFound.webp';
 import { CardClass } from '../../../../types';
-import GridContainer from '../Carousel/GridContainer';
-import MobileCorusel from '../Carousel/MobileCorusel';
-import Filters from '../Filters/Filters';
 
 export interface FavoritesProps {
   cards: CardClass[];
@@ -116,7 +111,7 @@ export default function Favorites({ cards }: FavoritesProps) {
             FAVORITES
           </p>
         </div>
-        {cards.length == 0 ? (
+        {/* {cards.length == 0 ? (
           <>
             <h1 className="font-AclonicaR text-white mt-9 text-3xl">
               No favorites yet
@@ -144,7 +139,7 @@ export default function Favorites({ cards }: FavoritesProps) {
               <MobileCorusel cardList={cards} />
             </div>
           </>
-        )}
+        )} */}
       </div>
     </>
   );
