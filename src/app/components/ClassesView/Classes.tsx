@@ -299,10 +299,6 @@ export default function Classes({ cards, className }: IClasses) {
     setActiveDropdown(!activeDropdown);
   };
 
-  const openFilters = () => {
-    setActiveFilters(!activeFilters);
-  };
-
   const content = (
     <div
       className={`${getBackgroundClass(
@@ -358,7 +354,7 @@ export default function Classes({ cards, className }: IClasses) {
         keywordsLabel={'keywordsLabel'}
         activeFiltersBTN={function (active: boolean): void {
           console.log(active);
-          openFilters;
+          setActiveFilters(active);
         }}
       ></Filters>
 

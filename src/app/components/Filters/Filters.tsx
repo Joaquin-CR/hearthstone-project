@@ -92,6 +92,7 @@ export default function Filters({
   const [filtersActive, setFilterActive] = useState(false);
   const openFilters = () => {
     setActiveFilters(!activeFilters);
+    activeFiltersBTN(!activeFilters);
   };
   const showFilters = () => {
     setFilterActive(!filtersActive);
@@ -122,7 +123,7 @@ export default function Filters({
               <div className="bg-bgColor-Filters bg-opacity-80 px-6 py-4 font-AclonicaR text-white rounded-full">
                 {/* hover:bg-ColorGold hover:text-black */}
                 <button className="mr-1 w-12 text-xl drop-shadow-lg">0</button>
-                <button className="mx-1 w-12 text-xl drop-shadow-lg">1</button>
+                <button className="my-1 w-12 text-xl drop-shadow-lg">1</button>
                 <button className="mx-1 w-12 text-xl drop-shadow-lg">2</button>
                 <button className="mx-1 w-12 text-xl drop-shadow-lg">3</button>
                 <button className="mx-1 w-12 text-xl drop-shadow-lg">4</button>
@@ -246,7 +247,7 @@ export default function Filters({
       <div
         className={`${
           !activeFilters && 'hidden'
-        } absolute top-68 bg-Color-FilterMobile w-full flex-col justify-center origin-top`}
+        } absolute top-68 bg-Color-FilterMobile w-full flex-col justify-center origin-top z-40`}
       >
         <button
           className="absolute top-0 right-0 mt-4 mr-4 text-white font-AclonicaR text-4xl"
@@ -302,75 +303,74 @@ export default function Filters({
               </p>
             </div>
           </button>
+          {filtersActive && (
+            <div className="mt-8" id="filtros">
+              <div className="mx-5">
+                <DropDownBTN
+                  images={false}
+                  sortBy={atk}
+                  label={atk[0]}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                    // toggleAttack;
+                  }}
+                />
+              </div>
+              <div className="my-3">
+                <DropDownBTN
+                  images={false}
+                  sortBy={health}
+                  label={health[0]}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
+              <div className="my-3">
+                <DropDownBTN
+                  images={false}
+                  sortBy={cardType}
+                  label={cardType[0]}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
+              <div className="my-3">
+                <DropDownBTN
+                  images={false}
+                  sortBy={minionType}
+                  label={minionType[0]}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
+              <div className="my-3">
+                <DropDownBTN
+                  images={false}
+                  sortBy={rarity}
+                  label={rarity[0]}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
+              <div className="my-3">
+                <DropDownBTN
+                  images={false}
+                  sortBy={keywords}
+                  label={keywords[0]}
+                  onOptionClick={(option: any) => {
+                    console.log('Opcion seleccionada: ', option);
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </nav>
       </div>
     </>
   );
   return content;
 }
-
-// {filtersActive && (
-//     <div className="flex mt-8" id="filtros">
-//       <div className="mx-5">
-//         <DropDownBTN
-//           images={false}
-//           sortBy={atk}
-//           label={atk[0]}
-//           onOptionClick={(option: any) => {
-//             console.log('Opcion seleccionada: ', option);
-//             toggleAttack;
-//           }}
-//         />
-//       </div>
-//       <div className="mx-5">
-//         <DropDownBTN
-//           images={false}
-//           sortBy={health}
-//           label={health[0]}
-//           onOptionClick={(option: any) => {
-//             console.log('Opcion seleccionada: ', option);
-//           }}
-//         />
-//       </div>
-//       <div className="mx-5">
-//         <DropDownBTN
-//           images={false}
-//           sortBy={cardType}
-//           label={cardType[0]}
-//           onOptionClick={(option: any) => {
-//             console.log('Opcion seleccionada: ', option);
-//           }}
-//         />
-//       </div>
-//       <div className="mx-5">
-//         <DropDownBTN
-//           images={false}
-//           sortBy={minionType}
-//           label={minionType[0]}
-//           onOptionClick={(option: any) => {
-//             console.log('Opcion seleccionada: ', option);
-//           }}
-//         />
-//       </div>
-//       <div className="mx-5">
-//         <DropDownBTN
-//           images={false}
-//           sortBy={rarity}
-//           label={rarity[0]}
-//           onOptionClick={(option: any) => {
-//             console.log('Opcion seleccionada: ', option);
-//           }}
-//         />
-//       </div>
-//       <div className="mx-5">
-//         <DropDownBTN
-//           images={false}
-//           sortBy={keywords}
-//           label={keywords[0]}
-//           onOptionClick={(option: any) => {
-//             console.log('Opcion seleccionada: ', option);
-//           }}
-//         />
-//       </div>
-//     </div>
-//   )}

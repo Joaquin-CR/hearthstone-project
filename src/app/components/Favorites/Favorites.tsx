@@ -1,10 +1,10 @@
 'use client';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import left from '../../../../public/images/ArrowLeft.svg';
 import NotFound from '../../../../public/images/no_cards_found/noCardsFound.webp';
 import { CardClass } from '../../../../types';
 import GridContainer from '../Carousel/GridContainer';
+import MobileCorusel from '../Carousel/MobileCorusel';
 import Filters from '../Filters/Filters';
 
 export interface FavoritesProps {
@@ -71,6 +71,7 @@ const keywords = [
 ];
 
 export default function Favorites({ cards }: FavoritesProps) {
+  console.log('Dentro del componente', cards);
   const [cardNumber, setCardNumber] = useState(0);
   const [filtersActive, setFilterActive] = useState(false);
   const showFilters = () => {
@@ -140,18 +141,7 @@ export default function Favorites({ cards }: FavoritesProps) {
               <GridContainer cards={cards ? cards : []}></GridContainer>
             </div>
             <div className="md:hidden w-full px-8 overflow-x-hidden items-center h-full">
-              <button
-                className="absolute left-0 top-1/3"
-                onClick={() => {
-                  if (cardNumber > 0) {
-                    setCardNumber(cardNumber - 1);
-                  } else if (cardNumber == 0) {
-                    // setCardNumber(cards.length - 1);
-                  }
-                }}
-              >
-                <Image src={left} alt="left"></Image>
-              </button>
+              <MobileCorusel cardList={cards} />
             </div>
           </>
         )}
