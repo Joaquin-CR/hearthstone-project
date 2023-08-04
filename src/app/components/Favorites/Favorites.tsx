@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import left from '../../../../public/images/ArrowLeft.svg';
+import NotFound from '../../../../public/images/no_cards_found/noCardsFound.webp';
 import { CardClass } from '../../../../types';
 import GridContainer from '../Carousel/GridContainer';
 import Filters from '../Filters/Filters';
@@ -114,33 +115,46 @@ export default function Favorites({ cards }: FavoritesProps) {
             FAVORITES
           </p>
         </div>
-        <Filters
-          manaLabel={manaLabel}
-          atkLabel={atkLabel}
-          healthLabel={healthLabel}
-          cardTypeLabel={cardTypeLabel}
-          minionTypeLabel={minionTypeLabel}
-          rarityLabel={rarityLabel}
-          keywordsLabel={keywordsLabel} activeFiltersBTN={function (active: boolean): void {
-            throw new Error('Function not implemented.');
-          } }        ></Filters>
-        <div className="hidden md:block w-full px-8 overflow-x-hidden">
-          <GridContainer cards={cards ? cards : []}></GridContainer>
-        </div>
-        <div className="md:hidden w-full px-8 overflow-x-hidden items-center h-full">
-          <button
-            className="absolute left-0 top-1/3"
-            onClick={() => {
-              if (cardNumber > 0) {
-                setCardNumber(cardNumber - 1);
-              } else if (cardNumber == 0) {
-                // setCardNumber(cards.length - 1);
-              }
-            }}
-          >
-            <Image src={left} alt="left"></Image>
-          </button>
-        </div>
+        {cards.length == 0 ? (
+          <>
+            <h1 className="font-AclonicaR text-white mt-9 text-3xl">
+              No favorites yet
+            </h1>
+            <Image src={NotFound} alt={'Not found'}></Image>
+          </>
+        ) : (
+          <>
+            <Filters
+              manaLabel={manaLabel}
+              atkLabel={atkLabel}
+              healthLabel={healthLabel}
+              cardTypeLabel={cardTypeLabel}
+              minionTypeLabel={minionTypeLabel}
+              rarityLabel={rarityLabel}
+              keywordsLabel={keywordsLabel}
+              activeFiltersBTN={function (active: boolean): void {
+                throw new Error('Function not implemented.');
+              }}
+            ></Filters>
+            <div className="hidden md:block w-full px-8 overflow-x-hidden">
+              <GridContainer cards={cards ? cards : []}></GridContainer>
+            </div>
+            <div className="md:hidden w-full px-8 overflow-x-hidden items-center h-full">
+              <button
+                className="absolute left-0 top-1/3"
+                onClick={() => {
+                  if (cardNumber > 0) {
+                    setCardNumber(cardNumber - 1);
+                  } else if (cardNumber == 0) {
+                    // setCardNumber(cards.length - 1);
+                  }
+                }}
+              >
+                <Image src={left} alt="left"></Image>
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

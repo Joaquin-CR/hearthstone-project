@@ -2,9 +2,8 @@ import { readRecords } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  console.log('entrnado');
   const createTableQuery = `CREATE TABLE IF NOT EXISTS cards(
-        cardId SERIAL PRIMARY KEY,
+        cardId VARCHAR(255) NOT NULL,
         cardName VARCHAR(255) NOT NULL,
         cardSet VARCHAR(200), 
         type VARCHAR(255), 
@@ -23,17 +22,3 @@ export async function GET() {
   const data = await readRecords(queryText);
   return NextResponse.json({ data });
 }
-
-// export async function POST(card: CardClass) {
-//   const query = `INSERT INTO cards(cardId, cardName, cardSet, type, rarity, attack, health, text, race, playerClass, img, mechanics)
-//   VALUES (${card.cardId}, ${card.cardName}, ${
-//     card.cardSet ? card.cardSet : null
-//   }, ${card.type ? card.type : null}, ${card.attack ? card.attack : null}, ${
-//     card.health ? card.health : null
-//   }, ${card.text ? card.text : null}, ${card.race ? card.race : null},
-//     ${card.playerClass ? card.playerClass : null}, ${
-//       card.img ? card.img : null
-//     }, ${card.mechanics ? card.mechanics : null})`;
-//   const data = await readRecords(query);
-//   return NextResponse.json({ data });
-// }

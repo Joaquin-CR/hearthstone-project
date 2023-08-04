@@ -23,64 +23,6 @@ export interface IClasses {
 }
 
 const mana = ['Mana: low to high', 'Mana: high to low'];
-const atk = [
-  'Any Attack',
-  'Attack: 0',
-  'Attack: 1',
-  'Attack: 2',
-  'Attack: 3',
-  'Attack: 4',
-  'Attack: 5',
-  'Attack: 6',
-  'Attack: 7',
-  'Attack: 8',
-  'Attack: 9',
-  'Attack: 10+',
-];
-const health = [
-  'Any Health',
-  'Health: 0',
-  'Health: 1',
-  'Health: 2',
-  'Health: 3',
-  'Health: 4',
-  'Health: 5',
-  'Health: 6',
-  'Health: 7',
-  'Health: 8',
-  'Health: 9',
-  'Health: 10+',
-];
-const cardType = ['Any Type', 'Hero', 'Minion', 'Spell', 'Weapon', 'Location'];
-const minionType = [
-  'Any Type',
-  'All',
-  'Beast',
-  'Demon',
-  'Dragon',
-  'Elemental',
-  'Mech',
-  'Murloc',
-  'Naga',
-  'Pirate',
-  'Quilboar',
-  'Totem',
-  'Undead',
-];
-const rarity = ['Any Rarity', 'Common', 'Free', 'Rare', 'Epic', 'Legendary'];
-const keywords = [
-  'Any Keyword',
-  'Adapt',
-  'Battlecry',
-  'Charge',
-  'Colosal +X',
-  'Combo',
-  'Corpse',
-  'Corrupt',
-  'Counter',
-  'Deathrattle',
-];
-
 const classes = [
   'Mage',
   'Druid',
@@ -415,7 +357,8 @@ export default function Classes({ cards, className }: IClasses) {
         rarityLabel={'rarityLabel'}
         keywordsLabel={'keywordsLabel'}
         activeFiltersBTN={function (active: boolean): void {
-          throw new Error('Function not implemented.');
+          console.log(active);
+          openFilters;
         }}
       ></Filters>
 
