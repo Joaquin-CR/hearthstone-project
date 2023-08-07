@@ -39,11 +39,18 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
           <Image src={right} alt="right"></Image>
         </button>
         <Card
+          id={cardList[currentIndex].cardid}
           pic={cardList[currentIndex].img ? cardList[currentIndex].img : null}
-          name={cardList[currentIndex].cardName}
+          name={cardList[currentIndex].cardname}
           type={cardList[currentIndex].type}
           rarity={cardList[currentIndex].rarity}
           text={cardList[currentIndex].text}
+          race={cardList[currentIndex].race}
+          playerClass={cardList[currentIndex].playerclass}
+          attack={cardList[currentIndex].attack}
+          health={cardList[currentIndex].health}
+          mechcanics={cardList[currentIndex].mechanics}
+          cardSet={cardList[currentIndex].cardset}
           like={function (like: boolean): void {
             console.log(like);
           }}
