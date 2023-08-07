@@ -261,6 +261,7 @@ export default function Classes({ cards, className }: IClasses) {
   }
 
   const [filtersActive, setFilterActive] = useState(false);
+  const [manaLabel, setManaLabel] = useState(mana[0]);
   const showFilters = () => {
     setFilterActive(!filtersActive);
   };
@@ -345,13 +346,13 @@ export default function Classes({ cards, className }: IClasses) {
         </div>
       </div>
       <Filters
-        manaLabel={'manaLabel'}
-        atkLabel={'atkLabel'}
-        healthLabel={'healthLabel'}
-        cardTypeLabel={'cardTypeLabel'}
-        minionTypeLabel={'minionTypeLabel'}
-        rarityLabel={'rarityLabel'}
-        keywordsLabel={'keywordsLabel'}
+        manaLabel={manaLabel}
+        atkLabel={'Attack'}
+        healthLabel={'Health'}
+        cardTypeLabel={'Card Type'}
+        minionTypeLabel={'Minion Type'}
+        rarityLabel={'Rarity'}
+        keywordsLabel={'Keyword'}
         activeFiltersBTN={function (active: boolean): void {
           console.log(active);
           setActiveFilters(active);

@@ -16,16 +16,16 @@ export default function Carousel({ cardList }: CarouselProps) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          cardId: card.cardId,
-          cardName: card.cardName,
-          cardSet: card.cardSet ? card.cardSet : null,
+          cardId: card.cardid,
+          cardName: card.cardname,
+          cardSet: card.cardset ? card.cardset : null,
           type: card.type ? card.type : null,
           rarity: card.rarity ? card.rarity : null,
           attack: card.attack ? card.attack.toString() : null,
           health: card.health ? card.health.toString() : null,
           text: card.text ? card.text : null,
           race: card.race ? card.race : null,
-          playerClass: card.playerClass ? card.playerClass : null,
+          playerClass: card.playerclass ? card.playerclass : null,
           img: card.img ? card.img : null,
           mechanics: card.mechanics ? [card.mechanics.toString] : null,
         }),
@@ -38,16 +38,16 @@ export default function Carousel({ cardList }: CarouselProps) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          cardId: card.cardId,
-          cardName: card.cardName,
-          cardSet: card.cardSet ? card.cardSet : null,
+          cardId: card.cardid,
+          cardName: card.cardname,
+          cardSet: card.cardset ? card.cardset : null,
           type: card.type ? card.type : null,
           rarity: card.rarity ? card.rarity : null,
           attack: card.attack ? card.attack.toString() : null,
           health: card.health ? card.health.toString() : null,
           text: card.text ? card.text : null,
           race: card.race ? card.race : null,
-          playerClass: card.playerClass ? card.playerClass : null,
+          playerClass: card.playerclass ? card.playerclass : null,
           img: card.img ? card.img : null,
           mechanics: card.mechanics ? [card.mechanics.toString] : null,
         }),
@@ -61,11 +61,18 @@ export default function Carousel({ cardList }: CarouselProps) {
       {cardList.map((card, index) => (
         <div key={index}>
           <Card
+            id={card.cardid}
             pic={card.img}
-            name={card.cardName}
+            name={card.cardname}
             type={card.type}
             rarity={card.rarity}
             text={card.text}
+            race={card.race}
+            playerClass={card.playerclass}
+            attack={card.attack}
+            health={card.health}
+            mechcanics={card.mechanics}
+            cardSet={card.cardset}
             like={function (like: boolean): void {
               saveCardLike(card, like);
             }}
