@@ -95,7 +95,6 @@ export default function Card({
           cardid: id,
         }),
       });
-      console.log('deleted');
       setFavorites(false);
     }
   };
