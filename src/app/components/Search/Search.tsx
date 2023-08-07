@@ -5,7 +5,6 @@ import book from '../../../../public/images/book/Book.webp';
 import crow from '../../../../public/images/crow/Mask group.webp';
 import FilterIcon from '../../../../public/images/filter.svg';
 import FilterBlackIcon from '../../../../public/images/filterBlack.svg';
-import GridContainer from '../Carousel/GridContainer';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
 
 const mana = ['Mana: low to high', 'Mana: high to low'];
@@ -1321,7 +1320,7 @@ export default function Search({ search }: SearchProps) {
           </nav>
         </div>
         <div className="w-full px-8 overflow-x-hidden">
-          <GridContainer cards={cards}></GridContainer>
+          {/* <GridContainer cards={cards}></GridContainer> */}
         </div>
       </div>
     </>
