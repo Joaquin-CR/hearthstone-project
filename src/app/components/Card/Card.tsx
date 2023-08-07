@@ -18,7 +18,7 @@ export interface ICardInfo {
   health: string;
   mechcanics: any;
   cardSet: string;
-  like: (like: boolean) => void;
+  fav: boolean;
 }
 
 export default function Card({
@@ -34,12 +34,12 @@ export default function Card({
   health,
   mechcanics,
   cardSet,
-  like,
+  fav,
 }: ICardInfo) {
-  const [favorites, setFavorites] = useState(false);
+  const [favorites, setFavorites] = useState(fav);
 
   const checkFavorite = async () => {
-    const crd = await fetch('http://localhost:3000/api/getcard', {
+    const crd = await fetch('http://localhost:3000/api/getCard', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export default function Card({
 
   const handleFavorite = () => {
     if (!favorites) {
-      fetch('http://localhost:3000/api/postdata', {
+      fetch('http://localhost:3000/api/postData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,12 +80,13 @@ export default function Card({
           race: race!,
           playerclass: playerClass!,
           img: pic!,
+          fav: true,
           mechanics: [mechcanics?.toString()],
         }),
       });
       setFavorites(true);
     } else {
-      fetch('http://localhost:3000/api/deletedata', {
+      fetch('http://localhost:3000/api/deleteData', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -133,13 +134,7 @@ export default function Card({
         )}
         <div className="relative bg-ColorBorder-Card hover:bg-gradient-to-b hover:from-gold hover:via-gold_2 hover:to-gold_3 rounded-2xl p-1 w-full">
           <div className="bg-bgColor-Card hover:bg-bgColor-CardDescroption rounded-2xl py-3 text-black hover:text-ColorGold">
-            <div
-              className="absolute -top-6 -right-3"
-              onClick={() => {
-                handleFavorite;
-                like(!favorites);
-              }}
-            >
+            <div className="absolute -top-6 -right-3" onClick={handleFavorite}>
               <div className=" bg-ColorBorder-Card hover:bg-gradient-to-b hover:from-gold hover:via-gold_2 hover:to-gold_3 rounded-full p-1 w-full">
                 <div className="bg-bgColor-Card hover:bg-bgColor-CardDescroption rounded-full text-black hover:text-ColorGold p-1">
                   <Image

@@ -11,8 +11,6 @@ type CarouselProps = {
 
 export default function MobileCorusel({ cardList }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  let [startIndex, setStartIndex] = useState(0);
-  let [endIndex, setEndIndex] = useState(4);
 
   function handleSlideRight() {
     if (currentIndex === cardList.length - 1) {
@@ -52,9 +50,6 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
           mechcanics={cardList[currentIndex].mechanics}
           cardSet={cardList[currentIndex].cardset}
           fav={cardList[currentIndex].fav ? true : false}
-          like={function (like: boolean): void {
-            console.log(like);
-          }}
         ></Card>
       </div>
     </>
