@@ -28,6 +28,8 @@
     "dotenv": "^16.3.1",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
+    "fs": "^0.0.1-security",
+    "net": "^1.0.2",
     "next": "13.4.10",
     "pg": "^8.11.2",
     "postcss": "8.4.26",

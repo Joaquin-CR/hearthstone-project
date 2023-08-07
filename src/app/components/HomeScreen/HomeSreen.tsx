@@ -219,7 +219,7 @@ export default function HomeSreen() {
       ) : (
         <>
           <button
-            className="hidden md:flex fixed text-gold font-AclonicaR text-xl top-5 z-30 right-11"
+            className="hidden md:flex fixed text-gold font-AclonicaR text-xl top-5 z-50 right-11"
             onClick={cancelSearch}
           >
             CANCEL SEARCH
