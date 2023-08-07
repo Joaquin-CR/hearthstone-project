@@ -1,7 +1,7 @@
 import Favorites from '../components/Favorites/Favorites';
 
 export default async function Page() {
-  const cards = await fetch('http://localhost:3000/api/getdata', {
+  const cards = await fetch('http://localhost:3000/api/getData', {
     next: { revalidate: 1 },
   }).then((res) => {
     if (res.ok) {

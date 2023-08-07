@@ -16,21 +16,22 @@ export default function Carousel({ cardList }: CarouselProps) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          cardId: card.cardid,
-          cardName: card.cardname,
-          cardSet: card.cardset ? card.cardset : null,
+          cardid: card.cardid,
+          cardname: card.cardname,
+          cardset: card.cardset ? card.cardset : null,
           type: card.type ? card.type : null,
           rarity: card.rarity ? card.rarity : null,
           attack: card.attack ? card.attack.toString() : null,
           health: card.health ? card.health.toString() : null,
           text: card.text ? card.text : null,
           race: card.race ? card.race : null,
-          playerClass: card.playerclass ? card.playerclass : null,
+          playerclass: card.playerclass ? card.playerclass : null,
           img: card.img ? card.img : null,
+          fav: card.fav,
           mechanics: card.mechanics ? [card.mechanics.toString] : null,
         }),
       });
-      console.log(response.status == 500);
+      console.log(response);
     } else {
       const response = await fetch('http://localhost:3000/api/deleteData', {
         method: 'DELETE',
@@ -49,6 +50,7 @@ export default function Carousel({ cardList }: CarouselProps) {
           race: card.race ? card.race : null,
           playerClass: card.playerclass ? card.playerclass : null,
           img: card.img ? card.img : null,
+          fav: card.fav,
           mechanics: card.mechanics ? [card.mechanics.toString] : null,
         }),
       });
@@ -73,6 +75,7 @@ export default function Carousel({ cardList }: CarouselProps) {
             health={card.health}
             mechcanics={card.mechanics}
             cardSet={card.cardset}
+            fav={card.fav ? card.fav : false}
             like={function (like: boolean): void {
               saveCardLike(card, like);
             }}

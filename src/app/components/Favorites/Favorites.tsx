@@ -14,7 +14,6 @@ export interface FavoritesProps {
 const mana = ['Mana: low to high', 'Mana: high to low'];
 
 export default function Favorites({ cards }: FavoritesProps) {
-  console.log('Dentro del componente', cards);
   const [cardNumber, setCardNumber] = useState(0);
   const [filtersActive, setFilterActive] = useState(false);
   const showFilters = () => {

@@ -51,6 +51,7 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
           health={cardList[currentIndex].health}
           mechcanics={cardList[currentIndex].mechanics}
           cardSet={cardList[currentIndex].cardset}
+          fav={cardList[currentIndex].fav ? true : false}
           like={function (like: boolean): void {
             console.log(like);
           }}

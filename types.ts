@@ -52,6 +52,8 @@ export class CardClass {
   playerclass: any;
   @JsonProperty('img')
   img?: any;
+  @JsonProperty('fav')
+  fav: any;
   @JsonProperty('mechanics')
   mechanics?: string[];
 }

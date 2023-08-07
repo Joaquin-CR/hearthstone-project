@@ -14,10 +14,11 @@ export async function GET() {
         race VARCHAR(255),
         playerClass VARCHAR(255),
         img VARCHAR(255),
+        like BOOLEAN,
         mechanics VARCHAR(255)[]
     )`;
 
-  const queryText = `${createTableQuery}; SELECT * FROM cards`;
+  const queryText = `SELECT * FROM cards`;
 
   const data = await readRecords(queryText);
   return NextResponse.json({ data });
