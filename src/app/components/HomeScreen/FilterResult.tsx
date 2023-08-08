@@ -39,6 +39,7 @@ export default function FilterResult({ search, cardList }: SearchProps) {
               keywordsLabel={'Keyword'}
               activeFiltersBTN={function (active: boolean): void {
                 console.log(active);
+                //
               }}
             ></Filters>
           </div>

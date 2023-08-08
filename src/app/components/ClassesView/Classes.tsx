@@ -242,11 +242,6 @@ export default function Classes({ cards, className }: IClasses) {
   };
 
   const [activeFilters, setActiveFilters] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(false);
-
-  const openDropdown = () => {
-    setActiveDropdown(!activeDropdown);
-  };
 
   const content = (
     <div
@@ -301,7 +296,7 @@ export default function Classes({ cards, className }: IClasses) {
         minionTypeLabel={'Minion Type'}
         rarityLabel={'Rarity'}
         keywordsLabel={'Keyword'}
-        activeFiltersBTN={function (active: boolean): void {
+        activeFiltersBTN={function (active: boolean, filters: any[]): void {
           console.log(active);
           setActiveFilters(active);
         }}

@@ -14,13 +14,13 @@ export interface FavoritesProps {
 const mana = ['Mana: low to high', 'Mana: high to low'];
 
 export default function Favorites({ cards }: FavoritesProps) {
-  const [cardNumber, setCardNumber] = useState(0);
+  const [cardsFilter, setCardFilter] = useState(cards);
+  const [filtersActive, setFilterActive] = useState(false);
 
   const [manaLabel, setManaLabel] = useState(mana[0]);
 
   useEffect(() => {
     setManaLabel(manaLabel);
-    setCardNumber(cardNumber);
   }, []);
 
   const content = (
@@ -48,15 +48,33 @@ export default function Favorites({ cards }: FavoritesProps) {
               minionTypeLabel={'Minion Type'}
               rarityLabel={'Rarity'}
               keywordsLabel={'Keyword'}
-              activeFiltersBTN={function (active: boolean): void {
-                console.log(active);
+              activeFiltersBTN={function (
+                active: boolean,
+                filters: any[]
+              ): void {
+                console.log(filters);
+                if (filters.length > 0) {
+                  setFilterActive(active);
+                  filters.map((filtro: any) => {
+                    console.log('Lo trae?', filtro.label.include('Rarity'));
+                    cardsFilter.find((card: any) => {
+                      if (card.rarity == filtro.value) {
+                        console.log('La carta', card);
+                      }
+                    });
+                  });
+                } else {
+                  setFilterActive(false);
+                }
               }}
             ></Filters>
             <div className="hidden md:block w-full px-8 overflow-x-hidden">
-              <GridContainer cards={cards ? cards : []}></GridContainer>
+              <GridContainer
+                cards={filtersActive ? cardsFilter : cards}
+              ></GridContainer>
             </div>
             <div className="md:hidden w-full px-8 overflow-x-hidden items-center h-full">
-              <MobileCorusel cardList={cards} />
+              <MobileCorusel cardList={filtersActive ? cardsFilter : cards} />
             </div>
           </>
         )}

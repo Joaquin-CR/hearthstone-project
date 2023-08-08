@@ -14,7 +14,8 @@ type FilteProps = {
   minionTypeLabel: string;
   rarityLabel: string;
   keywordsLabel: string;
-  activeFiltersBTN: (active: boolean) => void;
+  // cards: CardClass[];
+  activeFiltersBTN: (active: boolean, filter: any[]) => void;
 };
 
 const manaSort = ['Mana: low to high', 'Mana: high to low'];
@@ -85,6 +86,7 @@ export default function Filters({
   minionTypeLabel,
   rarityLabel,
   keywordsLabel,
+  // cards,
   activeFiltersBTN,
 }: FilteProps) {
   const [activeFilters, setActiveFilters] = useState(false);
@@ -100,11 +102,12 @@ export default function Filters({
   }
   const openFilters = () => {
     setActiveFilters(!activeFilters);
-    activeFiltersBTN(!activeFilters);
+    activeFiltersBTN(!activeFilters, filters);
   };
   const showFilters = () => {
     setFilterActive(!filtersActive);
   };
+
   const content = (
     <>
       <button
@@ -275,6 +278,7 @@ export default function Filters({
                     setFilterArr(true);
                   }
                   console.log('Filtros puestos', filters);
+                  activeFiltersBTN(true, filters);
                 }}
               />
             </div>
@@ -369,6 +373,7 @@ export default function Filters({
                     setFilterArr(true);
                   }
                   console.log('Filtros puestos', filters);
+                  activeFiltersBTN(true, filters);
                 }}
               />
             </div>
@@ -427,6 +432,7 @@ export default function Filters({
                     setFilterArr(true);
                   }
                   console.log('Filtros puestos', filters);
+                  activeFiltersBTN(true, filters);
                 }}
               />
             </div>
@@ -527,6 +533,7 @@ export default function Filters({
                     setFilterArr(true);
                   }
                   console.log('Filtros puestos', filters);
+                  activeFiltersBTN(true, filters);
                 }}
               />
             </div>
@@ -585,6 +592,7 @@ export default function Filters({
                     setFilterArr(true);
                   }
                   console.log('Filtros puestos', filters);
+                  activeFiltersBTN(true, filters);
                 }}
               />
             </div>
@@ -667,6 +675,7 @@ export default function Filters({
                     setFilterArr(true);
                   }
                   console.log('Filtros puestos', filters);
+                  activeFiltersBTN(true, filters);
                 }}
               />
             </div>
@@ -694,9 +703,9 @@ export default function Filters({
               <button
                 className="text-white font-MonserratM font-bold underline underline-offset-1"
                 onClick={() => {
-                  console.log('borrar selecciones');
                   filters.splice(0, filters.length);
                   setFilterArr(false);
+                  activeFiltersBTN(true, filters);
                 }}
               >
                 CLEAR ALL
