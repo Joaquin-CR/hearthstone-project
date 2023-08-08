@@ -17,7 +17,6 @@ import Warrior from '../../../../public/images/warriorEmblem.png';
 
 export default function HomeSreen() {
   const [search, setSearch] = useState<string>('');
-  const [searching, setSearching] = useState<boolean>(false);
   const [disable, setDisable] = useState(true);
 
   const handlerSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,13 +24,7 @@ export default function HomeSreen() {
     setDisable(e.target.value == '');
   };
 
-  const cancelSearch = () => {
-    setSearch('');
-    setSearching(false);
-  };
-
   const searchingData = (e: React.FormEvent<HTMLFormElement>) => {
-    setSearching(true);
     e.preventDefault();
 
     let params = {

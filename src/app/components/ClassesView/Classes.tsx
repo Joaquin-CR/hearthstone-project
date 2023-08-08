@@ -359,7 +359,7 @@ export default function Classes({ cards, className }: IClasses) {
         }}
       ></Filters>
 
-      <div className="md:mt-28">
+      <div className="md:mt-6">
         <div className="hidden md:block mt-14">
           <GridContainer cards={cards}></GridContainer>
         </div>

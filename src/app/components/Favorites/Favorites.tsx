@@ -15,21 +15,6 @@ const mana = ['Mana: low to high', 'Mana: high to low'];
 
 export default function Favorites({ cards }: FavoritesProps) {
   const [cardNumber, setCardNumber] = useState(0);
-  const [filtersActive, setFilterActive] = useState(false);
-  const showFilters = () => {
-    setFilterActive(!filtersActive);
-  };
-
-  const [activeFilters, setActiveFilters] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(false);
-
-  const openDropdown = () => {
-    setActiveDropdown(!activeDropdown);
-  };
-
-  const openFilters = () => {
-    setActiveFilters(!activeFilters);
-  };
 
   const [manaLabel, setManaLabel] = useState(mana[0]);
 
