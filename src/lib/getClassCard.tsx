@@ -43,3 +43,25 @@ export async function getAllCards() {
     console.error(error);
   }
 }
+
+export async function SearchCards(search: string) {
+  try {
+    const response = await fetch(
+      `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/search/${search}`,
+      {
+        headers: {
+          'X-RapidAPI-Key': process.env.HEARTHSTONE_API_KEY as string,
+          'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com',
+        },
+      }
+    );
+
+    const data = await response.json();
+    let cards: CardClass[] = await data.map((card: any) => {
+      return deserialize(card, CardClass);
+    });
+    return cards;
+  } catch (error) {
+    console.error(error);
+  }
+}

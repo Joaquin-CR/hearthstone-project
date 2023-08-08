@@ -1,75 +1,17 @@
 'use client';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import left from '../../../../public/images/ArrowLeft.svg';
-import FilterIcon from '../../../../public/images/filter.svg';
-import FilterBlackIcon from '../../../../public/images/filterBlack.svg';
+import NotFound from '../../../../public/images/no_cards_found/noCardsFound.webp';
 import { CardClass } from '../../../../types';
 import GridContainer from '../Carousel/GridContainer';
-import DropDownBTN from '../DropDownBTN/DropDownBTN';
+import MobileCorusel from '../Carousel/MobileCorusel';
+import Filters from '../Filters/Filters';
 
 export interface FavoritesProps {
   cards: CardClass[];
 }
 
 const mana = ['Mana: low to high', 'Mana: high to low'];
-const atk = [
-  'Any Attack',
-  'Attack: 0',
-  'Attack: 1',
-  'Attack: 2',
-  'Attack: 3',
-  'Attack: 4',
-  'Attack: 5',
-  'Attack: 6',
-  'Attack: 7',
-  'Attack: 8',
-  'Attack: 9',
-  'Attack: 10+',
-];
-const health = [
-  'Any Health',
-  'Health: 0',
-  'Health: 1',
-  'Health: 2',
-  'Health: 3',
-  'Health: 4',
-  'Health: 5',
-  'Health: 6',
-  'Health: 7',
-  'Health: 8',
-  'Health: 9',
-  'Health: 10+',
-];
-const cardType = ['Any Type', 'Hero', 'Minion', 'Spell', 'Weapon', 'Location'];
-const minionType = [
-  'Any Type',
-  'All',
-  'Beast',
-  'Demon',
-  'Dragon',
-  'Elemental',
-  'Mech',
-  'Murloc',
-  'Naga',
-  'Pirate',
-  'Quilboar',
-  'Totem',
-  'Undead',
-];
-const rarity = ['Any Rarity', 'Common', 'Free', 'Rare', 'Epic', 'Legendary'];
-const keywords = [
-  'Any Keyword',
-  'Adapt',
-  'Battlecry',
-  'Charge',
-  'Colosal +X',
-  'Combo',
-  'Corpse',
-  'Corrupt',
-  'Counter',
-  'Deathrattle',
-];
 
 export default function Favorites({ cards }: FavoritesProps) {
   const [cardNumber, setCardNumber] = useState(0);
@@ -90,21 +32,9 @@ export default function Favorites({ cards }: FavoritesProps) {
   };
 
   const [manaLabel, setManaLabel] = useState(mana[0]);
-  const [atkLabel, setatkLabel] = useState(atk[0]);
-  const [healthLabel, sethealthLabel] = useState(health[0]);
-  const [cardTypeLabel, setcardTypeLabel] = useState(cardType[0]);
-  const [minionTypeLabel, setminionTypeLabel] = useState(minionType[0]);
-  const [rarityLabel, setrarityLabel] = useState(rarity[0]);
-  const [keywordsLabel, setkeywordsLabel] = useState(keywords[0]);
 
   useEffect(() => {
     setManaLabel(manaLabel);
-    setatkLabel(atkLabel);
-    sethealthLabel(healthLabel);
-    setcardTypeLabel(cardTypeLabel);
-    setminionTypeLabel(minionTypeLabel);
-    setrarityLabel(rarityLabel);
-    setkeywordsLabel(keywordsLabel);
     setCardNumber(cardNumber);
   }, []);
 
@@ -115,272 +45,36 @@ export default function Favorites({ cards }: FavoritesProps) {
           <p className="font-AclonicaR font-bold text-5xl md:text-7xl text-white">
             FAVORITES
           </p>
-          <button
-            className="md:hidden bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 items-center mt-7"
-            onClick={openFilters}
-          >
-            <div
-              className={`${
-                !activeFilters && 'bg-bgColor-Filters text-white'
-              } ${
-                activeFilters && 'bg-ColorGold text-black'
-              } flex text-center py-4 px-6 font-AclonicaR items-center bg-opacity-80 rounded-full`}
-            >
-              <p className={`${activeFilters && ' text-black'} pl-2 mr-2`}>
-                Manage filters
-              </p>
-            </div>
-          </button>
-          <div className="hidden md:block mt-28">
-            <div
-              className="mt-20 flex items-center justify-center"
-              id="filtros"
-            >
-              <div className="flex items-center">
-                <p className="font-AclonicaR text-colorText-Sadows mr-5 text-xl">
-                  Mana
-                </p>
-                <div className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2">
-                  <div className="bg-bgColor-Filters bg-opacity-80 px-6 py-4 font-AclonicaR text-white rounded-full">
-                    {/* hover:bg-ColorGold hover:text-black */}
-                    <button className="mr-1 w-12 text-xl drop-shadow-lg">
-                      0
-                    </button>
-                    <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                      1
-                    </button>
-                    <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                      2
-                    </button>
-                    <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                      3
-                    </button>
-                    <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                      4
-                    </button>
-                    <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                      5
-                    </button>
-                    <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                      6
-                    </button>
-                    <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                      7
-                    </button>
-                    <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                      8
-                    </button>
-                    <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                      9
-                    </button>
-                    <button className="mx-1 w-12 text-xl drop-shadow-lg">
-                      10+
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center px-11">
-                <p className="text-white font-AclonicaR pr-4 text-xl">
-                  Sort By:
-                </p>
-                <DropDownBTN
-                  images={false}
-                  sortBy={mana}
-                  label={manaLabel}
-                  onOptionClick={(option: any) => {
-                    setManaLabel(option);
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-              <div className="">
-                <button
-                  className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2"
-                  onClick={showFilters}
-                >
-                  <div
-                    className={`${
-                      !filtersActive && 'bg-bgColor-Filters text-white'
-                    } ${
-                      filtersActive && 'bg-ColorGold text-black'
-                    } flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-full`}
-                  >
-                    <Image
-                      src={filtersActive ? FilterBlackIcon : FilterIcon}
-                      alt={''}
-                    />{' '}
-                    <p className={`${filtersActive && ' text-black'} pl-2`}>
-                      Filters
-                    </p>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div>
-          {filtersActive && (
-            <div className="hidden md:flex mt-8" id="filtros">
-              <div className="mx-5">
-                <DropDownBTN
-                  images={false}
-                  sortBy={atk}
-                  label={atkLabel}
-                  onOptionClick={(option: any) => {
-                    setatkLabel(option);
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-              <div className="mx-5">
-                <DropDownBTN
-                  images={false}
-                  sortBy={health}
-                  label={healthLabel}
-                  onOptionClick={(option: any) => {
-                    sethealthLabel(option);
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-              <div className="mx-5">
-                <DropDownBTN
-                  images={false}
-                  sortBy={cardType}
-                  label={cardTypeLabel}
-                  onOptionClick={(option: any) => {
-                    setcardTypeLabel(option);
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-              <div className="mx-5">
-                <DropDownBTN
-                  images={false}
-                  sortBy={minionType}
-                  label={minionTypeLabel}
-                  onOptionClick={(option: any) => {
-                    setminionTypeLabel(option);
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-              <div className="mx-5">
-                <DropDownBTN
-                  images={false}
-                  sortBy={rarity}
-                  label={rarityLabel}
-                  onOptionClick={(option: any) => {
-                    setrarityLabel(option);
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-              <div className="mx-5">
-                <DropDownBTN
-                  images={false}
-                  sortBy={keywords}
-                  label={keywordsLabel}
-                  onOptionClick={(option: any) => {
-                    setkeywordsLabel(option);
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-            </div>
-          )}
         </div>
-        <div
-          className={`${
-            !activeFilters && 'hidden'
-          } absolute top-68 bg-Color-FilterMobile w-full flex-col justify-center origin-top`}
-        >
-          <button
-            className="absolute top-0 right-0 mt-4 mr-4 text-white font-AclonicaR text-4xl"
-            onClick={openFilters}
-          >
-            X
-          </button>
-          <nav
-            className="flex flex-col min-h-screen items-center mt-12 py-8"
-            aria-label="mobile"
-          >
-            <div className="flex items-center">
-              <p className="font-AclonicaR text-colorText-Sadows mr-5 text-xl">
-                Mana
-              </p>
+        {cards.length == 0 ? (
+          <>
+            <h1 className="font-AclonicaR text-white mt-9 text-3xl">
+              No favorites yet
+            </h1>
+            <Image src={NotFound} alt={'Not found'}></Image>
+          </>
+        ) : (
+          <>
+            <Filters
+              manaLabel={manaLabel}
+              atkLabel={'Attack'}
+              healthLabel={'Health'}
+              cardTypeLabel={'Card Type'}
+              minionTypeLabel={'Minion Type'}
+              rarityLabel={'Rarity'}
+              keywordsLabel={'Keyword'}
+              activeFiltersBTN={function (active: boolean): void {
+                console.log(active);
+              }}
+            ></Filters>
+            <div className="hidden md:block w-full px-8 overflow-x-hidden">
+              <GridContainer cards={cards ? cards : []}></GridContainer>
             </div>
-            <div className="flex items-center px-11">
-              <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
-              <DropDownBTN
-                images={false}
-                sortBy={mana}
-                label={mana[0]}
-                onOptionClick={(option: any) => {
-                  console.log('Opcion seleccionada: ', option);
-                }}
-              />
+            <div className="md:hidden w-full px-8 overflow-x-hidden items-center h-full">
+              <MobileCorusel cardList={cards} />
             </div>
-            <button
-              className="bg-gradient-to-b from-gold via-gold_2 to-gold_3 rounded-full p-2 mt-4"
-              onClick={showFilters}
-            >
-              <div
-                className={`${
-                  !filtersActive && 'bg-bgColor-Filters text-white'
-                } ${
-                  filtersActive && 'bg-ColorGold text-black'
-                } flex text-center py-4 px-6  font-AclonicaR items-center bg-opacity-80 rounded-full`}
-              >
-                <Image
-                  src={filtersActive ? FilterBlackIcon : FilterIcon}
-                  alt={''}
-                />{' '}
-                <p className={`${filtersActive && ' text-black'} pl-2`}>
-                  Filters
-                </p>
-              </div>
-            </button>
-          </nav>
-        </div>
-        <div className="hidden md:block w-full px-8 overflow-x-hidden">
-          <GridContainer cards={cards ? cards : []}></GridContainer>
-        </div>
-        <div className="md:hidden w-full px-8 overflow-x-hidden items-center h-full">
-          <button
-            className="absolute left-0 top-1/3"
-            onClick={() => {
-              if (cardNumber > 0) {
-                setCardNumber(cardNumber - 1);
-              } else if (cardNumber == 0) {
-                // setCardNumber(cards.length - 1);
-              }
-            }}
-          >
-            <Image src={left} alt="left"></Image>
-          </button>
-          {/* <button
-            className="absolute right-0 top-1/3"
-            onClick={() => {
-              // handleSlideRight();
-              if (cardNumber >= 0 && cardNumber < cards.length - 1) {
-                setCardNumber(cardNumber + 1);
-              } else if (cardNumber < cards.length - 1) {
-                setCardNumber(0);
-              }
-              console.log('Card number', cardNumber);
-            }}
-          >
-            <Image src={right} alt="right"></Image>
-          </button>
-          <Card
-            name={cards[cardNumber].cardName}
-            img={cards[cardNumber].img}
-            cardSet={cards[cardNumber].cardSet}
-            type={cards[cardNumber].type}
-            rarity={cards[cardNumber].rarity}
-            favorite={false}
-            text={cards[cardNumber].text}
-          /> */}
-        </div>
+          </>
+        )}
       </div>
     </>
   );

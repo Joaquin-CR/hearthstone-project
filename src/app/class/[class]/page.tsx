@@ -24,7 +24,6 @@ export async function generateStaticParams(): Promise<any[]> {
 }
 
 export default async function Page({ params }: { params: { class: string } }) {
-  // const searchParams = useSearchParams();
   const { class: cardClass } = params;
   let cards = null;
   if (cardClass == 'Demon') {
