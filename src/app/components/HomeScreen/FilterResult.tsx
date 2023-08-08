@@ -12,12 +12,12 @@ const mana = ['Mana: low to high', 'Mana: high to low'];
 
 type SearchProps = {
   search: string;
-  cancelBtn: () => void;
+  cardList: CardClass[] | null;
 };
-export default function FilterResult({ search, cancelBtn }: SearchProps) {
-  let cards: CardClass[] = [];
+export default function FilterResult({ search, cardList }: SearchProps) {
+  let cards: CardClass[] | null = cardList;
+  const [results, setResults] = useState(cards);
   const [filtersActive, setFilterActive] = useState(false);
-  const [results, setResults] = useState('null');
   const showFilters = () => {
     setFilterActive(!filtersActive);
   };
@@ -62,9 +62,18 @@ export default function FilterResult({ search, cancelBtn }: SearchProps) {
       <div className="md:hidden flex w-full ml-9">
         <button
           className="text-gold font-AclonicaR text-xl flex"
-          onClick={cancelBtn}
+          onClick={() => {
+            let params = {
+              pathname: '/',
+            };
+
+            // Build the complete URL with the base path, class name, and query parameters
+            const url = `${params.pathname}`;
+
+            // Redirect to the new URL
+            window.location.href = url;
+          }}
         >
-          CANCEL SEARCH
           <Image className="mx-6" src={CancelBTN} alt={''} />
         </button>
       </div>
@@ -76,40 +85,63 @@ export default function FilterResult({ search, cancelBtn }: SearchProps) {
           className="hidden mx-6 md:flex"
           src={CancelBTN}
           alt={''}
-          onClick={cancelBtn}
+          onClick={() => {
+            let params = {
+              pathname: '/',
+            };
+
+            // Build the complete URL with the base path, class name, and query parameters
+            const url = `${params.pathname}`;
+
+            // Redirect to the new URL
+            window.location.href = url;
+          }}
         />
       </div>
-      <Filters
-        manaLabel={manaLabel}
-        atkLabel={'Attack'}
-        healthLabel={'Health'}
-        cardTypeLabel={'Card Type'}
-        minionTypeLabel={'Minion Type'}
-        rarityLabel={'Rarity'}
-        keywordsLabel={'Keyword'}
-        activeFiltersBTN={function (active: boolean): void {
-          console.log(active);
-        }}
-      ></Filters>
       {results ? (
         <>
           <div className="hidden md:block w-full px-8 overflow-x-hidden">
             <GridContainer cards={cards ? cards : []}></GridContainer>
           </div>
           <div className="md:hidden w-full px-8 overflow-x-hidden items-center h-full">
-            <MobileCorusel cardList={cards} />
+            <MobileCorusel cardList={cards ? cards : []} />
           </div>
         </>
       ) : (
         <>
           <div className="flex flex-col justify-center items-center mt-10">
-            <Image className="" src={DontFound} alt={''} onClick={cancelBtn} />
+            <Image
+              className=""
+              src={DontFound}
+              alt={''}
+              onClick={() => {
+                let params = {
+                  pathname: '/',
+                };
+
+                // Build the complete URL with the base path, class name, and query parameters
+                const url = `${params.pathname}`;
+
+                // Redirect to the new URL
+                window.location.href = url;
+              }}
+            />
             <p className="text-white font-AclonicaR text-3xl mt-11">
               Blasphemy! No cards found.
             </p>
             <p
               className="font-AclonicaR text-gold underline cursor-pointer"
-              onClick={cancelBtn}
+              onClick={() => {
+                let params = {
+                  pathname: '/',
+                };
+
+                // Build the complete URL with the base path, class name, and query parameters
+                const url = `${params.pathname}`;
+
+                // Redirect to the new URL
+                window.location.href = url;
+              }}
             >
               Your quest isn’t over! Try a new search.
             </p>
