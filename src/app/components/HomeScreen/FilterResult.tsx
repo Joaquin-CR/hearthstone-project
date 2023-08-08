@@ -17,21 +17,6 @@ type SearchProps = {
 export default function FilterResult({ search, cardList }: SearchProps) {
   let cards: CardClass[] | null = cardList;
   const [results, setResults] = useState(cards);
-  const [filtersActive, setFilterActive] = useState(false);
-  const showFilters = () => {
-    setFilterActive(!filtersActive);
-  };
-
-  const [activeFilters, setActiveFilters] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(false);
-
-  const openDropdown = () => {
-    setActiveDropdown(!activeDropdown);
-  };
-
-  const openFilters = () => {
-    setActiveFilters(!activeFilters);
-  };
 
   const [manaLabel, setManaLabel] = useState(mana[0]);
 

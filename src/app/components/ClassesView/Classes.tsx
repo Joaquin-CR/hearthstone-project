@@ -212,59 +212,7 @@ function getTitlDescription(classId: string) {
 }
 
 export default function Classes({ cards, className }: IClasses) {
-  const [filterToggle, userFilterToggle] = useState(false);
-  const [manaToggle, userManaToggle] = useState(false);
-  const [attackToggle, userAttackToggle] = useState(false);
-  const [healthToggle, userHealthToggle] = useState(false);
-  const [cardTypeToggle, userCardTypeToggle] = useState(false);
-  const [minionTypeToggle, userMinionTypeToggle] = useState(false);
-  const [rarityToggle, userRarityToggle] = useState(false);
-  const [keywordsToggle, userKeywordsToggle] = useState(false);
-
-  const [manafilter, userManafilter] = useState(mana[0]);
-
-  //Toggle functions
-  function toggleFilter() {
-    filterToggle ? userFilterToggle(false) : userFilterToggle(true);
-  }
-  function toggleMana() {
-    userManaToggle(manaToggle ? false : true);
-  }
-  function toggleAttack() {
-    userAttackToggle(attackToggle ? false : true);
-  }
-  function toggleHealth() {
-    userHealthToggle(healthToggle ? false : true);
-  }
-  function toggleCardType() {
-    userCardTypeToggle(cardTypeToggle ? false : true);
-  }
-  function toggleMinionType() {
-    userMinionTypeToggle(minionTypeToggle ? false : true);
-  }
-  function toggleRarity() {
-    userRarityToggle(rarityToggle ? false : true);
-  }
-  function toggleKeywords() {
-    userKeywordsToggle(keywordsToggle ? false : true);
-  }
-
-  //Filter functions
-  function userManaFilter() {
-    if (manafilter === mana[0]) {
-      toggleMana();
-      userManafilter(mana[1]);
-      toggleMana();
-    } else if (manafilter === mana[1]) {
-      userManafilter(mana[0]);
-    }
-  }
-
-  const [filtersActive, setFilterActive] = useState(false);
   const [manaLabel, setManaLabel] = useState(mana[0]);
-  const showFilters = () => {
-    setFilterActive(!filtersActive);
-  };
 
   const emblem = (): StaticImageData => {
     switch (className) {
