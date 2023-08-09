@@ -18,7 +18,6 @@ export async function generateStaticParams(): Promise<any[]> {
   const paths = classes.map((cardClass: string) => ({
     params: { class: cardClass },
   }));
-  console.log(paths);
 
   return paths;
 }

@@ -35,7 +35,6 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
       lat: card.geometry.location.lat,
       lng: card.geometry.location.lng,
     });
-    console.log('Go To Detail', card);
     setPlace(card);
     setShowDetail(!showDetail);
   };

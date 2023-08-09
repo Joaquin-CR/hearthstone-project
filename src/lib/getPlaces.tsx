@@ -44,6 +44,5 @@ export async function getPlaceDetail({ lat, lng }: propsPlaces) {
   const places: PlaceClass[] = placeDetails.map((place: any) => {
     return deserialize(place.result, PlaceClass);
   });
-  console.log(places);
   return places;
 }
