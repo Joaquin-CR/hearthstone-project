@@ -52,18 +52,75 @@ export default function Favorites({ cards }: FavoritesProps) {
                 active: boolean,
                 filters: any[]
               ): void {
-                console.log(filters);
                 if (filters.length > 0) {
                   setFilterActive(active);
                   filters.map((filtro: any) => {
-                    console.log('Lo trae?', filtro.label.include('Rarity'));
-                    cardsFilter.find((card: any) => {
-                      if (card.rarity == filtro.value) {
-                        console.log('La carta', card);
+                    let cardsWithFilter: any[] = [];
+                    let f = filtro.label;
+                    cards.find((card: any) => {
+                      if (f.includes('Atk')) {
+                        let valueAttack = card.attack;
+                        let filterValue = filtro.value;
+                        if (filterValue != 'Any' && filterValue != '10+') {
+                          filterValue = parseInt(filterValue);
+                        }
+                        if (typeof valueAttack == 'string') {
+                          valueAttack = parseInt(valueAttack);
+                        }
+                        if (valueAttack == filterValue) {
+                          cardsWithFilter.push(card);
+                        } else if (
+                          filterValue == '10+' &&
+                          parseInt(valueAttack) > 10
+                        ) {
+                          cardsWithFilter.push(card);
+                        } else if (filterValue == 'Any') {
+                          cardsWithFilter.push(card);
+                        }
+                      }
+                      if (f.includes('Hlth')) {
+                        let valueHealth = card.health;
+                        let filterValue = filtro.value;
+                        if (filterValue != 'Any' && filterValue != '10+') {
+                          filterValue = parseInt(filterValue);
+                        }
+                        if (typeof valueHealth == 'string') {
+                          valueHealth = parseInt(valueHealth);
+                        }
+                        if (valueHealth == filterValue) {
+                          cardsWithFilter.push(card);
+                        } else if (filterValue == '10+' && valueHealth >= 10) {
+                          cardsWithFilter.push(card);
+                        } else if (filterValue == 'Any') {
+                          cardsWithFilter.push(card);
+                        }
+                      }
+                      if (f.includes('Type')) {
+                        if (card.type == filtro.value) {
+                          cardsWithFilter.push(card);
+                        } else if (filtro.value == 'Any') {
+                          cardsWithFilter.push(card);
+                        }
+                      }
+                      if (f.includes('Minion')) {
+                        if (card.race == filtro.value) {
+                          cardsWithFilter.push(card);
+                        } else if (filtro.value == 'Any') {
+                          cardsWithFilter.push(card);
+                        }
+                      }
+                      if (f.includes('Rarity')) {
+                        if (card.rarity == filtro.value) {
+                          cardsWithFilter.push(card);
+                        } else if (filtro.value == 'Any') {
+                          cardsWithFilter.push(card);
+                        }
                       }
                     });
+                    setCardFilter(cardsWithFilter);
                   });
                 } else {
+                  setCardFilter(cards);
                   setFilterActive(false);
                 }
               }}

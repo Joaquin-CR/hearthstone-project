@@ -212,6 +212,8 @@ function getTitlDescription(classId: string) {
 }
 
 export default function Classes({ cards, className }: IClasses) {
+  const [cardsFilter, setCardFilter] = useState(cards);
+  const [filtersActive, setFilterActive] = useState(false);
   const [manaLabel, setManaLabel] = useState(mana[0]);
 
   const emblem = (): StaticImageData => {
@@ -297,17 +299,86 @@ export default function Classes({ cards, className }: IClasses) {
         rarityLabel={'Rarity'}
         keywordsLabel={'Keyword'}
         activeFiltersBTN={function (active: boolean, filters: any[]): void {
-          console.log(active);
-          setActiveFilters(active);
+          if (filters.length > 0) {
+            setFilterActive(active);
+            filters.map((filtro: any) => {
+              let f = filtro.label;
+              cardsFilter.find((card: any) => {
+                if (f.includes('Atk')) {
+                  let valueAttack = card.attack;
+                  let filterValue = filtro.value;
+                  if (filterValue != 'Any' && filterValue != '10+') {
+                    filterValue = parseInt(filterValue);
+                  }
+                  if (typeof valueAttack == 'string') {
+                    valueAttack = parseInt(valueAttack);
+                  }
+                  if (valueAttack == filterValue) {
+                    console.log('La carta', card);
+                  } else if (
+                    filterValue == '10+' &&
+                    parseInt(valueAttack) > 10
+                  ) {
+                    console.log('La carta en +10', card);
+                  } else if (filterValue == 'Any') {
+                    console.log('La carta en any', card);
+                  }
+                }
+                if (f.includes('Hlth')) {
+                  let valueHealth = card.health;
+                  let filterValue = filtro.value;
+                  if (filterValue != 'Any' && filterValue != '10+') {
+                    filterValue = parseInt(filterValue);
+                  }
+                  if (typeof valueHealth == 'string') {
+                    valueHealth = parseInt(valueHealth);
+                  }
+                  if (valueHealth == filterValue) {
+                    console.log('La carta', card);
+                  } else if (filterValue == '10+' && valueHealth >= 10) {
+                    console.log('La carta en +10', card);
+                  } else if (filterValue == 'Any') {
+                    console.log('La carta en any', card);
+                  }
+                }
+                if (f.includes('Type')) {
+                  if (card.type == filtro.value) {
+                    console.log('La carta', card);
+                  } else if (filtro.value == 'Any') {
+                    console.log('Todos');
+                  }
+                }
+                if (f.includes('Minion')) {
+                  if (card.race == filtro.value) {
+                    console.log('La carta', card);
+                  } else if (filtro.value == 'Any') {
+                    console.log('Todos');
+                  }
+                }
+                if (f.includes('Rarity')) {
+                  if (card.rarity == filtro.value) {
+                    console.log('La carta', card);
+                  } else if (filtro.value == 'Any') {
+                    console.log('Todos');
+                  }
+                }
+              });
+            });
+          } else {
+            setFilterActive(false);
+            setCardFilter(cards);
+          }
         }}
       ></Filters>
 
       <div className="md:mt-6">
         <div className="hidden md:block mt-14">
-          <GridContainer cards={cards}></GridContainer>
+          <GridContainer
+            cards={filtersActive ? cardsFilter : cards}
+          ></GridContainer>
         </div>
         <div className="md:hidden">
-          <MobileCorusel cardList={cards} />
+          <MobileCorusel cardList={filtersActive ? cardsFilter : cards} />
         </div>
       </div>
     </div>

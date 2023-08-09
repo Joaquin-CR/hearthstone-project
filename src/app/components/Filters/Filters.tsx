@@ -92,6 +92,7 @@ export default function Filters({
   const [activeFilters, setActiveFilters] = useState(false);
   const [filtersActive, setFilterActive] = useState(false);
   const [filtersArr, setFilterArr] = useState<boolean>(false);
+  const [arrayFilters, setArrayFilters] = useState([]);
   let filters: any = [];
 
   function checkFilters(arr: any, nuevoCampo: any): boolean {
@@ -202,7 +203,7 @@ export default function Filters({
                     case 'Any Attack':
                       model = {
                         label: 'Atk: Any',
-                        value: '10+',
+                        value: 'Any',
                       };
                       break;
                     case 'Attack: 0':
@@ -277,8 +278,8 @@ export default function Filters({
                     filters.push(model);
                     setFilterArr(true);
                   }
-                  console.log('Filtros puestos', filters);
                   activeFiltersBTN(true, filters);
+                  setArrayFilters(filters);
                 }}
               />
             </div>
@@ -297,7 +298,7 @@ export default function Filters({
                     case 'Any Health':
                       model = {
                         label: 'Hlth: Any',
-                        value: '10+',
+                        value: 'Any',
                       };
                       break;
                     case 'Health: 0':
@@ -372,8 +373,8 @@ export default function Filters({
                     filters.push(model);
                     setFilterArr(true);
                   }
-                  console.log('Filtros puestos', filters);
                   activeFiltersBTN(true, filters);
+                  setArrayFilters(filters);
                 }}
               />
             </div>
@@ -392,7 +393,7 @@ export default function Filters({
                     case 'Any Type':
                       model = {
                         label: 'Type: Any',
-                        value: '10+',
+                        value: 'Any',
                       };
                       break;
                     case 'Hero':
@@ -431,8 +432,8 @@ export default function Filters({
                     filters.push(model);
                     setFilterArr(true);
                   }
-                  console.log('Filtros puestos', filters);
                   activeFiltersBTN(true, filters);
+                  setArrayFilters(filters);
                 }}
               />
             </div>
@@ -532,8 +533,8 @@ export default function Filters({
                     filters.push(model);
                     setFilterArr(true);
                   }
-                  console.log('Filtros puestos', filters);
                   activeFiltersBTN(true, filters);
+                  setArrayFilters(filters);
                 }}
               />
             </div>
@@ -552,7 +553,7 @@ export default function Filters({
                     case 'Any Rarity':
                       model = {
                         label: 'Rarity: Any',
-                        value: '10+',
+                        value: 'Any',
                       };
                       break;
                     case 'Common':
@@ -591,8 +592,8 @@ export default function Filters({
                     filters.push(model);
                     setFilterArr(true);
                   }
-                  console.log('Filtros puestos', filters);
                   activeFiltersBTN(true, filters);
+                  setArrayFilters(filters);
                 }}
               />
             </div>
@@ -674,15 +675,15 @@ export default function Filters({
                     filters.push(model);
                     setFilterArr(true);
                   }
-                  console.log('Filtros puestos', filters);
                   activeFiltersBTN(true, filters);
+                  setArrayFilters(filters);
                 }}
               />
             </div>
           </div>
           {filtersArr && (
-            <div className="mt-8 flex">
-              {filters.map((filter: any) => (
+            <div className="mt-8 hidden md:flex">
+              {arrayFilters.map((filter: any) => (
                 <div key={filter.value} className="mr-4">
                   <div className="font-AclonicaR bg-ColorGold p-2 text-lg rounded-full flex">
                     <p className="font-AclonicaR mx-2">{filter.label}</p>
@@ -691,8 +692,20 @@ export default function Filters({
                       src={CancelBTN}
                       alt={''}
                       onClick={() => {
-                        console.log('borrar seleccion');
-                        if (filter.length == 0) {
+                        const deleteArr = arrayFilters.filter((item: any) => {
+                          return (
+                            item.label !== filter.label ||
+                            item.value !== filter.value
+                          );
+                        });
+                        setArrayFilters(deleteArr);
+                        filters.filter((item: any) => {
+                          return (
+                            item.label !== filter.label ||
+                            item.value !== filter.value
+                          );
+                        });
+                        if (filters.length == 0) {
                           setFilterArr(false);
                         }
                       }}
@@ -706,6 +719,7 @@ export default function Filters({
                   filters.splice(0, filters.length);
                   setFilterArr(false);
                   activeFiltersBTN(true, filters);
+                  setArrayFilters([]);
                 }}
               >
                 CLEAR ALL
@@ -770,69 +784,553 @@ export default function Filters({
             </div>
           </button>
           {filtersActive && (
-            <div className="mt-8">
-              <div className="mx-5">
-                <DropDownBTN
-                  images={false}
-                  sortBy={atk}
-                  label={atk[0]}
-                  onOptionClick={(option: any) => {
-                    console.log('Opcion seleccionada: ', option);
-                    // toggleAttack;
-                  }}
-                />
+            <>
+              <div className="mt-8">
+                <div className="mx-5">
+                  <DropDownBTN
+                    images={false}
+                    sortBy={atk}
+                    label={atk[0]}
+                    onOptionClick={(option: any) => {
+                      let save = false;
+                      let model: any = {
+                        label: '',
+                        value: '',
+                      };
+                      switch (option) {
+                        case 'Any Attack':
+                          model = {
+                            label: 'Atk: Any',
+                            value: 'Any',
+                          };
+                          break;
+                        case 'Attack: 0':
+                          model = {
+                            label: 'Atk: 0',
+                            value: '0',
+                          };
+                          break;
+                        case 'Attack: 1':
+                          model = {
+                            label: 'Atk: 1',
+                            value: '1',
+                          };
+                          break;
+                        case 'Attack: 2':
+                          model = {
+                            label: 'Atk: 2',
+                            value: '2',
+                          };
+                          break;
+                        case 'Attack: 3':
+                          model = {
+                            label: 'Atk: 3',
+                            value: '3',
+                          };
+                          break;
+                        case 'Attack: 4':
+                          model = {
+                            label: 'Atk: 4',
+                            value: '4',
+                          };
+                          break;
+                        case 'Attack: 5':
+                          model = {
+                            label: 'Atk: 5',
+                            value: '5',
+                          };
+                          break;
+                        case 'Attack: 6':
+                          model = {
+                            label: 'Atk: 6',
+                            value: '6',
+                          };
+                          break;
+                        case 'Attack: 7':
+                          model = {
+                            label: 'Atk: 7',
+                            value: '7',
+                          };
+                          break;
+                        case 'Attack: 8':
+                          model = {
+                            label: 'Atk: 8',
+                            value: '8',
+                          };
+                          break;
+                        case 'Attack: 9':
+                          model = {
+                            label: 'Atk: 9',
+                            value: '9',
+                          };
+                          break;
+                        case 'Attack: 10+':
+                          model = {
+                            label: 'Atk: 10+',
+                            value: '10+',
+                          };
+                          break;
+                      }
+                      save = checkFilters(filters, model);
+                      if (save) {
+                        filters.push(model);
+                        setFilterArr(true);
+                      }
+                      activeFiltersBTN(true, filters);
+                      setArrayFilters(filters);
+                    }}
+                  />
+                </div>
+                <div className="my-3">
+                  <DropDownBTN
+                    images={false}
+                    sortBy={health}
+                    label={health[0]}
+                    onOptionClick={(option: any) => {
+                      let save = false;
+                      let model: any = {
+                        label: '',
+                        value: '',
+                      };
+                      switch (option) {
+                        case 'Any Health':
+                          model = {
+                            label: 'Hlth: Any',
+                            value: 'Any',
+                          };
+                          break;
+                        case 'Health: 0':
+                          model = {
+                            label: 'Hlth: 0',
+                            value: '0',
+                          };
+                          break;
+                        case 'Health: 1':
+                          model = {
+                            label: 'Hlth: 1',
+                            value: '1',
+                          };
+                          break;
+                        case 'Health: 2':
+                          model = {
+                            label: 'Hlth: 2',
+                            value: '2',
+                          };
+                          break;
+                        case 'Health: 3':
+                          model = {
+                            label: 'Hlth: 3',
+                            value: '3',
+                          };
+                          break;
+                        case 'Health: 4':
+                          model = {
+                            label: 'Hlth: 4',
+                            value: '4',
+                          };
+                          break;
+                        case 'Health: 5':
+                          model = {
+                            label: 'Hlth: 5',
+                            value: '5',
+                          };
+                          break;
+                        case 'Health: 6':
+                          model = {
+                            label: 'Hlth: 6',
+                            value: '6',
+                          };
+                          break;
+                        case 'Health: 7':
+                          model = {
+                            label: 'Hlth: 7',
+                            value: '7',
+                          };
+                          break;
+                        case 'Health: 8':
+                          model = {
+                            label: 'Hlth: 8',
+                            value: '8',
+                          };
+                          break;
+                        case 'Health: 9':
+                          model = {
+                            label: 'Hlth: 9',
+                            value: '9',
+                          };
+                          break;
+                        case 'Health: 10+':
+                          model = {
+                            label: 'Hlth: 10+',
+                            value: '10+',
+                          };
+                          break;
+                      }
+                      save = checkFilters(filters, model);
+                      if (save) {
+                        filters.push(model);
+                        setFilterArr(true);
+                      }
+                      activeFiltersBTN(true, filters);
+                      setArrayFilters(filters);
+                    }}
+                  />
+                </div>
+                <div className="my-3">
+                  <DropDownBTN
+                    images={false}
+                    sortBy={cardType}
+                    label={cardType[0]}
+                    onOptionClick={(option: any) => {
+                      let save = false;
+                      let model: any = {
+                        label: '',
+                        value: '',
+                      };
+                      switch (option) {
+                        case 'Any Type':
+                          model = {
+                            label: 'Type: Any',
+                            value: 'Any',
+                          };
+                          break;
+                        case 'Hero':
+                          model = {
+                            label: 'Type: Hero',
+                            value: 'Hero',
+                          };
+                          break;
+                        case 'Minion':
+                          model = {
+                            label: 'Type: Minion',
+                            value: 'Minion',
+                          };
+                          break;
+                        case 'Spell':
+                          model = {
+                            label: 'Type: Spell',
+                            value: 'Spell',
+                          };
+                          break;
+                        case 'Weapon':
+                          model = {
+                            label: 'Type: Weapon',
+                            value: 'Weapon',
+                          };
+                          break;
+                        case 'Location':
+                          model = {
+                            label: 'Type: Location',
+                            value: 'Location',
+                          };
+                          break;
+                      }
+                      save = checkFilters(filters, model);
+                      if (save) {
+                        filters.push(model);
+                        setFilterArr(true);
+                      }
+                      activeFiltersBTN(true, filters);
+                      setArrayFilters(filters);
+                    }}
+                  />
+                </div>
+                <div className="my-3">
+                  <DropDownBTN
+                    images={false}
+                    sortBy={minionType}
+                    label={minionType[0]}
+                    onOptionClick={(option: any) => {
+                      let save = false;
+                      let model: any = {
+                        label: '',
+                        value: '',
+                      };
+                      switch (option) {
+                        case 'Any Type':
+                          model = {
+                            label: 'Minion: Any',
+                            value: 'Any',
+                          };
+                          break;
+                        case 'All':
+                          model = {
+                            label: 'Minion: All',
+                            value: 'All',
+                          };
+                          break;
+                        case 'Beast':
+                          model = {
+                            label: 'Minion: Beast',
+                            value: 'Beast',
+                          };
+                          break;
+                        case 'Demon':
+                          model = {
+                            label: 'Minion: Demon',
+                            value: 'Demon',
+                          };
+                          break;
+                        case 'Dragon':
+                          model = {
+                            label: 'Minion: Dragon',
+                            value: 'Dragon',
+                          };
+                          break;
+                        case 'Elemental':
+                          model = {
+                            label: 'Minion: Elemental',
+                            value: 'Elemental',
+                          };
+                          break;
+                        case 'Mech':
+                          model = {
+                            label: 'Minion: Mech',
+                            value: 'Mech',
+                          };
+                          break;
+                        case 'Murloc':
+                          model = {
+                            label: 'Minion: Murloc',
+                            value: 'Murloc',
+                          };
+                          break;
+                        case 'Naga':
+                          model = {
+                            label: 'Minion: Naga',
+                            value: 'Naga',
+                          };
+                          break;
+                        case 'Pirate':
+                          model = {
+                            label: 'Minion: Pirate',
+                            value: 'Pirate',
+                          };
+                          break;
+                        case 'Quilboar':
+                          model = {
+                            label: 'Minion: Quilboar',
+                            value: 'Quilboar',
+                          };
+                          break;
+                        case 'Totem':
+                          model = {
+                            label: 'Minion: Totem',
+                            value: 'Totem',
+                          };
+                          break;
+                        case 'Undead':
+                          model = {
+                            label: 'Minion: Undead',
+                            value: 'Undead',
+                          };
+                          break;
+                      }
+                      save = checkFilters(filters, model);
+                      if (save) {
+                        filters.push(model);
+                        setFilterArr(true);
+                      }
+                      activeFiltersBTN(true, filters);
+                      setArrayFilters(filters);
+                    }}
+                  />
+                </div>
+                <div className="my-3">
+                  <DropDownBTN
+                    images={false}
+                    sortBy={rarity}
+                    label={rarity[0]}
+                    onOptionClick={(option: any) => {
+                      let save = false;
+                      let model: any = {
+                        label: '',
+                        value: '',
+                      };
+                      switch (option) {
+                        case 'Any Rarity':
+                          model = {
+                            label: 'Rarity: Any',
+                            value: 'Any',
+                          };
+                          break;
+                        case 'Common':
+                          model = {
+                            label: 'Rarity: Common',
+                            value: 'Common',
+                          };
+                          break;
+                        case 'Free':
+                          model = {
+                            label: 'Rarity: Free',
+                            value: 'Free',
+                          };
+                          break;
+                        case 'Rare':
+                          model = {
+                            label: 'Rarity: Rare',
+                            value: 'Rare',
+                          };
+                          break;
+                        case 'Epic':
+                          model = {
+                            label: 'Rarity: Epic',
+                            value: 'Epic',
+                          };
+                          break;
+                        case 'Legendary':
+                          model = {
+                            label: 'Rarity: Legendary',
+                            value: 'Legendary',
+                          };
+                          break;
+                      }
+                      save = checkFilters(filters, model);
+                      if (save) {
+                        filters.push(model);
+                        setFilterArr(true);
+                      }
+                      activeFiltersBTN(true, filters);
+                      setArrayFilters(filters);
+                    }}
+                  />
+                </div>
+                <div className="my-3">
+                  <DropDownBTN
+                    images={false}
+                    sortBy={keywords}
+                    label={keywords[0]}
+                    onOptionClick={(option: any) => {
+                      let save = false;
+                      let model: any = {
+                        label: '',
+                        value: '',
+                      };
+                      switch (option) {
+                        case 'Any Keyword':
+                          model = {
+                            label: 'Keyword: Any',
+                            value: 'Any',
+                          };
+                          break;
+                        case 'Adapt':
+                          model = {
+                            label: 'Keyword: Adapt',
+                            value: 'Adapt',
+                          };
+                          break;
+                        case 'Battlecry':
+                          model = {
+                            label: 'Keyword: Battlecry',
+                            value: 'Battlecry',
+                          };
+                          break;
+                        case 'Charge':
+                          model = {
+                            label: 'Keyword: Charge',
+                            value: 'Charge',
+                          };
+                          break;
+                        case 'Colosal +X':
+                          model = {
+                            label: 'Keyword: Colosal +X',
+                            value: 'Colosal +X',
+                          };
+                          break;
+                        case 'Combo':
+                          model = {
+                            label: 'Keyword: Combo',
+                            value: 'Combo',
+                          };
+                          break;
+                        case 'Corpse':
+                          model = {
+                            label: 'Keyword: Corpse',
+                            value: 'Corpse',
+                          };
+                          break;
+                        case 'Corrupt':
+                          model = {
+                            label: 'Keyword: Corrupt',
+                            value: 'Corrupt',
+                          };
+                          break;
+                        case 'Counter':
+                          model = {
+                            label: 'Keyword: Counter',
+                            value: 'Counter',
+                          };
+                          break;
+                        case 'Dethrattle':
+                          model = {
+                            label: 'Keyword: Dethrattle',
+                            value: 'Dethrattle',
+                          };
+                          break;
+                      }
+                      save = checkFilters(filters, model);
+                      if (save) {
+                        filters.push(model);
+                        setFilterArr(true);
+                      }
+                      activeFiltersBTN(true, filters);
+                      setArrayFilters(filters);
+                    }}
+                  />
+                </div>
               </div>
-              <div className="my-3">
-                <DropDownBTN
-                  images={false}
-                  sortBy={health}
-                  label={health[0]}
-                  onOptionClick={(option: any) => {
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-              <div className="my-3">
-                <DropDownBTN
-                  images={false}
-                  sortBy={cardType}
-                  label={cardType[0]}
-                  onOptionClick={(option: any) => {
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-              <div className="my-3">
-                <DropDownBTN
-                  images={false}
-                  sortBy={minionType}
-                  label={minionType[0]}
-                  onOptionClick={(option: any) => {
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-              <div className="my-3">
-                <DropDownBTN
-                  images={false}
-                  sortBy={rarity}
-                  label={rarity[0]}
-                  onOptionClick={(option: any) => {
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-              <div className="my-3">
-                <DropDownBTN
-                  images={false}
-                  sortBy={keywords}
-                  label={keywords[0]}
-                  onOptionClick={(option: any) => {
-                    console.log('Opcion seleccionada: ', option);
-                  }}
-                />
-              </div>
-            </div>
+              {filtersArr && (
+                <div className="mt-8 hidden md:flex">
+                  {arrayFilters.map((filter: any) => (
+                    <div key={filter.value} className="mr-4">
+                      <div
+                        className="font-AclonicaR bg-ColorGold p-2 text-lg rounded-full flex"
+                        onClick={() => {
+                          console.log('Entrando si o no');
+                          const deleteArr = arrayFilters.filter((item: any) => {
+                            return (
+                              item.label !== filter.label ||
+                              item.value !== filter.value
+                            );
+                          });
+                          setArrayFilters(deleteArr);
+                          filters.filter((item: any) => {
+                            return (
+                              item.label !== filter.label ||
+                              item.value !== filter.value
+                            );
+                          });
+                          console.log('Que pedo');
+                          // if (filters.length == 0) {
+                          //   console.log('entrando');
+                          //   setFilterArr(false);
+                          //   activeFiltersBTN(filtersArr, []);
+                          // }
+                        }}
+                      >
+                        <p className="font-AclonicaR mx-2">{filter.label}</p>
+                        <Image
+                          className="cursor-pointer"
+                          src={CancelBTN}
+                          alt={''}
+                        ></Image>
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    className="text-white font-MonserratM font-bold underline underline-offset-1"
+                    onClick={() => {
+                      filters.splice(0, filters.length);
+                      setFilterArr(false);
+                      activeFiltersBTN(true, filters);
+                      setArrayFilters([]);
+                    }}
+                  >
+                    CLEAR ALL
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </nav>
       </div>
