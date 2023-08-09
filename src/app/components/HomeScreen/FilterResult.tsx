@@ -12,26 +12,13 @@ const mana = ['Mana: low to high', 'Mana: high to low'];
 
 type SearchProps = {
   search: string;
-  cardList: CardClass[] | null;
+  cardList: CardClass[] | any[];
 };
 export default function FilterResult({ search, cardList }: SearchProps) {
-  let cards: CardClass[] | null = cardList;
-  const [results, setResults] = useState(cards);
+  let cards: CardClass[] | any[] = cardList;
+  const [cardsFilter, setCardFilter] = useState(cards);
   const [filtersActive, setFilterActive] = useState(false);
-  const showFilters = () => {
-    setFilterActive(!filtersActive);
-  };
-
-  const [activeFilters, setActiveFilters] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(false);
-
-  const openDropdown = () => {
-    setActiveDropdown(!activeDropdown);
-  };
-
-  const openFilters = () => {
-    setActiveFilters(!activeFilters);
-  };
+  const [results, setResults] = useState(cards);
 
   const [manaLabel, setManaLabel] = useState(mana[0]);
 
@@ -52,8 +39,84 @@ export default function FilterResult({ search, cardList }: SearchProps) {
               minionTypeLabel={'Minion Type'}
               rarityLabel={'Rarity'}
               keywordsLabel={'Keyword'}
-              activeFiltersBTN={function (active: boolean): void {
-                console.log(active);
+              activeFiltersBTN={function (
+                active: boolean,
+                filters: any[]
+              ): void {
+                if (filters.length > 0) {
+                  setFilterActive(active);
+                  filters.map((filtro: any) => {
+                    let f = filtro.label;
+                    if (cardsFilter != null) {
+                      cardsFilter.find((card: any) => {
+                        if (f.includes('Atk')) {
+                          let valueAttack = card.attack;
+                          let filterValue = filtro.value;
+                          if (filterValue != 'Any' && filterValue != '10+') {
+                            filterValue = parseInt(filterValue);
+                          }
+                          if (typeof valueAttack == 'string') {
+                            valueAttack = parseInt(valueAttack);
+                          }
+                          if (valueAttack == filterValue) {
+                            console.log('La carta', card);
+                          } else if (
+                            filterValue == '10+' &&
+                            parseInt(valueAttack) > 10
+                          ) {
+                            console.log('La carta en +10', card);
+                          } else if (filterValue == 'Any') {
+                            console.log('La carta en any', card);
+                          }
+                        }
+                        if (f.includes('Hlth')) {
+                          let valueHealth = card.health;
+                          let filterValue = filtro.value;
+                          if (filterValue != 'Any' && filterValue != '10+') {
+                            filterValue = parseInt(filterValue);
+                          }
+                          if (typeof valueHealth == 'string') {
+                            valueHealth = parseInt(valueHealth);
+                          }
+                          if (valueHealth == filterValue) {
+                            console.log('La carta', card);
+                          } else if (
+                            filterValue == '10+' &&
+                            valueHealth >= 10
+                          ) {
+                            console.log('La carta en +10', card);
+                          } else if (filterValue == 'Any') {
+                            console.log('La carta en any', card);
+                          }
+                        }
+                        if (f.includes('Type')) {
+                          if (card.type == filtro.value) {
+                            console.log('La carta', card);
+                          } else if (filtro.value == 'Any') {
+                            console.log('Todos');
+                          }
+                        }
+                        if (f.includes('Minion')) {
+                          if (card.race == filtro.value) {
+                            console.log('La carta', card);
+                          } else if (filtro.value == 'Any') {
+                            console.log('Todos');
+                          }
+                        }
+                        if (f.includes('Rarity')) {
+                          if (card.rarity == filtro.value) {
+                            console.log('La carta', card);
+                          } else if (filtro.value == 'Any') {
+                            console.log('Todos');
+                          }
+                        }
+                      });
+                    }
+                  });
+                } else {
+                  setFilterActive(false);
+                  setCardFilter(cards);
+                }
               }}
             ></Filters>
           </div>
@@ -101,10 +164,12 @@ export default function FilterResult({ search, cardList }: SearchProps) {
       {results ? (
         <>
           <div className="hidden md:block w-full px-8 overflow-x-hidden">
-            <GridContainer cards={cards ? cards : []}></GridContainer>
+            <GridContainer
+              cards={filtersActive ? cardsFilter : cards}
+            ></GridContainer>
           </div>
           <div className="md:hidden w-full px-8 overflow-x-hidden items-center h-full">
-            <MobileCorusel cardList={cards ? cards : []} />
+            <MobileCorusel cardList={filtersActive ? cardsFilter : cards} />
           </div>
         </>
       ) : (

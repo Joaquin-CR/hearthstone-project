@@ -212,59 +212,9 @@ function getTitlDescription(classId: string) {
 }
 
 export default function Classes({ cards, className }: IClasses) {
-  const [filterToggle, userFilterToggle] = useState(false);
-  const [manaToggle, userManaToggle] = useState(false);
-  const [attackToggle, userAttackToggle] = useState(false);
-  const [healthToggle, userHealthToggle] = useState(false);
-  const [cardTypeToggle, userCardTypeToggle] = useState(false);
-  const [minionTypeToggle, userMinionTypeToggle] = useState(false);
-  const [rarityToggle, userRarityToggle] = useState(false);
-  const [keywordsToggle, userKeywordsToggle] = useState(false);
-
-  const [manafilter, userManafilter] = useState(mana[0]);
-
-  //Toggle functions
-  function toggleFilter() {
-    filterToggle ? userFilterToggle(false) : userFilterToggle(true);
-  }
-  function toggleMana() {
-    userManaToggle(manaToggle ? false : true);
-  }
-  function toggleAttack() {
-    userAttackToggle(attackToggle ? false : true);
-  }
-  function toggleHealth() {
-    userHealthToggle(healthToggle ? false : true);
-  }
-  function toggleCardType() {
-    userCardTypeToggle(cardTypeToggle ? false : true);
-  }
-  function toggleMinionType() {
-    userMinionTypeToggle(minionTypeToggle ? false : true);
-  }
-  function toggleRarity() {
-    userRarityToggle(rarityToggle ? false : true);
-  }
-  function toggleKeywords() {
-    userKeywordsToggle(keywordsToggle ? false : true);
-  }
-
-  //Filter functions
-  function userManaFilter() {
-    if (manafilter === mana[0]) {
-      toggleMana();
-      userManafilter(mana[1]);
-      toggleMana();
-    } else if (manafilter === mana[1]) {
-      userManafilter(mana[0]);
-    }
-  }
-
+  const [cardsFilter, setCardFilter] = useState(cards);
   const [filtersActive, setFilterActive] = useState(false);
   const [manaLabel, setManaLabel] = useState(mana[0]);
-  const showFilters = () => {
-    setFilterActive(!filtersActive);
-  };
 
   const emblem = (): StaticImageData => {
     switch (className) {
@@ -294,11 +244,6 @@ export default function Classes({ cards, className }: IClasses) {
   };
 
   const [activeFilters, setActiveFilters] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(false);
-
-  const openDropdown = () => {
-    setActiveDropdown(!activeDropdown);
-  };
 
   const content = (
     <div
@@ -353,18 +298,87 @@ export default function Classes({ cards, className }: IClasses) {
         minionTypeLabel={'Minion Type'}
         rarityLabel={'Rarity'}
         keywordsLabel={'Keyword'}
-        activeFiltersBTN={function (active: boolean): void {
-          console.log(active);
-          setActiveFilters(active);
+        activeFiltersBTN={function (active: boolean, filters: any[]): void {
+          if (filters.length > 0) {
+            setFilterActive(active);
+            filters.map((filtro: any) => {
+              let f = filtro.label;
+              cardsFilter.find((card: any) => {
+                if (f.includes('Atk')) {
+                  let valueAttack = card.attack;
+                  let filterValue = filtro.value;
+                  if (filterValue != 'Any' && filterValue != '10+') {
+                    filterValue = parseInt(filterValue);
+                  }
+                  if (typeof valueAttack == 'string') {
+                    valueAttack = parseInt(valueAttack);
+                  }
+                  if (valueAttack == filterValue) {
+                    console.log('La carta', card);
+                  } else if (
+                    filterValue == '10+' &&
+                    parseInt(valueAttack) > 10
+                  ) {
+                    console.log('La carta en +10', card);
+                  } else if (filterValue == 'Any') {
+                    console.log('La carta en any', card);
+                  }
+                }
+                if (f.includes('Hlth')) {
+                  let valueHealth = card.health;
+                  let filterValue = filtro.value;
+                  if (filterValue != 'Any' && filterValue != '10+') {
+                    filterValue = parseInt(filterValue);
+                  }
+                  if (typeof valueHealth == 'string') {
+                    valueHealth = parseInt(valueHealth);
+                  }
+                  if (valueHealth == filterValue) {
+                    console.log('La carta', card);
+                  } else if (filterValue == '10+' && valueHealth >= 10) {
+                    console.log('La carta en +10', card);
+                  } else if (filterValue == 'Any') {
+                    console.log('La carta en any', card);
+                  }
+                }
+                if (f.includes('Type')) {
+                  if (card.type == filtro.value) {
+                    console.log('La carta', card);
+                  } else if (filtro.value == 'Any') {
+                    console.log('Todos');
+                  }
+                }
+                if (f.includes('Minion')) {
+                  if (card.race == filtro.value) {
+                    console.log('La carta', card);
+                  } else if (filtro.value == 'Any') {
+                    console.log('Todos');
+                  }
+                }
+                if (f.includes('Rarity')) {
+                  if (card.rarity == filtro.value) {
+                    console.log('La carta', card);
+                  } else if (filtro.value == 'Any') {
+                    console.log('Todos');
+                  }
+                }
+              });
+            });
+          } else {
+            setFilterActive(false);
+            setCardFilter(cards);
+          }
         }}
       ></Filters>
 
-      <div className="md:mt-28">
+      <div className="md:mt-6">
         <div className="hidden md:block mt-14">
-          <GridContainer cards={cards}></GridContainer>
+          <GridContainer
+            cards={filtersActive ? cardsFilter : cards}
+          ></GridContainer>
         </div>
         <div className="md:hidden">
-          <MobileCorusel cardList={cards} />
+          <MobileCorusel cardList={filtersActive ? cardsFilter : cards} />
         </div>
       </div>
     </div>

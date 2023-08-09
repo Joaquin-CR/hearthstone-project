@@ -112,7 +112,6 @@ class LinkedList<T> {
 
     let current = this.head;
     do {
-      console.log(`Index ${current.index}:`, current.value);
       current = current.next!;
     } while (current !== this.head);
   }

@@ -14,28 +14,13 @@ export interface FavoritesProps {
 const mana = ['Mana: low to high', 'Mana: high to low'];
 
 export default function Favorites({ cards }: FavoritesProps) {
-  const [cardNumber, setCardNumber] = useState(0);
+  const [cardsFilter, setCardFilter] = useState(cards);
   const [filtersActive, setFilterActive] = useState(false);
-  const showFilters = () => {
-    setFilterActive(!filtersActive);
-  };
-
-  const [activeFilters, setActiveFilters] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(false);
-
-  const openDropdown = () => {
-    setActiveDropdown(!activeDropdown);
-  };
-
-  const openFilters = () => {
-    setActiveFilters(!activeFilters);
-  };
 
   const [manaLabel, setManaLabel] = useState(mana[0]);
 
   useEffect(() => {
     setManaLabel(manaLabel);
-    setCardNumber(cardNumber);
   }, []);
 
   const content = (
@@ -63,15 +48,90 @@ export default function Favorites({ cards }: FavoritesProps) {
               minionTypeLabel={'Minion Type'}
               rarityLabel={'Rarity'}
               keywordsLabel={'Keyword'}
-              activeFiltersBTN={function (active: boolean): void {
-                console.log(active);
+              activeFiltersBTN={function (
+                active: boolean,
+                filters: any[]
+              ): void {
+                if (filters.length > 0) {
+                  setFilterActive(active);
+                  filters.map((filtro: any) => {
+                    let cardsWithFilter: any[] = [];
+                    let f = filtro.label;
+                    cards.find((card: any) => {
+                      if (f.includes('Atk')) {
+                        let valueAttack = card.attack;
+                        let filterValue = filtro.value;
+                        if (filterValue != 'Any' && filterValue != '10+') {
+                          filterValue = parseInt(filterValue);
+                        }
+                        if (typeof valueAttack == 'string') {
+                          valueAttack = parseInt(valueAttack);
+                        }
+                        if (valueAttack == filterValue) {
+                          cardsWithFilter.push(card);
+                        } else if (
+                          filterValue == '10+' &&
+                          parseInt(valueAttack) > 10
+                        ) {
+                          cardsWithFilter.push(card);
+                        } else if (filterValue == 'Any') {
+                          cardsWithFilter.push(card);
+                        }
+                      }
+                      if (f.includes('Hlth')) {
+                        let valueHealth = card.health;
+                        let filterValue = filtro.value;
+                        if (filterValue != 'Any' && filterValue != '10+') {
+                          filterValue = parseInt(filterValue);
+                        }
+                        if (typeof valueHealth == 'string') {
+                          valueHealth = parseInt(valueHealth);
+                        }
+                        if (valueHealth == filterValue) {
+                          cardsWithFilter.push(card);
+                        } else if (filterValue == '10+' && valueHealth >= 10) {
+                          cardsWithFilter.push(card);
+                        } else if (filterValue == 'Any') {
+                          cardsWithFilter.push(card);
+                        }
+                      }
+                      if (f.includes('Type')) {
+                        if (card.type == filtro.value) {
+                          cardsWithFilter.push(card);
+                        } else if (filtro.value == 'Any') {
+                          cardsWithFilter.push(card);
+                        }
+                      }
+                      if (f.includes('Minion')) {
+                        if (card.race == filtro.value) {
+                          cardsWithFilter.push(card);
+                        } else if (filtro.value == 'Any') {
+                          cardsWithFilter.push(card);
+                        }
+                      }
+                      if (f.includes('Rarity')) {
+                        if (card.rarity == filtro.value) {
+                          cardsWithFilter.push(card);
+                        } else if (filtro.value == 'Any') {
+                          cardsWithFilter.push(card);
+                        }
+                      }
+                    });
+                    setCardFilter(cardsWithFilter);
+                  });
+                } else {
+                  setCardFilter(cards);
+                  setFilterActive(false);
+                }
               }}
             ></Filters>
             <div className="hidden md:block w-full px-8 overflow-x-hidden">
-              <GridContainer cards={cards ? cards : []}></GridContainer>
+              <GridContainer
+                cards={filtersActive ? cardsFilter : cards}
+              ></GridContainer>
             </div>
             <div className="md:hidden w-full px-8 overflow-x-hidden items-center h-full">
-              <MobileCorusel cardList={cards} />
+              <MobileCorusel cardList={filtersActive ? cardsFilter : cards} />
             </div>
           </>
         )}
