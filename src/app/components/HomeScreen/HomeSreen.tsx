@@ -79,7 +79,12 @@ export default function HomeSreen() {
                 pathname: '/class/Mage',
               }}
             >
-              <Image className="hover:drop-shadow-blue" src={Mage} alt={''} />
+              <Image
+                className="hover:drop-shadow-blue"
+                src={Mage}
+                alt={''}
+                height={164}
+              />
               <p>Mage</p>
             </Link>
           </div>
@@ -89,7 +94,12 @@ export default function HomeSreen() {
                 pathname: '/class/Druid',
               }}
             >
-              <Image className="hover:drop-shadow-blue" src={Druid} alt={''} />
+              <Image
+                className="hover:drop-shadow-blue"
+                src={Druid}
+                alt={''}
+                height={164}
+              />
               <p>Druid</p>
             </Link>
           </div>
@@ -99,7 +109,12 @@ export default function HomeSreen() {
                 pathname: '/class/Hunter',
               }}
             >
-              <Image className="hover:drop-shadow-blue" src={Hunter} alt={''} />
+              <Image
+                className="hover:drop-shadow-blue"
+                src={Hunter}
+                alt={''}
+                height={164}
+              />
               <p>Hunter</p>
             </Link>
           </div>
@@ -109,18 +124,28 @@ export default function HomeSreen() {
                 pathname: '/class/Priest',
               }}
             >
-              <Image className="hover:drop-shadow-blue" src={Priest} alt={''} />
+              <Image
+                className="hover:drop-shadow-blue"
+                src={Priest}
+                alt={''}
+                height={164}
+              />
               <p>Priest</p>
             </Link>
           </div>
           <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
             <Link
               href={{
-                pathname: '/class/Rouge',
+                pathname: '/class/Rogue',
               }}
             >
-              <Image className="hover:drop-shadow-blue" src={Rouge} alt={''} />
-              <p>Rouge</p>
+              <Image
+                className="hover:drop-shadow-blue"
+                src={Rouge}
+                alt={''}
+                height={164}
+              />
+              <p>Rogue</p>
             </Link>
           </div>
           <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
@@ -133,6 +158,7 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Paladin}
                 alt={''}
+                height={164}
               />
               <p>Paladin</p>
             </Link>
@@ -143,7 +169,12 @@ export default function HomeSreen() {
                 pathname: '/class/Shaman',
               }}
             >
-              <Image className="hover:drop-shadow-blue" src={Shaman} alt={''} />
+              <Image
+                className="hover:drop-shadow-blue"
+                src={Shaman}
+                alt={''}
+                height={164}
+              />
               <p>Shaman</p>
             </Link>
           </div>
@@ -171,6 +202,7 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Warlock}
                 alt={''}
+                height={164}
               />
               <p>Warlock</p>
             </Link>
@@ -185,6 +217,7 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Warrior}
                 alt={''}
+                height={164}
               />
               <p>Warrior</p>
             </Link>

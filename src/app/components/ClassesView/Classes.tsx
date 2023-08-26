@@ -28,7 +28,7 @@ const classes = [
   'Druid',
   'Hunter',
   'Priest',
-  'Rouge',
+  'Rogue',
   'Paladin',
   'Shaman',
   'Demon Hunter',
@@ -62,9 +62,9 @@ function changeClass(option: string) {
         pathname: '/class/Priest',
       };
       break;
-    case 'Rouge':
+    case 'Rogue':
       params = {
-        pathname: '/class/Rouge',
+        pathname: '/class/Rogue',
       };
       break;
     case 'Paladin':
@@ -113,7 +113,7 @@ function getBackgroundClass(classId: string): string {
       return 'bg-bgImgDruid';
     case 'Priest':
       return 'bg-bgImgPriest';
-    case 'Rouge':
+    case 'Rogue':
       return 'bg-bgImgRouge';
     case 'Paladin':
       return 'bg-bgImgPaladin';
@@ -160,9 +160,9 @@ function getTitlDescription(classId: string) {
         description:
           'The Light calls, but shadows whisper. Heroes of righteousness, Priests have unmatched healing potential and can bestow powerful holy enchantments on their minions. However, there is no light without dark. Priests can also tap into the shadows to manipulate the minds of their enemies and deal mortifying psychic damage.',
       };
-    case 'Rouge':
+    case 'Rogue':
       return {
-        name: 'Rouge',
+        name: 'Rogue',
         title: 'Watch your back!',
         description:
           'Using unseen blade, blinding speed, and subtle poison, Rogues can dispatch their enemies before escaping without a trace. Unleash a devastating chain of minions, spells, and attacks all within a single turn.',
@@ -226,7 +226,7 @@ export default function Classes({ cards, className }: IClasses) {
         return DruidEmblem;
       case 'Priest':
         return PriestEmblem;
-      case 'Rouge':
+      case 'Rogue':
         return RougeEmblem;
       case 'Paladin':
         return PaladinEmblem;

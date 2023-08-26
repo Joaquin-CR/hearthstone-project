@@ -37,7 +37,7 @@ export default function HearthScroll({
         return DruidEmblem;
       case 'Priest':
         return PriestEmblem;
-      case 'Rouge':
+      case 'Rogue':
         return RougeEmblem;
       case 'Paladin':
         return PaladinEmblem;
