@@ -3,17 +3,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Search from '../../../../public/images/Search.svg';
-import DemonHunter from '../../../../public/images/demonHunterEmblem.png';
-import Druid from '../../../../public/images/druidEmblem.png';
+import DemonHunter from '../../../../public/images/demonHunterEmblem.webp';
+import Druid from '../../../../public/images/druidEmblem.webp';
 import LogoHome from '../../../../public/images/homepage_logo 1.png';
-import Hunter from '../../../../public/images/hunterEmblem.png';
-import Mage from '../../../../public/images/mageEmblem.png';
-import Paladin from '../../../../public/images/paladinEmblem.png';
-import Priest from '../../../../public/images/priestEmblem.png';
-import Rouge from '../../../../public/images/rougeEmblem.png';
-import Shaman from '../../../../public/images/shamanEmblem.png';
-import Warlock from '../../../../public/images/warlockEmblem.png';
-import Warrior from '../../../../public/images/warriorEmblem.png';
+import Hunter from '../../../../public/images/hunterEmblem.webp';
+import Mage from '../../../../public/images/mageEmblem.webp';
+import Paladin from '../../../../public/images/paladinEmblem.webp';
+import Priest from '../../../../public/images/priestEmblem.webp';
+import Rouge from '../../../../public/images/rougeEmblem.webp';
+import Shaman from '../../../../public/images/shamanEmblem.webp';
+import Warlock from '../../../../public/images/warlockEmblem.webp';
+import Warrior from '../../../../public/images/warriorEmblem.webp';
 
 export default function HomeSreen() {
   const [search, setSearch] = useState<string>('');
@@ -45,7 +45,7 @@ export default function HomeSreen() {
 
   const content = (
     <div className="w-full min-h-screen flex flex-col items-center bg-bgImgHome bg-no-repeat bg-fixed bg-cover">
-      <div className="flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
         <Image src={LogoHome} alt={''} />
       </div>
       <form action="" className="md:w-5/12" onSubmit={searchingData}>
@@ -72,8 +72,9 @@ export default function HomeSreen() {
       </form>
 
       <div className="flex justify-center mb-12">
-        <div className="grid grid-cols-3 md:grid-cols-5 md:w-4/5 mt-7">
-          <div className="mx-20 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+        <div className="grid lg:grid-cols-5 grid-cols-3 lg:gap-20 gap-4 align-middle justify-items-center items-center mt-7">
+          {/* MAGE EMBLEM */}
+          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
             <Link
               href={{
                 pathname: '/class/Mage',
@@ -83,12 +84,14 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Mage}
                 alt={''}
-                height={164}
+                height={150}
+                width={150}
               />
-              <p>Mage</p>
             </Link>
+            <p className=" text-center sm:text-2xl font-AclonicaR">Mage</p>
           </div>
-          <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          {/* DRUID EMBLEM */}
+          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
             <Link
               href={{
                 pathname: '/class/Druid',
@@ -98,12 +101,14 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Druid}
                 alt={''}
-                height={164}
+                height={150}
+                width={150}
               />
-              <p>Druid</p>
             </Link>
+            <p className="text-center sm:text-2xl font-AclonicaR">Druid</p>
           </div>
-          <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          {/* HUNTER EMBLEM */}
+          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
             <Link
               href={{
                 pathname: '/class/Hunter',
@@ -113,12 +118,14 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Hunter}
                 alt={''}
-                height={164}
+                height={150}
+                width={150}
               />
-              <p>Hunter</p>
             </Link>
+            <p className="text-center sm:text-2xl font-AclonicaR">Hunter</p>
           </div>
-          <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          {/* PRIEST EMBLEM */}
+          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
             <Link
               href={{
                 pathname: '/class/Priest',
@@ -128,12 +135,14 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Priest}
                 alt={''}
-                height={164}
+                height={150}
+                width={150}
               />
-              <p>Priest</p>
             </Link>
+            <p className="text-center sm:text-2xl font-AclonicaR">Priest</p>
           </div>
-          <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          {/* ROGUE EMBLEM */}
+          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
             <Link
               href={{
                 pathname: '/class/Rogue',
@@ -143,12 +152,14 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Rouge}
                 alt={''}
-                height={164}
+                height={150}
+                width={150}
               />
-              <p>Rogue</p>
             </Link>
+            <p className="text-center sm:text-2xl font-AclonicaR">Rogue</p>
           </div>
-          <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          {/* PALADIN EMBLEM */}
+          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
             <Link
               href={{
                 pathname: '/class/Paladin',
@@ -158,12 +169,14 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Paladin}
                 alt={''}
-                height={164}
+                height={150}
+                width={150}
               />
-              <p>Paladin</p>
             </Link>
+            <p className="text-center sm:text-2xl font-AclonicaR">Paladin</p>
           </div>
-          <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          {/* SHAMAN EMBLEM */}
+          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
             <Link
               href={{
                 pathname: '/class/Shaman',
@@ -173,26 +186,33 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Shaman}
                 alt={''}
-                height={164}
+                height={150}
+                width={150}
               />
-              <p>Shaman</p>
             </Link>
+            <p className="text-center sm:text-2xl font-AclonicaR">Shaman</p>
           </div>
-          <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          {/* DEMON HUNTER EMBLEM */}
+          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
             <Link
               href={{
-                pathname: '/class/Demon',
+                pathname: '/class/Demon Hunter',
               }}
             >
               <Image
                 className="hover:drop-shadow-blue"
                 src={DemonHunter}
                 alt={''}
+                height={150}
+                width={150}
               />
-              <p>Demon Hunter</p>
             </Link>
+            <p className="text-center sm:text-2xl font-AclonicaR">
+              Demon Hunter
+            </p>
           </div>
-          <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          {/* WARLOCK EMBLEM */}
+          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
             <Link
               href={{
                 pathname: '/class/Warlock',
@@ -202,12 +222,14 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Warlock}
                 alt={''}
-                height={164}
+                height={150}
+                width={150}
               />
-              <p>Warlock</p>
             </Link>
+            <p className="text-center sm:text-2xl font-AclonicaR">Warlock</p>
           </div>
-          <div className="mx-14 md:mx-20 my-7 md:my-12 text-Color-MenuHover text-2xl hover:text-white font-AclonicaR hover:drop-shadow-blue flex flex-col items-center justify-center">
+          {/* WARRIOR EMBLEM */}
+          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
             <Link
               href={{
                 pathname: '/class/Warrior',
@@ -217,10 +239,11 @@ export default function HomeSreen() {
                 className="hover:drop-shadow-blue"
                 src={Warrior}
                 alt={''}
-                height={164}
+                height={150}
+                width={150}
               />
-              <p>Warrior</p>
             </Link>
+            <p className="text-center sm:text-2xl font-AclonicaR">Warrior</p>
           </div>
         </div>
       </div>

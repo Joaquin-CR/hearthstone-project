@@ -1,16 +1,16 @@
 import Image, { StaticImageData } from 'next/image';
 import { useRef } from 'react';
 import useDraggableScroll from 'use-draggable-scroll';
-import DemonEmblem from '../../../../public/images/demonHunterEmblem.png';
-import DruidEmblem from '../../../../public/images/druidEmblem.png';
-import HunterEmblem from '../../../../public/images/hunterEmblem.png';
-import MageEmblem from '../../../../public/images/mageEmblem.png';
-import PaladinEmblem from '../../../../public/images/paladinEmblem.png';
-import PriestEmblem from '../../../../public/images/priestEmblem.png';
-import RougeEmblem from '../../../../public/images/rougeEmblem.png';
-import ShamanEmblem from '../../../../public/images/shamanEmblem.png';
-import WarlockEmblem from '../../../../public/images/warlockEmblem.png';
-import WarriorEmblem from '../../../../public/images/warriorEmblem.png';
+import DemonEmblem from '../../../../public/images/demonHunterEmblem.webp';
+import DruidEmblem from '../../../../public/images/druidEmblem.webp';
+import HunterEmblem from '../../../../public/images/hunterEmblem.webp';
+import MageEmblem from '../../../../public/images/mageEmblem.webp';
+import PaladinEmblem from '../../../../public/images/paladinEmblem.webp';
+import PriestEmblem from '../../../../public/images/priestEmblem.webp';
+import RougeEmblem from '../../../../public/images/rougeEmblem.webp';
+import ShamanEmblem from '../../../../public/images/shamanEmblem.webp';
+import WarlockEmblem from '../../../../public/images/warlockEmblem.webp';
+import WarriorEmblem from '../../../../public/images/warriorEmblem.webp';
 
 type HearthScrollProps = {
   list: Array<string>;
