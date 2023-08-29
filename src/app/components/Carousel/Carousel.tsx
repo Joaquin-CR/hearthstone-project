@@ -23,7 +23,7 @@ export default function Carousel({ cardList }: CarouselProps) {
             health={card.health}
             mechcanics={card.mechanics}
             cardSet={card.cardset}
-            fav={card.fav ? card.fav : false}
+            fav={card.fav}
           />
         </div>
       ))}

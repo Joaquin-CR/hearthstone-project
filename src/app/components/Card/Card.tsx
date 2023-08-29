@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FavoriteIcon from '../../../../public/images/Favorite.svg';
 import FavoriteBorderIcon from '../../../../public/images/FavoriteBorder.svg';
 import book from '../../../../public/images/book/Book.webp';
@@ -18,7 +18,7 @@ export interface ICardInfo {
   health: string;
   mechcanics: any;
   cardSet: string;
-  fav: boolean;
+  fav: string;
 }
 
 export default function Card({
@@ -36,7 +36,7 @@ export default function Card({
   cardSet,
   fav,
 }: ICardInfo) {
-  const [favorites, setFavorites] = useState(fav);
+  const [favorites, setFavorites] = useState(fav == 'true' ? true : false);
 
   const checkFavorite = async () => {
     const crd = await fetch('http://localhost:3000/api/getCard', {
@@ -59,7 +59,9 @@ export default function Card({
     }
   };
 
-  checkFavorite();
+  useEffect(() => {
+    checkFavorite();
+  });
 
   const handleFavorite = () => {
     if (!favorites) {
@@ -80,7 +82,7 @@ export default function Card({
           race: race!,
           playerclass: playerClass!,
           img: pic!,
-          fav: true,
+          fav: 'true',
           mechanics: [mechcanics?.toString()],
         }),
       });
@@ -132,7 +134,7 @@ export default function Card({
           ></Image>
         )}
         <div className="relative bg-ColorBorder-Card hover:bg-gradient-to-b hover:from-gold hover:via-gold_2 hover:to-gold_3 rounded-2xl p-1 w-full">
-          <div className="bg-bgColor-Card hover:bg-bgColor-CardDescroption rounded-2xl py-3 text-black hover:text-ColorGold">
+          <div className="bg-bgColor-Card hover:bg-bgColor-CardDescroption rounded-2xl py-3 text-black hover:text-ColorGold text-center">
             <div className="absolute -top-6 -right-3" onClick={handleFavorite}>
               <div className=" bg-ColorBorder-Card hover:bg-gradient-to-b hover:from-gold hover:via-gold_2 hover:to-gold_3 rounded-full p-1 w-full">
                 <div className="bg-bgColor-Card hover:bg-bgColor-CardDescroption rounded-full text-black hover:text-ColorGold p-1">
