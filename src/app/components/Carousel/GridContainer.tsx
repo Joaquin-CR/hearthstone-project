@@ -1,5 +1,6 @@
+import { debounce } from 'lodash';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import left from '../../../../public/images/ArrowLeft.svg';
 import right from '../../../../public/images/ArrowRight.svg';
 import { CardClass, SplitIntoSmallerLists } from '../../../../types';
@@ -15,39 +16,123 @@ export default function GridContainer({ cards }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(1);
   const smallerLists = SplitIntoSmallerLists(cards, 10);
   const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
-  // const last = smallerLists.getTail();
-  const containerRef = useRef<HTMLDivElement>(null);
+  let tail = smallerLists.getTail();
+
+  const scrollIntoViewDebounced = debounce(() => {
+    let e = document.getElementById(currentSlide.toString());
+    e?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'start',
+      block: 'nearest',
+    });
+  }, 100);
 
   useEffect(() => {
-    let e = document.getElementById(currentSlide.toString());
-    e?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+    const handleScroll = () => {
+      scrollIntoViewDebounced();
+    };
+
+    // window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      // window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Trigger scrollIntoView directly when the currentSlide changes
+  useEffect(() => {
+    scrollIntoViewDebounced();
   }, [currentSlide]);
 
+  const handleConditionChange = () => {
+    if (tail === null || tail.index === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   function handleNextIndex() {
-    startIndex = startIndex + 5;
-    endIndex = endIndex + 5;
-    setStartIndex(startIndex);
-    setEndIndex(endIndex);
+    if (endIndex >= tail!.index) {
+      setStartIndex(0);
+      setEndIndex(4);
+      setCurrentSlide(1);
+    } else {
+      startIndex = startIndex + 5;
+      endIndex = endIndex + 5;
+      setStartIndex(startIndex);
+      setEndIndex(endIndex);
+      setCurrentSlide(1);
+    }
   }
+
   function handlePreviousIndex() {
-    startIndex = startIndex - 5;
-    endIndex = endIndex - 5;
-    setStartIndex(startIndex);
-    setEndIndex(endIndex);
+    if (tail!.index < 6) {
+      return null;
+    } else {
+      if (startIndex < 1) {
+        setStartIndex(tail!.index - 4);
+        setEndIndex(tail!.index);
+        setCurrentSlide(5);
+      } else {
+        startIndex = startIndex - 5;
+        endIndex = endIndex - 5;
+        setStartIndex(startIndex);
+        setEndIndex(endIndex);
+        setCurrentSlide(5);
+      }
+    }
   }
 
   function handleSlideRight() {
-    if (currentSlide === 5) {
-      handleNextIndex();
-      setCurrentSlide(1);
+    if (currentSlide === 1 && startIndex + 1 > tail!.index) {
+      if (tail!.index < 6) {
+        setCurrentSlide(1);
+      } else {
+        handleNextIndex();
+      }
+    } else if (currentSlide === 2 && startIndex + 2 > tail!.index) {
+      if (tail!.index < 6) {
+        setCurrentSlide(1);
+      } else {
+        handleNextIndex();
+      }
+    } else if (currentSlide === 3 && startIndex + 3 > tail!.index) {
+      console.log('HERE');
+      if (tail!.index < 6) {
+        setCurrentSlide(1);
+      } else {
+        handleNextIndex();
+      }
+    } else if (currentSlide === 4 && startIndex + 4 > tail!.index) {
+      if (tail!.index < 6) {
+        setCurrentSlide(1);
+      } else {
+        handleNextIndex();
+      }
+    } else if (currentSlide === 5 && startIndex + 5 > tail!.index) {
+      if (tail!.index < 6) {
+        setCurrentSlide(1);
+      } else {
+        handleNextIndex();
+      }
     } else {
-      setCurrentSlide(currentSlide + 1);
+      if (currentSlide === 5) {
+        handleNextIndex();
+      } else if (currentSlide === -1) {
+        setCurrentSlide(currentSlide + 3);
+      } else {
+        setCurrentSlide(currentSlide + 1);
+      }
     }
   }
+
   function handleSlideLeft() {
-    if (currentSlide === 1) {
-      handlePreviousIndex();
+    if (currentSlide === -1) {
       setCurrentSlide(5);
+      handlePreviousIndex();
+    } else if (currentSlide === 1) {
+      handlePreviousIndex();
     } else {
       setCurrentSlide(currentSlide - 1);
     }
@@ -67,11 +152,13 @@ export default function GridContainer({ cards }: CarouselProps) {
   function handleFifth() {
     setCurrentSlide(5);
   }
+  console.log(tail);
   return (
     <>
       <div
-        className="grid grid-cols-8 gap-x-[900px] xl:gap-x-[1600px] lg:gap-x-[1200px] 2xl:gap-x-[2000px] no-scrollbar overflow-x-hidden overflow-y-hidden w-screen items-center h-full"
-        ref={containerRef}
+        className={`grid grid-cols-8 gap-x-[900px] xl:gap-x-[1600px] lg:gap-x-[1200px] 2xl:gap-x-[2000px] no-scrollbar overflow-x-hidden overflow-y-hidden w-screen items-center h-full ${
+          tail === null ? 'invisible' : ''
+        }`}
       >
         {eight.map((list, index) => (
           <div
@@ -82,73 +169,106 @@ export default function GridContainer({ cards }: CarouselProps) {
             <Carousel cardList={list} />
           </div>
         ))}
-        <div className="relative bottom-14" id="6">
-          {/* <Carousel cardList={last ? last : []} /> */}
-        </div>
-        <button className="absolute left-0" onClick={() => handleSlideLeft()}>
+        <button
+          disabled={handleConditionChange()}
+          className="absolute left-0 z-10"
+          onClick={() => handleSlideLeft()}
+        >
           <Image src={left} alt="left"></Image>
         </button>
         <button
-          className="absolute right-0 "
+          disabled={handleConditionChange()}
+          className="absolute right-0 z-10"
           onClick={() => handleSlideRight()}
         >
           <Image src={right} alt="right"></Image>
         </button>
       </div>
-      <div className="flex flex-row justify-center items-centerrounded-full px-1 text-white h-16">
+      {tail === null && <div className="[299.3px]"></div>}
+      <div className="flex flex-row justify-center items-centerrounded-full px-1 text-white">
         <div className=" flex flex-row justify-between gap-10 rounded-full h-[58px] ">
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
+            className={`${startIndex < 0 ? 'hidden' : ''} ${
+              currentSlide === 1
+                ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                : ''
+            } font-outline-1 rounded-lg mr-1 w-12 text-xl drop-shadow-lg p-1`}
             onClick={() => handleFirst()}
           >
             <div
               className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
             >
-              1
+              {startIndex === (tail ? tail!.index : 0)
+                ? currentSlide
+                : startIndex + 1}
             </div>
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
+            disabled={startIndex === (tail ? tail!.index : 0)}
+            className={`font-outline-1 rounded-lg mr-1 w-12 text-xl drop-shadow-lg p-1 ${
+              startIndex < 0 ? 'hidden' : ''
+            } ${
+              currentSlide === 2
+                ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                : ''
+            }`}
             onClick={() => handleSecond()}
           >
             <div
               className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
             >
-              2
+              {startIndex + 2}
             </div>
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
+            disabled={startIndex === (tail ? tail!.index : 0)}
+            className={`${startIndex < 0 ? 'hidden' : ''} ${
+              currentSlide === 3
+                ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                : ''
+            } font-outline-1 rounded-lg mr-1 w-12 text-xl drop-shadow-lg p-1`}
             onClick={() => handleThird()}
           >
             <div
               className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
             >
-              3
+              {startIndex + 3}
             </div>
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
+            disabled={startIndex === (tail ? tail!.index : 0)}
+            className={`${startIndex < 0 ? 'hidden' : ''} ${
+              currentSlide === 4
+                ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                : ''
+            } font-outline-1 rounded-lg mr-1 w-12 text-xl drop-shadow-lg p-1`}
             onClick={() => handleFourth()}
           >
             <div
               className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
             >
-              4
+              {startIndex + 4}
             </div>
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
+            disabled={startIndex === (tail ? tail!.index : 0)}
+            className={`${startIndex < 0 ? 'hidden' : ''} ${
+              currentSlide === 5
+                ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                : ''
+            } font-outline-1 rounded-lg mr-1 w-12 text-xl drop-shadow-lg p-1`}
             onClick={() => handleFifth()}
           >
             <div
               className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
             >
-              5
+              {startIndex + 5}
             </div>
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg p-1"
+            className={` rounded-lg mr-1 py-1 px-3 text-lg drop-shadow-lg ${
+              (tail ? tail!.index : 0) < 1 ? 'hidden' : ''
+            }`}
             onClick={() => handleNextIndex()}
           >
             <div
@@ -157,12 +277,12 @@ export default function GridContainer({ cards }: CarouselProps) {
               ...
             </div>
           </button>
-          <button className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-lg drop-shadow-lg p-1">
-            <div
-              className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
-            >
-              100
-            </div>
+          <button
+            className={` rounded-lg bg-bgColor-Filters text-white mr-1 py-1 px-3 text-lg drop-shadow-lg font-AclonicaR ${
+              (tail ? tail!.index - 1 : 0) < 1 ? 'hidden' : ''
+            }`}
+          >
+            {(tail ? tail!.index : -1) < 1 ? 1 : tail ? tail!.index + 1 : 0}
           </button>
         </div>
       </div>

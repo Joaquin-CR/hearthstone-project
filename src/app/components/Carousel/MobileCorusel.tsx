@@ -11,10 +11,6 @@ type CarouselProps = {
 };
 
 export default function MobileCorusel({ cardList }: CarouselProps) {
-  console.log(cardList);
-  // const cards = () => {
-  //   console.log(cardList);
-  // };
   const [currentIndex, setCurrentIndex] = useState(0);
 
   function handleSlideRight() {
