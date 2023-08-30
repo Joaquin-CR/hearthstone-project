@@ -1,18 +1,18 @@
 import { getPlaceDetail } from '@/lib/getPlaces';
 import ScrollMaps from '../components/scrollOptions/scrollMaps';
 
-interface MapProps {
-  params: {};
-  searchParams: {
-    lat: string;
-    lng: string;
-  };
-}
-
-export default async function Page(props: MapProps) {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const key = searchParams.lat as string;
+  const key2 = searchParams.lng as string;
   let places = await getPlaceDetail({
-    lat: props.searchParams.lat,
-    lng: props.searchParams.lng,
+    lat: key.toString(),
+    lng: key2.toString(),
   });
 
   return (

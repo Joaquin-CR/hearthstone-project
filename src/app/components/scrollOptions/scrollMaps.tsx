@@ -13,13 +13,13 @@ type MapsScrollProps = {
 };
 
 export default function ScrollMaps({ places }: MapsScrollProps) {
-  const ref = useRef(null);
-  const { onMouseDown } = useDraggableScroll(ref);
-
   const [showDetail, setShowDetail] = useState(false);
-  const [showSide, setShowSide] = useState(true);
+  const [showSide, setShowSide] = useState(false);
   const [place, setPlace] = useState<PlaceClass>();
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
+
+  const ref = useRef(null);
+  const { onMouseDown } = useDraggableScroll(ref);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -42,9 +42,8 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
   const goToList = () => {
     if (showDetail) {
       setShowDetail(!showDetail);
-    } else {
-      setShowSide(false);
-      setShowDetail(false);
+    } else if (showSide) {
+      setShowSide(!showSide);
     }
   };
 
@@ -85,10 +84,14 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
                   name={place.name}
                   address={place.vicinity}
                   open={place.opening_hours.open_now ? 'Open' : 'Closed'}
-                  schedule={place.opening_hours.weekday_text[0].replace(
-                    'Monday:',
-                    ''
-                  )}
+                  schedule={
+                    place.opening_hours?.weekday_text
+                      ? place.opening_hours?.weekday_text[0].replace(
+                          'Monday:',
+                          ''
+                        )
+                      : 'n/a'
+                  }
                   phone={place.phone}
                   clickCard={() => goToDetail(place)}
                 />

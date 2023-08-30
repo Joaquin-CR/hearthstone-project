@@ -1,11 +1,5 @@
 'use client';
-import {
-  GoogleMap,
-  InfoWindow,
-  Marker,
-  useJsApiLoader,
-} from '@react-google-maps/api';
-import { useMemo } from 'react';
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { PlaceClass } from '../../../../types';
 
 const containerStyle = {
@@ -20,47 +14,33 @@ type GoogleMapsProps = {
   clickMap: () => void;
 };
 
-const openSlide = (name: string, vicinity: string, rating: string) => {
-  return (
-    <InfoWindow>
-      <div>{name}</div>
-      <div>{vicinity}</div>
-      <div>{rating}</div>
-    </InfoWindow>
-  );
-};
-
 export default function GoogleMaps({
   places,
   center,
   clickMarker,
   clickMap,
 }: GoogleMapsProps) {
-  const libraries = useMemo(() => ['places'], []);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.PUBLIC_GOOGLE_MAPS_API_KEY as string,
-    libraries: libraries as any,
+    libraries: ['places'] as any,
   });
 
   return isLoaded ? (
     <>
-      <div className="overflow-y-none">
+      <div className="w-full h-[89.5%] absolute">
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={10}
+          zoom={14}
           onClick={clickMap}
+          mapContainerClassName="w-full h-full"
         >
-          {/* Puedes agregar marcadores u otros elementos aquí */}
           {places.map((place, index) => (
             <div key={index} className="hover:bg-colorText-Sadows">
               <Marker
                 position={place.geometry.location}
                 icon={{ url: '/images/MarkerMaps.png' }}
-                onMouseDown={() => {
-                  openSlide(place.name, place.vicinity, place.rating);
-                }}
                 onClick={clickMarker}
               ></Marker>
             </div>

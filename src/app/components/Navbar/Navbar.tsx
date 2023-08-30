@@ -1,12 +1,23 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '../../../../public/images/homepage_logoNavbar.png';
 
 export default function Navbar() {
   const [effect, setEffect] = useState(false);
   const [show, setShow] = useState(false);
+  const [center, setCenter] = useState({ lat: 0, lng: 0 });
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setCenter({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  }, []);
+  console.log('center', center);
   const content = (
     <>
       <header className="bg-bgColor-Blue text-white sticky top-0 z-50 w-full h-20 shadow-lg drop-shadow-lg">
@@ -27,19 +38,25 @@ export default function Navbar() {
             <div className="bg-Color-MenuHover w-8 h-1 rounded absolute top-4 -mt-0.5 transition-all duration-500 before:contect-[''] before:bg-Color-MenuHover before:w-8 before:h-1 before:rounded before:absolute before:-translate-x-4 before:-translate-y-3 before:transition-all before:duration-500 after:contect-[''] after:bg-Color-MenuHover after:w-8 after:h-1 after:rounded after:absolute after:-translate-x-4 after:translate-y-3 after:transition-all after:duration-500"></div>
           </button>
           <nav className="hidden md:block md:mx-6 space-x-8 text-xl text-center items-center w-full">
-            <div className="flex justify-center">
+            <div className="flex justify-center md:mt-5">
               <Link href={'/'} className="mx-36">
                 <p className="hover:opacity-90 hover:text-Color-MenuHover font-AclonicaR">
                   HOME
                 </p>
               </Link>
 
-              <Link href={'/favorites'} className="mx-36">
+              <Link href={'/favorites'} className="lg:mx-36">
                 <p className="hover:opacity-90 hover:text-Color-MenuHover font-AclonicaR">
                   FAVORITES
                 </p>
               </Link>
-              <Link href={'/shop'} className="mx-36">
+              <Link
+                href={{
+                  pathname: `/shop/`,
+                  query: { lat: center.lat, lng: center.lng },
+                }}
+                className="mx-36"
+              >
                 <p className="hover:opacity-90 hover:text-Color-MenuHover font-AclonicaR">
                   SHOPS
                 </p>
@@ -76,16 +93,20 @@ export default function Navbar() {
             >
               FAVORITES
             </a>
-            <a
-              className="text-3xl w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR"
-              href="/shop"
+            <Link
+              href={{
+                pathname: `/shop/`,
+                query: { lat: center.lat, lng: center.lng },
+              }}
               onClick={() => {
                 setEffect(false);
                 setShow(show ? false : true);
               }}
             >
-              SHOPS
-            </a>
+              <p className="text-3xl w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR">
+                SHOPS
+              </p>
+            </Link>
           </nav>
         </div>
       </header>
