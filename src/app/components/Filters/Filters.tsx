@@ -93,6 +93,79 @@ export default function Filters({
   const [filtersActive, setFilterActive] = useState(false);
   const [filtersArr, setFilterArr] = useState<boolean>(false);
   const [arrayFilters, setArrayFilters] = useState([]);
+
+  const [manaToggle, userManaToggle] = useState(false);
+  const [attackToggle, userAttackToggle] = useState(false);
+  const [healthToggle, userHealthToggle] = useState(false);
+  const [cardTypeToggle, userCardTypeToggle] = useState(false);
+  const [minionTypeToggle, userMinionTypeToggle] = useState(false);
+  const [rarityToggle, userRarityToggle] = useState(false);
+  const [keywordsToggle, userKeywordsToggle] = useState(false);
+
+  function toggleMana() {
+    userManaToggle(manaToggle ? false : true);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : false);
+  }
+  function toggleAttack() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : true);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : false);
+  }
+  function toggleHealth() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : true);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : false);
+  }
+  function toggleCardType() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : true);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : false);
+  }
+  function toggleMinionType() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : true);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : false);
+  }
+  function toggleRarity() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : true);
+    userKeywordsToggle(keywordsToggle ? false : false);
+  }
+  function toggleKeywords() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : true);
+  }
+
   let filters: any = [];
 
   function checkFilters(arr: any, nuevoCampo: any): boolean {
@@ -152,12 +225,15 @@ export default function Filters({
           <div className="flex items-center px-11">
             <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
             <DropDownBTN
+              open={manaToggle}
               images={false}
               sortBy={manaSort}
               label={manaLabel}
               onOptionClick={(option: any) => {
-                // setManaLabel(option);
-                console.log('Opcion seleccionada: ', option);
+                console.log(option);
+              }}
+              onDropdownClick={() => {
+                toggleMana();
               }}
             />
           </div>
@@ -190,6 +266,7 @@ export default function Filters({
           <div className="hidden md:flex mt-8" id="filtros">
             <div className="mx-5">
               <DropDownBTN
+                open={attackToggle}
                 images={false}
                 sortBy={atk}
                 label={atkLabel}
@@ -281,10 +358,14 @@ export default function Filters({
                   activeFiltersBTN(true, filters);
                   setArrayFilters(filters);
                 }}
+                onDropdownClick={function (): void {
+                  toggleAttack();
+                }}
               />
             </div>
             <div className="mx-5">
               <DropDownBTN
+                open={healthToggle}
                 images={false}
                 sortBy={health}
                 label={healthLabel}
@@ -376,10 +457,14 @@ export default function Filters({
                   activeFiltersBTN(true, filters);
                   setArrayFilters(filters);
                 }}
+                onDropdownClick={function (): void {
+                  toggleHealth();
+                }}
               />
             </div>
             <div className="mx-5">
               <DropDownBTN
+                open={cardTypeToggle}
                 images={false}
                 sortBy={cardType}
                 label={cardTypeLabel}
@@ -435,10 +520,14 @@ export default function Filters({
                   activeFiltersBTN(true, filters);
                   setArrayFilters(filters);
                 }}
+                onDropdownClick={function (): void {
+                  toggleCardType();
+                }}
               />
             </div>
             <div className="mx-5">
               <DropDownBTN
+                open={minionTypeToggle}
                 images={false}
                 sortBy={minionType}
                 label={minionTypeLabel}
@@ -536,10 +625,14 @@ export default function Filters({
                   activeFiltersBTN(true, filters);
                   setArrayFilters(filters);
                 }}
+                onDropdownClick={function (): void {
+                  toggleMinionType();
+                }}
               />
             </div>
             <div className="mx-5">
               <DropDownBTN
+                open={rarityToggle}
                 images={false}
                 sortBy={rarity}
                 label={rarityLabel}
@@ -595,10 +688,14 @@ export default function Filters({
                   activeFiltersBTN(true, filters);
                   setArrayFilters(filters);
                 }}
+                onDropdownClick={function (): void {
+                  toggleRarity();
+                }}
               />
             </div>
             <div className="mx-5">
               <DropDownBTN
+                open={keywordsToggle}
                 images={false}
                 sortBy={keywords}
                 label={keywordsLabel}
@@ -678,6 +775,9 @@ export default function Filters({
                   activeFiltersBTN(true, filters);
                   setArrayFilters(filters);
                 }}
+                onDropdownClick={function (): void {
+                  toggleKeywords();
+                }}
               />
             </div>
           </div>
@@ -752,6 +852,8 @@ export default function Filters({
               sortBy={mana}
               label={mana[0]}
               onOptionClick={(option: any) => {}}
+              open={manaToggle}
+              onDropdownClick={function (): void {}}
             />
           </div>
           <div className="items-center px-11">
@@ -761,6 +863,8 @@ export default function Filters({
               sortBy={manaSort}
               label={manaSort[0]}
               onOptionClick={(option: any) => {}}
+              open={manaToggle}
+              onDropdownClick={function (): void {}}
             />
           </div>
           <button
@@ -788,6 +892,7 @@ export default function Filters({
               <div className="mt-8">
                 <div className="mx-5">
                   <DropDownBTN
+                    open={attackToggle}
                     images={false}
                     sortBy={atk}
                     label={atk[0]}
@@ -879,10 +984,14 @@ export default function Filters({
                       activeFiltersBTN(true, filters);
                       setArrayFilters(filters);
                     }}
+                    onDropdownClick={function (): void {
+                      toggleAttack();
+                    }}
                   />
                 </div>
                 <div className="my-3">
                   <DropDownBTN
+                    open={healthToggle}
                     images={false}
                     sortBy={health}
                     label={health[0]}
@@ -974,10 +1083,14 @@ export default function Filters({
                       activeFiltersBTN(true, filters);
                       setArrayFilters(filters);
                     }}
+                    onDropdownClick={function (): void {
+                      toggleHealth();
+                    }}
                   />
                 </div>
                 <div className="my-3">
                   <DropDownBTN
+                    open={cardTypeToggle}
                     images={false}
                     sortBy={cardType}
                     label={cardType[0]}
@@ -1033,10 +1146,14 @@ export default function Filters({
                       activeFiltersBTN(true, filters);
                       setArrayFilters(filters);
                     }}
+                    onDropdownClick={function (): void {
+                      toggleCardType();
+                    }}
                   />
                 </div>
                 <div className="my-3">
                   <DropDownBTN
+                    open={minionTypeToggle}
                     images={false}
                     sortBy={minionType}
                     label={minionType[0]}
@@ -1134,10 +1251,14 @@ export default function Filters({
                       activeFiltersBTN(true, filters);
                       setArrayFilters(filters);
                     }}
+                    onDropdownClick={function (): void {
+                      toggleMinionType();
+                    }}
                   />
                 </div>
                 <div className="my-3">
                   <DropDownBTN
+                    open={rarityToggle}
                     images={false}
                     sortBy={rarity}
                     label={rarity[0]}
@@ -1193,10 +1314,14 @@ export default function Filters({
                       activeFiltersBTN(true, filters);
                       setArrayFilters(filters);
                     }}
+                    onDropdownClick={function (): void {
+                      toggleRarity();
+                    }}
                   />
                 </div>
                 <div className="my-3">
                   <DropDownBTN
+                    open={keywordsToggle}
                     images={false}
                     sortBy={keywords}
                     label={keywords[0]}
@@ -1276,6 +1401,9 @@ export default function Filters({
                       activeFiltersBTN(true, filters);
                       setArrayFilters(filters);
                     }}
+                    onDropdownClick={function (): void {
+                      toggleKeywords();
+                    }}
                   />
                 </div>
               </div>
@@ -1300,7 +1428,6 @@ export default function Filters({
                               item.value !== filter.value
                             );
                           });
-                          console.log('Que pedo');
                           // if (filters.length == 0) {
                           //   console.log('entrando');
                           //   setFilterArr(false);
