@@ -792,22 +792,10 @@ export default function Filters({
                       src={CancelBTN}
                       alt={''}
                       onClick={() => {
-                        const deleteArr = arrayFilters.filter((item: any) => {
-                          return (
-                            item.label !== filter.label ||
-                            item.value !== filter.value
-                          );
-                        });
-                        setArrayFilters(deleteArr);
-                        filters.filter((item: any) => {
-                          return (
-                            item.label !== filter.label ||
-                            item.value !== filter.value
-                          );
-                        });
-                        if (filters.length == 0) {
-                          setFilterArr(false);
-                        }
+                        filters.splice(0, filters.length);
+                        setFilterArr(false);
+                        activeFiltersBTN(true, filters);
+                        setArrayFilters([]);
                       }}
                     ></Image>
                   </div>
@@ -1411,32 +1399,15 @@ export default function Filters({
                 <div className="mt-8 hidden md:flex">
                   {arrayFilters.map((filter: any) => (
                     <div key={filter.value} className="mr-4">
-                      <div
-                        className="font-AclonicaR bg-ColorGold p-2 text-lg rounded-full flex"
-                        onClick={() => {
-                          console.log('Entrando si o no');
-                          const deleteArr = arrayFilters.filter((item: any) => {
-                            return (
-                              item.label !== filter.label ||
-                              item.value !== filter.value
-                            );
-                          });
-                          setArrayFilters(deleteArr);
-                          filters.filter((item: any) => {
-                            return (
-                              item.label !== filter.label ||
-                              item.value !== filter.value
-                            );
-                          });
-                          // if (filters.length == 0) {
-                          //   console.log('entrando');
-                          //   setFilterArr(false);
-                          //   activeFiltersBTN(filtersArr, []);
-                          // }
-                        }}
-                      >
+                      <div className="font-AclonicaR bg-ColorGold p-2 text-lg rounded-full flex">
                         <p className="font-AclonicaR mx-2">{filter.label}</p>
                         <Image
+                          onClick={() => {
+                            filters.splice(0, filters.length);
+                            setFilterArr(false);
+                            activeFiltersBTN(true, filters);
+                            setArrayFilters([]);
+                          }}
                           className="cursor-pointer"
                           src={CancelBTN}
                           alt={''}

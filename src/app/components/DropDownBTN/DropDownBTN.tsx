@@ -5,7 +5,7 @@ import ArrowUp from '../../../../public/images/KeyboardArrowUp.svg';
 import HearthScroll from '../scrollOptions/scrollOptions';
 
 export interface IDropDown {
-  open: boolean;
+  open?: boolean;
   sortBy: any[];
   label: string;
   images: boolean;
@@ -21,7 +21,7 @@ const DropDownBTN: React.FC<IDropDown> = ({
   onOptionClick,
   onDropdownClick,
 }) => {
-  const [activeDropdown, setActiveDropdown] = useState(open);
+  const [activeDropdown, setActiveDropdown] = useState(open || false);
   const [valueSelected, setValueSelected] = useState(label);
 
   const selectValue = (opcion: any) => {
