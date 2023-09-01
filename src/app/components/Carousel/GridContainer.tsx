@@ -1,4 +1,3 @@
-import { debounce } from 'lodash';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import left from '../../../../public/images/ArrowLeft.svg';
@@ -15,34 +14,9 @@ export default function GridContainer({ cards }: CarouselProps) {
   let [endIndex, setEndIndex] = useState(4);
   const [currentSlide, setCurrentSlide] = useState(1);
   const smallerLists = SplitIntoSmallerLists(cards, 10);
-  const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
+  let eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
   let tail = smallerLists.getTail();
-
-  const scrollIntoViewDebounced = debounce(() => {
-    let e = document.getElementById(currentSlide.toString());
-    e?.scrollIntoView({
-      behavior: 'smooth',
-      inline: 'start',
-      block: 'nearest',
-    });
-  }, 100);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      scrollIntoViewDebounced();
-    };
-
-    // window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      // window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  // Trigger scrollIntoView directly when the currentSlide changes
-  useEffect(() => {
-    scrollIntoViewDebounced();
-  }, [currentSlide]);
+  // let filteredArray = eight.filter((subArray) => subArray.length > 0);
 
   const handleConditionChange = () => {
     if (tail === null || tail.index === 0) {
@@ -51,6 +25,15 @@ export default function GridContainer({ cards }: CarouselProps) {
       return false;
     }
   };
+
+  useEffect(() => {
+    let e = document.getElementById(currentSlide.toString());
+    e?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'start',
+      block: 'nearest',
+    });
+  }, [currentSlide]);
 
   function handleNextIndex() {
     if (endIndex >= tail!.index) {
@@ -65,7 +48,6 @@ export default function GridContainer({ cards }: CarouselProps) {
       setCurrentSlide(1);
     }
   }
-
   function handlePreviousIndex() {
     if (tail!.index < 6) {
       return null;
@@ -128,15 +110,20 @@ export default function GridContainer({ cards }: CarouselProps) {
   }
 
   function handleSlideLeft() {
-    if (currentSlide === -1) {
-      setCurrentSlide(5);
-      handlePreviousIndex();
-    } else if (currentSlide === 1) {
-      handlePreviousIndex();
+    if (startIndex <= 0 && currentSlide === 0) {
+      return null;
     } else {
-      setCurrentSlide(currentSlide - 1);
+      if (currentSlide === -1) {
+        setCurrentSlide(5);
+        handlePreviousIndex();
+      } else if (currentSlide === 1) {
+        handlePreviousIndex();
+      } else {
+        setCurrentSlide(currentSlide - 1);
+      }
     }
   }
+
   function handleFirst() {
     setCurrentSlide(1);
   }
@@ -152,7 +139,6 @@ export default function GridContainer({ cards }: CarouselProps) {
   function handleFifth() {
     setCurrentSlide(5);
   }
-  console.log(tail);
   return (
     <>
       <div

@@ -50,9 +50,7 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
   return (
     <>
       <div
-        className={`${
-          showSide ? 'md:flex' : 'hidden'
-        } w-full fixed top-20 z-10 flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-bgSideShop shadow-black no-scrollbar py-3 text-white md:w-1/4 h-screen`}
+        className={`md:flex w-full fixed top-20 z-10 flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-bgSideShop shadow-black no-scrollbar py-3 text-white md:w-1/4 h-screen`}
         ref={ref}
         onMouseDown={onMouseDown}
       >
@@ -103,7 +101,8 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
       <GoogleMaps
         places={places}
         center={center}
-        clickMarker={() => {
+        clickMarker={(place: any) => {
+          console.log('Place', place);
           setShowSide(true);
         }}
         clickMap={() => {

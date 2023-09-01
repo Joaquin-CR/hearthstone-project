@@ -1,5 +1,6 @@
 'use client';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { useState } from 'react';
 import { PlaceClass } from '../../../../types';
 
 const containerStyle = {
@@ -10,7 +11,7 @@ const containerStyle = {
 type GoogleMapsProps = {
   places: PlaceClass[];
   center: any;
-  clickMarker: () => void;
+  clickMarker: (place: PlaceClass) => void;
   clickMap: () => void;
 };
 
@@ -20,11 +21,23 @@ export default function GoogleMaps({
   clickMarker,
   clickMap,
 }: GoogleMapsProps) {
+  const [hoveredMarker, setHoveredMarker] = useState<string | null>(null);
+  // const [map, setMap] = useState<google.maps.Map | null>(null);
+  const [activeMarker, setActiveMarker] = useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries: ['places'] as any,
   });
+
+  // function click(map: google.maps.Map, location: google.maps.LatLngLiteral) {
+  //   if (map) {
+  //     map.setZoom(16); // Optionally adjust the zoom level
+  //     map.panTo(location);
+
+  //     setMap(map);
+  //   }
+  // }
 
   return isLoaded ? (
     <>
@@ -40,8 +53,27 @@ export default function GoogleMaps({
             <div key={index} className="hover:bg-colorText-Sadows">
               <Marker
                 position={place.geometry.location}
-                icon={{ url: '/images/MarkerMaps.png' }}
-                onClick={clickMarker}
+                icon={{
+                  url:
+                    place.place_id === activeMarker ||
+                    place.place_id === hoveredMarker
+                      ? '/images/MarkerMapGlowing.webp'
+                      : '/images/MarkerMaps.png',
+                }}
+                onClick={() => {
+                  clickMarker(place);
+                  // click(map as google.maps.Map, place.geometry.location);
+                  setActiveMarker(place.place_id);
+                  setHoveredMarker(null);
+                }}
+                onMouseOver={() => setHoveredMarker(place.place_id)}
+                onMouseOut={() => setHoveredMarker(null)}
+                // options={{
+                //   animation:
+                //     hoveredMarker === place.place_id
+                //       ? google.maps.Animation.BOUNCE
+                //       : null,
+                // }}
               ></Marker>
             </div>
           ))}

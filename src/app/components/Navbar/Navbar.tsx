@@ -93,20 +93,20 @@ export default function Navbar() {
             >
               FAVORITES
             </a>
-            <Link
-              href={{
-                pathname: `/shop/`,
-                query: { lat: center.lat, lng: center.lng },
-              }}
-              onClick={() => {
-                setEffect(false);
-                setShow(show ? false : true);
-              }}
-            >
-              <p className="text-3xl w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR">
+            <p className="text-3xl w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR">
+              <Link
+                href={{
+                  pathname: `/shop/`,
+                  query: { lat: center.lat, lng: center.lng },
+                }}
+                onClick={() => {
+                  setEffect(false);
+                  setShow(show ? false : true);
+                }}
+              >
                 SHOPS
-              </p>
-            </Link>
+              </Link>
+            </p>
           </nav>
         </div>
       </header>

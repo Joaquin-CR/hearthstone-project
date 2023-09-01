@@ -28,7 +28,7 @@ export default async function Page({
         </button>
       </Link>
 
-      <FilterResult search={key} cardList={cards} />
+      <FilterResult search={key} cardList={cards ? cards : []} />
     </div>
   );
 }
