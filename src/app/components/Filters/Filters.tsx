@@ -227,7 +227,6 @@ export default function Filters({
             <DropDownBTN
               open={manaToggle}
               images={false}
-              sortBy={manaSort}
               label={manaLabel}
               onOptionClick={(option: any) => {
                 console.log(option);
@@ -268,7 +267,6 @@ export default function Filters({
               <DropDownBTN
                 open={attackToggle}
                 images={false}
-                sortBy={atk}
                 label={atkLabel}
                 onOptionClick={(option: any) => {
                   let save = false;
@@ -367,7 +365,6 @@ export default function Filters({
               <DropDownBTN
                 open={healthToggle}
                 images={false}
-                sortBy={health}
                 label={healthLabel}
                 onOptionClick={(option: any) => {
                   let save = false;
@@ -466,7 +463,6 @@ export default function Filters({
               <DropDownBTN
                 open={cardTypeToggle}
                 images={false}
-                sortBy={cardType}
                 label={cardTypeLabel}
                 onOptionClick={(option: any) => {
                   let save = false;
@@ -529,7 +525,6 @@ export default function Filters({
               <DropDownBTN
                 open={minionTypeToggle}
                 images={false}
-                sortBy={minionType}
                 label={minionTypeLabel}
                 onOptionClick={(option: any) => {
                   let save = false;
@@ -634,7 +629,6 @@ export default function Filters({
               <DropDownBTN
                 open={rarityToggle}
                 images={false}
-                sortBy={rarity}
                 label={rarityLabel}
                 onOptionClick={(option: any) => {
                   let save = false;
@@ -697,7 +691,6 @@ export default function Filters({
               <DropDownBTN
                 open={keywordsToggle}
                 images={false}
-                sortBy={keywords}
                 label={keywordsLabel}
                 onOptionClick={(option: any) => {
                   let save = false;
@@ -837,7 +830,6 @@ export default function Filters({
             </p>
             <DropDownBTN
               images={false}
-              sortBy={mana}
               label={mana[0]}
               onOptionClick={(option: any) => {}}
               open={manaToggle}
@@ -848,7 +840,6 @@ export default function Filters({
             <p className="text-white font-AclonicaR pr-4 text-xl">Sort By:</p>
             <DropDownBTN
               images={false}
-              sortBy={manaSort}
               label={manaSort[0]}
               onOptionClick={(option: any) => {}}
               open={manaToggle}
@@ -882,7 +873,6 @@ export default function Filters({
                   <DropDownBTN
                     open={attackToggle}
                     images={false}
-                    sortBy={atk}
                     label={atk[0]}
                     onOptionClick={(option: any) => {
                       let save = false;
@@ -981,7 +971,6 @@ export default function Filters({
                   <DropDownBTN
                     open={healthToggle}
                     images={false}
-                    sortBy={health}
                     label={health[0]}
                     onOptionClick={(option: any) => {
                       let save = false;
@@ -1080,7 +1069,6 @@ export default function Filters({
                   <DropDownBTN
                     open={cardTypeToggle}
                     images={false}
-                    sortBy={cardType}
                     label={cardType[0]}
                     onOptionClick={(option: any) => {
                       let save = false;
@@ -1143,7 +1131,6 @@ export default function Filters({
                   <DropDownBTN
                     open={minionTypeToggle}
                     images={false}
-                    sortBy={minionType}
                     label={minionType[0]}
                     onOptionClick={(option: any) => {
                       let save = false;
@@ -1248,7 +1235,6 @@ export default function Filters({
                   <DropDownBTN
                     open={rarityToggle}
                     images={false}
-                    sortBy={rarity}
                     label={rarity[0]}
                     onOptionClick={(option: any) => {
                       let save = false;
@@ -1311,7 +1297,6 @@ export default function Filters({
                   <DropDownBTN
                     open={keywordsToggle}
                     images={false}
-                    sortBy={keywords}
                     label={keywords[0]}
                     onOptionClick={(option: any) => {
                       let save = false;

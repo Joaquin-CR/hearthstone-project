@@ -40,6 +40,10 @@ module.exports = {
         'bgColor-Card': '#bea27f',
         'ColorBorder-Card': '#7a5b35',
         'Color-FilterMobile': 'rgba(67, 51, 30, 0.96)',
+        button_bg: '#405384',
+      },
+      backgroundPosition: {
+        'center-custom': '50% 50%',
       },
       screens: {
         widescreen: { raw: '(min-aspect-ratio: 3/2)' },

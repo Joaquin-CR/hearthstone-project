@@ -2,20 +2,17 @@ import Image from 'next/image';
 import { useState } from 'react';
 import ArrowDown from '../../../../public/images/KeyboardArrowDown.svg';
 import ArrowUp from '../../../../public/images/KeyboardArrowUp.svg';
-import HearthScroll from '../scrollOptions/scrollOptions';
 
 export interface IDropDown {
   open?: boolean;
-  sortBy: any[];
   label: string;
-  images: boolean;
+  images?: boolean;
   onOptionClick: (option: any) => void;
   onDropdownClick: () => void;
 }
 
 const DropDownBTN: React.FC<IDropDown> = ({
   open,
-  sortBy,
   label,
   images,
   onOptionClick,
@@ -43,7 +40,7 @@ const DropDownBTN: React.FC<IDropDown> = ({
           <div
             className={`${!activeDropdown && 'bg-bgColor-Filters text-white'} ${
               activeDropdown && 'bg-ColorGold text-black'
-            } flex text-center py-4 px-6 font-AclonicaR items-center bg-opacity-80 rounded-full`}
+            } flex text-center md:py-4 md:px-6 font-AclonicaR items-center bg-opacity-80 rounded-full`}
           >
             <p className={`${activeDropdown && ' text-black'} pl-2 mr-2`}>
               {valueSelected}
@@ -51,7 +48,7 @@ const DropDownBTN: React.FC<IDropDown> = ({
             <Image src={activeDropdown ? ArrowUp : ArrowDown} alt={'Arrow'} />
           </div>
         </button>
-        {activeDropdown && (
+        {/* {activeDropdown && (
           <HearthScroll
             images={images}
             list={sortBy}
@@ -60,7 +57,7 @@ const DropDownBTN: React.FC<IDropDown> = ({
               onOptionClick(item.target.innerText);
             }}
           ></HearthScroll>
-        )}
+        )} */}
       </div>
     </>
   );
