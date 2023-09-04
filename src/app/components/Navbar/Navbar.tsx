@@ -17,10 +17,9 @@ export default function Navbar() {
       });
     });
   }, []);
-  console.log('center', center);
   const content = (
     <>
-      <header className="bg-bgColor-Blue text-white sticky top-0 z-50 w-full h-20 shadow-lg drop-shadow-lg">
+      <header className="bg-bgColor-Blue text-white fixed top-0 z-50 w-full h-20 shadow-lg drop-shadow-lg">
         <section className="mx-auto px-6 pb-1 flex justify-between items-center">
           <Link href={'/'}>
             <Image src={Logo} alt={'Logo'} />
@@ -67,7 +66,7 @@ export default function Navbar() {
         <div
           className={`${show && 'animate-open-menu'} ${
             !show && 'hidden'
-          } absolute top-68 bg-bgColor-mobileMenu w-full text-5xl flex-col justify-center origin-top`}
+          } absolute bg-bgColor-mobileMenu w-full text-5xl flex-col justify-center`}
         >
           <nav
             className="flex flex-col min-h-screen items-center py-8"

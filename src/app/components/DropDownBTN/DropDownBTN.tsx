@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import ArrowDown from '../../../../public/images/KeyboardArrowDown.svg';
 import ArrowUp from '../../../../public/images/KeyboardArrowUp.svg';
+import HearthScroll from '../scrollOptions/scrollOptions';
 
 export interface IDropDown {
   open?: boolean;
@@ -10,6 +11,18 @@ export interface IDropDown {
   onOptionClick: (option: any) => void;
   onDropdownClick: () => void;
 }
+const classes = [
+  'Mage',
+  'Druid',
+  'Hunter',
+  'Priest',
+  'Rogue',
+  'Paladin',
+  'Shaman',
+  'Demon Hunter',
+  'Warlock',
+  'Warrior',
+];
 
 const DropDownBTN: React.FC<IDropDown> = ({
   open,
@@ -48,16 +61,16 @@ const DropDownBTN: React.FC<IDropDown> = ({
             <Image src={activeDropdown ? ArrowUp : ArrowDown} alt={'Arrow'} />
           </div>
         </button>
-        {/* {activeDropdown && (
+        {activeDropdown && (
           <HearthScroll
             images={images}
-            list={sortBy}
+            list={classes}
             funct={(item) => {
               selectValue;
               onOptionClick(item.target.innerText);
             }}
           ></HearthScroll>
-        )} */}
+        )}
       </div>
     </>
   );

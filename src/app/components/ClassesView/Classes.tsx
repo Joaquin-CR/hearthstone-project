@@ -12,10 +12,9 @@ import ShamanEmblem from '../../../../public/images/shamanEmblem.webp';
 import WarlockEmblem from '../../../../public/images/warlockEmblem.webp';
 import WarriorEmblem from '../../../../public/images/warriorEmblem.webp';
 import { CardClass } from '../../../../types';
-import GridContainer from '../Carousel/GridContainer';
-import MobileCorusel from '../Carousel/MobileCorusel';
 import DropDownBTN from '../DropDownBTN/DropDownBTN';
-import Filters from '../Filters/Filters';
+import Filter3 from '../Filters/Filter3';
+import HearthScroll from '../scrollOptions/scrollOptions';
 
 export interface IClasses {
   cards: CardClass[];
@@ -212,9 +211,7 @@ function getTitlDescription(classId: string) {
 }
 
 export default function Classes({ cards, className }: IClasses) {
-  const [cardsFilter, setCardFilter] = useState(cards);
-  const [filtersActive, setFilterActive] = useState(false);
-  const [manaLabel, setManaLabel] = useState(mana[0]);
+  const [activeDropdown, setactiveDropdown] = useState(false);
 
   const emblem = (): StaticImageData => {
     switch (className) {
@@ -243,45 +240,55 @@ export default function Classes({ cards, className }: IClasses) {
     }
   };
 
-  const [activeFilters, setActiveFilters] = useState(false);
+  const [activeFilters, setActiveFilters] = useState(true);
 
   const content = (
     <div
       className={`${getBackgroundClass(
         className
-      )} bg-bgImgDemon w-full flex flex-col items-center bg-fix bg-no-repeat bg-cover bg-center min-h-screen overflow-x-hidden`}
+      )} bg-bgImgDemon w-full flex flex-col items-center bg-fix bg-no-repeat bg-cover min-h-screen overflow-x-hidden bg-center-custom bg-zoomed-in`}
     >
       <div
-        className={`${
-          activeFilters && 'hidden'
-        } w-11/12 flex flex-col items-center md:flex-row md:justify-between`}
+        className={`w-11/12 flex flex-col items-center md:flex-row md:justify-between`}
       >
-        <div className="flex items-center md:ml-12 mt-24">
-          <Image className="w-64" src={emblem()} alt={'Emblem'} />
+        <div className="md:flex items-center md:ml-12 mt-24">
+          <Image className="" src={emblem()} alt={'Emblem'} />
           <p className="text-white font-AclonicaR text-4xl md:text-7xl mx-8">
             {getTitlDescription(className).name}
           </p>
         </div>
         <div className="md:flex items-center justify-center">
-          <DropDownBTN
-            images={true}
-            sortBy={classes}
-            label={'Classes'}
-            onOptionClick={(option: any) => {
-              if (option != className) {
-                if (option == 'Demon Hunter') {
-                  option = 'Demon';
-                }
-                changeClass(option);
-              }
-            }}
-          />
+          <div>
+            <DropDownBTN
+              images={true}
+              label={'Classes'}
+              onOptionClick={(option: any) => {
+                console.log('Option clicked');
+              }}
+              onDropdownClick={function (): void {
+                setactiveDropdown(!activeDropdown);
+              }}
+            />
+            {activeDropdown && (
+              <HearthScroll
+                list={classes}
+                images={true}
+                funct={(item) => {
+                  let option = item.target.innerText;
+                  if (option != className) {
+                    if (option == 'Demon Hunter') {
+                      option = 'Demon';
+                    }
+                    changeClass(option);
+                  }
+                }}
+              ></HearthScroll>
+            )}
+          </div>
         </div>
       </div>
       <div
-        className={`${
-          activeFilters && ' hidden'
-        } mt-8 md:mt-60 items-center justify-center text-center w-3/4`}
+        className={` mt-8 md:mt-60 items-center justify-center text-center w-3/4`}
       >
         <div className="text-gold font-AclonicaR text-5xl">
           {getTitlDescription(className).title}
@@ -290,97 +297,7 @@ export default function Classes({ cards, className }: IClasses) {
           {getTitlDescription(className).description}
         </div>
       </div>
-      <Filters
-        manaLabel={manaLabel}
-        atkLabel={'Attack'}
-        healthLabel={'Health'}
-        cardTypeLabel={'Card Type'}
-        minionTypeLabel={'Minion Type'}
-        rarityLabel={'Rarity'}
-        keywordsLabel={'Keyword'}
-        activeFiltersBTN={function (active: boolean, filters: any[]): void {
-          if (filters.length > 0) {
-            setFilterActive(active);
-            filters.map((filtro: any) => {
-              let f = filtro.label;
-              cardsFilter.find((card: any) => {
-                if (f.includes('Atk')) {
-                  let valueAttack = card.attack;
-                  let filterValue = filtro.value;
-                  if (filterValue != 'Any' && filterValue != '10+') {
-                    filterValue = parseInt(filterValue);
-                  }
-                  if (typeof valueAttack == 'string') {
-                    valueAttack = parseInt(valueAttack);
-                  }
-                  if (valueAttack == filterValue) {
-                    console.log('La carta', card);
-                  } else if (
-                    filterValue == '10+' &&
-                    parseInt(valueAttack) > 10
-                  ) {
-                    console.log('La carta en +10', card);
-                  } else if (filterValue == 'Any') {
-                    console.log('La carta en any', card);
-                  }
-                }
-                if (f.includes('Hlth')) {
-                  let valueHealth = card.health;
-                  let filterValue = filtro.value;
-                  if (filterValue != 'Any' && filterValue != '10+') {
-                    filterValue = parseInt(filterValue);
-                  }
-                  if (typeof valueHealth == 'string') {
-                    valueHealth = parseInt(valueHealth);
-                  }
-                  if (valueHealth == filterValue) {
-                    console.log('La carta', card);
-                  } else if (filterValue == '10+' && valueHealth >= 10) {
-                    console.log('La carta en +10', card);
-                  } else if (filterValue == 'Any') {
-                    console.log('La carta en any', card);
-                  }
-                }
-                if (f.includes('Type')) {
-                  if (card.type == filtro.value) {
-                    console.log('La carta', card);
-                  } else if (filtro.value == 'Any') {
-                    console.log('Todos');
-                  }
-                }
-                if (f.includes('Minion')) {
-                  if (card.race == filtro.value) {
-                    console.log('La carta', card);
-                  } else if (filtro.value == 'Any') {
-                    console.log('Todos');
-                  }
-                }
-                if (f.includes('Rarity')) {
-                  if (card.rarity == filtro.value) {
-                    console.log('La carta', card);
-                  } else if (filtro.value == 'Any') {
-                    console.log('Todos');
-                  }
-                }
-              });
-            });
-          } else {
-            setFilterActive(false);
-            setCardFilter(cards);
-          }
-        }}
-      ></Filters>
-
-      <div className="md:mt-6">
-        <div className="hidden md:block mt-14">
-          <GridContainer
-            cards={filtersActive ? cardsFilter : cards}
-          ></GridContainer>
-        </div>
-        <div className="md:hidden">
-          <MobileCorusel cardList={filtersActive ? cardsFilter : cards} />
-        </div>
-      </div>
+      <Filter3 cardClass="" cards={cards} />
     </div>
   );
   return content;
