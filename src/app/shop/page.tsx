@@ -17,7 +17,7 @@ export default async function Page({
 
   return (
     <>
-      <div className="w-full overflow-y-hidden flex flex-col">
+      <div className="w-full overflow-y-hidden flex flex-col mt-16">
         <h1 className="hidden text-5xl mt-6 md:flex left-1/4 absolute font-AclonicaR z-10 md:top-32 md:left-16 md:text-7xl text-white drop-shadow-lg">
           SHOPS
         </h1>

@@ -297,7 +297,7 @@ export default function Classes({ cards, className }: IClasses) {
           {getTitlDescription(className).description}
         </div>
       </div>
-      <Filter3 cardClass="" cards={cards} />
+      <Filter3 cards={cards} />
     </div>
   );
   return content;

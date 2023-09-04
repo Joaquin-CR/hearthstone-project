@@ -100,11 +100,10 @@ function getBackgroundClass(classId: string): string {
 }
 
 type FilterProps = {
-  cardClass: string;
   cards: CardClass[];
 };
 
-export default function Filter3({ cardClass, cards }: FilterProps) {
+export default function Filter3({ cards }: FilterProps) {
   const [filteredCards, userFilteredCards] = useState(cards);
   const [filterToggle, userFilterToggle] = useState(false);
   const [manaToggle, userManaToggle] = useState(false);
