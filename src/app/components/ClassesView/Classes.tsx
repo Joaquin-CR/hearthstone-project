@@ -288,7 +288,7 @@ export default function Classes({ cards, className }: IClasses) {
         </div>
       </div>
       <div
-        className={` mt-8 md:mt-60 items-center justify-center text-center w-3/4`}
+        className={`mt-8 md:mt-28 items-center justify-center text-center w-3/4`}
       >
         <div className="text-gold font-AclonicaR text-5xl">
           {getTitlDescription(className).title}

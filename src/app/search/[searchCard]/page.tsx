@@ -12,23 +12,28 @@ export default async function Page({
 }) {
   const key = searchParams.q as string;
   let cards: CardClass[] | undefined | null = await SearchCards(key);
-  if (cards == undefined) {
-    cards = null;
+  if (cards == undefined || cards == null) {
+    cards = [];
   }
 
-  return (
-    <div className="w-full min-h-screen flex flex-col items-center bg-bgImgHome bg-no-repeat bg-fixed bg-cover">
-      <Link
-        href={{
-          pathname: '/',
-        }}
-      >
-        <button className="hidden md:flex fixed text-gold font-AclonicaR text-xl top-5 z-50 right-11">
-          CANCEL SEARCH
-        </button>
-      </Link>
+  console.log(cards);
 
-      <FilterResult search={key} cardList={cards ? cards : []} />
-    </div>
+  return (
+    <>
+      <div className="flex flex-col items-center bg-bgImgHome bg-no-repeat bg-fixed bg-cover">
+        <Link
+          href={{
+            pathname: '/',
+          }}
+        >
+          <button className="hidden md:flex fixed text-gold font-AclonicaR text-xl top-5 z-50 right-11">
+            CANCEL SEARCH
+          </button>
+        </Link>
+      </div>
+      <div className="flex flex-col items-center bg-bgImgHome bg-scroll bg-no-repeat bg-cover gap-10 min-h-screen relative mt-20">
+        <FilterResult search={key} cardList={cards} />
+      </div>
+    </>
   );
 }
