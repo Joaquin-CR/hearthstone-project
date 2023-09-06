@@ -29,7 +29,7 @@ export default function HearthButton({
         onClick={funct}
       >
         <p
-          className={` bg-bgOptions px-2 text-white text-center max-xl:w-32 h-8 xl:w-40 xl:h-10 rounded-full flex flex-row justify-center gap-1 items-center`}
+          className={`bg-bgOptions px-2 text-white text-center max-xl:w-32 h-8 xl:w-40 xl:h-10 rounded-full flex flex-row justify-center gap-1 items-center font-AclonicaR`}
         >
           {image && <Image src={image} alt="" width={20} height={20}></Image>}
           {text}

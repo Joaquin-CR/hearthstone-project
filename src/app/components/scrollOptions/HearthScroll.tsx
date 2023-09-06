@@ -22,7 +22,7 @@ export default function HearthScroll2({ list, funct }: HearthScrollProps) {
         {list.map((item) => (
           <button
             key={item}
-            className=" hover:text-accents text-white text-left px-3 py-2"
+            className=" hover:text-gold text-white text-left px-3 py-2 font-AclonicaR"
             onClick={() => funct(item)}
           >
             {item}
