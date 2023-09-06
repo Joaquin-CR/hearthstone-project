@@ -169,14 +169,14 @@ export default function GridContainer({ cards }: CarouselProps) {
             ))}
             <button
               disabled={handleConditionChange()}
-              className="absolute left-0 z-10"
+              className="absolute left-0 z-10 hover:drop-shadow-blue"
               onClick={() => handleSlideLeft()}
             >
               <Image src={left} alt="left"></Image>
             </button>
             <button
               disabled={handleConditionChange()}
-              className="absolute right-0 z-10"
+              className="absolute right-0 z-10 hover:drop-shadow-blue"
               onClick={() => handleSlideRight()}
             >
               <Image src={right} alt="right"></Image>
@@ -193,11 +193,13 @@ export default function GridContainer({ cards }: CarouselProps) {
                 onClick={() => handleFirst()}
               >
                 <div
-                  className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                  className={`${
+                    currentSlide === 1 ? 'bg-bgColor-Filters' : ''
+                  } text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
                 >
                   {startIndex === (tail ? tail!.index : 0)
                     ? currentSlide
-                    : startIndex + 1}
+                    : startIndex + 1}{' '}
                 </div>
               </button>
               <button
@@ -212,7 +214,9 @@ export default function GridContainer({ cards }: CarouselProps) {
                 onClick={() => handleSecond()}
               >
                 <div
-                  className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                  className={`${
+                    currentSlide === 2 ? 'bg-bgColor-Filters' : ''
+                  } text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
                 >
                   {startIndex + 2}
                 </div>
@@ -227,7 +231,9 @@ export default function GridContainer({ cards }: CarouselProps) {
                 onClick={() => handleThird()}
               >
                 <div
-                  className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                  className={`${
+                    currentSlide === 3 ? 'bg-bgColor-Filters' : ''
+                  } text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
                 >
                   {startIndex + 3}
                 </div>
@@ -242,7 +248,9 @@ export default function GridContainer({ cards }: CarouselProps) {
                 onClick={() => handleFourth()}
               >
                 <div
-                  className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                  className={`${
+                    currentSlide === 4 ? 'bg-bgColor-Filters' : ''
+                  } text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
                 >
                   {startIndex + 4}
                 </div>
@@ -257,25 +265,27 @@ export default function GridContainer({ cards }: CarouselProps) {
                 onClick={() => handleFifth()}
               >
                 <div
-                  className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                  className={`${
+                    currentSlide === 5 ? 'bg-bgColor-Filters' : ''
+                  } text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
                 >
                   {startIndex + 5}
                 </div>
               </button>
               <button
-                className={` rounded-lg mr-1 py-1 px-3 text-lg drop-shadow-lg ${
+                className={`rounded-lg mr-1 py-1 px-3 text-lg drop-shadow-lg ${
                   (tail ? tail!.index : 0) < 1 ? 'hidden' : ''
                 }`}
                 onClick={() => handleNextIndex()}
               >
                 <div
-                  className={`bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                  className={`hover:bg-bgColor-Filters text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
                 >
                   ...
                 </div>
               </button>
               <button
-                className={` rounded-lg bg-bgColor-Filters text-white mr-1 py-1 px-3 text-lg drop-shadow-lg font-AclonicaR ${
+                className={` rounded-lg text-white mr-1 py-1 px-3 text-lg drop-shadow-lg font-AclonicaR ${
                   (tail ? tail!.index - 1 : 0) < 1 ? 'hidden' : ''
                 }`}
               >
