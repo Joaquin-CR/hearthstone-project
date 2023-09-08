@@ -20,6 +20,13 @@ type DetailShopProps = {
 };
 
 export default function ShopDetail({ place, clickBack }: DetailShopProps) {
+  let website = '';
+  if (place.website === undefined) {
+    website = '';
+  } else {
+    website = place.website as string;
+  }
+
   return (
     <>
       <div className="text-white font-AclonicaR">

@@ -1,16 +1,155 @@
 import Image from 'next/image';
-import { useState } from 'react';
-import left from '../../../../public/images/ArrowLeft.svg';
-import right from '../../../../public/images/ArrowRight.svg';
-import NotFound from '../../../../public/images/no_cards_found/noCardsFound.webp';
-import { CardClass } from '../../../../types';
-import Card from '../Card/Card';
+import left from 'public/images/ArrowLeft.svg';
+import right from 'public/images/ArrowRight.svg';
+import glowingRight from 'public/images/GLowingArrowright.png';
+import glowingLeft from 'public/images/GlowingArrowleft.svg';
+import NotFound from 'public/images/no_cards_found/noCardsFound.webp';
+import { useEffect, useRef, useState } from 'react';
+import { CardClass, SplitIntoSmallerLists } from '../../../../types';
+import Carousel from './Carousel';
 
 type CarouselProps = {
   cardList: CardClass[];
 };
 
 export default function MobileCorusel({ cardList }: CarouselProps) {
+  let [startMobileIndex, setMobileStartIndex] = useState(0);
+  let [endMobileIndex, setMobileEndIndex] = useState(4);
+  let [clicked, setClicked] = useState('');
+  const [mobileSlide, setMobileSlide] = useState(-1);
+  const [currentSlide, setCurrentSlide] = useState(1);
+  const smallerLists = SplitIntoSmallerLists(cardList, 1);
+  const eightMobile = smallerLists.getItemsBetweenIndexes(
+    startMobileIndex,
+    endMobileIndex
+  );
+
+  // NEW CODE
+  const mobileRef = useRef<HTMLDivElement>(null);
+  const tailMobile = smallerLists.getTail();
+  let filteredArray = eightMobile.filter((subArray) => subArray.length > 0);
+
+  useEffect(() => {
+    let f = document.getElementById(mobileSlide.toString());
+    console.log(mobileSlide);
+    f?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'start',
+      block: 'nearest',
+    });
+  }, [mobileSlide]);
+  const handleConditionChange = () => {
+    if (tailMobile === null || tailMobile.index === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  //
+  function handleMobileNextIndex() {
+    if (endMobileIndex >= tailMobile!.index) {
+      setMobileStartIndex(0);
+      setMobileEndIndex(4);
+      setMobileSlide(0);
+    } else {
+      startMobileIndex = startMobileIndex + 5;
+      endMobileIndex = endMobileIndex + 5;
+      setMobileStartIndex(startMobileIndex);
+      setMobileEndIndex(endMobileIndex);
+      setMobileSlide(0);
+    }
+  }
+  function handleMobilePreviousIndex() {
+    if (tailMobile!.index < 5) {
+      return null;
+    } else {
+      if (startMobileIndex < 1) {
+        setMobileStartIndex(tailMobile!.index - 4);
+        setMobileEndIndex(tailMobile!.index);
+        setMobileSlide(4);
+      } else {
+        startMobileIndex = startMobileIndex - 5;
+        endMobileIndex = endMobileIndex - 5;
+        setMobileStartIndex(startMobileIndex);
+        setMobileEndIndex(endMobileIndex);
+        setMobileSlide(4);
+      }
+    }
+  }
+
+  function handleMobileSlideRight() {
+    if (mobileSlide === 0 && startMobileIndex + 1 > tailMobile!.index) {
+      if (tailMobile!.index < 5) {
+        setMobileSlide(0);
+      } else {
+        handleMobileNextIndex();
+      }
+    } else if (mobileSlide === 1 && startMobileIndex + 2 > tailMobile!.index) {
+      if (tailMobile!.index < 5) {
+        setMobileSlide(0);
+      } else {
+        handleMobileNextIndex();
+      }
+    } else if (mobileSlide === 2 && startMobileIndex + 3 > tailMobile!.index) {
+      if (tailMobile!.index < 5) {
+        setMobileSlide(0);
+      } else {
+        handleMobileNextIndex();
+      }
+    } else if (mobileSlide === 3 && startMobileIndex + 4 > tailMobile!.index) {
+      if (tailMobile!.index < 5) {
+        setMobileSlide(0);
+      } else {
+        handleMobileNextIndex();
+      }
+    } else if (mobileSlide === 4 && startMobileIndex + 5 > tailMobile!.index) {
+      if (tailMobile!.index < 5) {
+        setMobileSlide(0);
+      } else {
+        handleMobileNextIndex();
+      }
+    } else {
+      if (mobileSlide === 4) {
+        handleMobileNextIndex();
+      } else if (mobileSlide === -1) {
+        setMobileSlide(mobileSlide + 2);
+      } else {
+        setMobileSlide(mobileSlide + 1);
+      }
+    }
+  }
+  function handleMobileSlideLeft() {
+    if (startMobileIndex <= 0 && mobileSlide === 0) {
+      return null;
+    } else {
+      if (mobileSlide === -1) {
+        setMobileSlide(4);
+        handleMobilePreviousIndex();
+      } else if (mobileSlide === 0) {
+        handleMobilePreviousIndex();
+      } else {
+        setMobileSlide(mobileSlide - 1);
+      }
+    }
+  }
+  function handleMobileFirst() {
+    setMobileSlide(0);
+  }
+  function handleMobileSecond() {
+    setMobileSlide(1);
+  }
+  function handleMobileThird() {
+    setMobileSlide(2);
+  }
+  function handleMobileFourth() {
+    setMobileSlide(3);
+  }
+  function handleMobileFifth() {
+    setMobileSlide(4);
+  }
+
+  // FINISH NEW CODE
   const [currentIndex, setCurrentIndex] = useState(0);
 
   function handleSlideRight() {
@@ -37,36 +176,55 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
         </>
       ) : (
         <>
-          <div className="mb-3">
+          <div className="mb-3 flex flex-row justify-center items-center h-full">
             <button
-              className="absolute left-0"
-              onClick={() => handleSlideLeft()}
+              disabled={handleConditionChange()}
+              className=" left-0"
+              onClick={() => {
+                handleMobileSlideLeft();
+                setClicked('left');
+              }}
             >
-              <Image src={left} alt="left"></Image>
+              <Image
+                src={clicked == 'left' ? glowingLeft : left}
+                alt="left"
+                className=""
+                width={800}
+                height={80}
+              ></Image>
             </button>
+            <div
+              ref={mobileRef}
+              className={`sm:hidden snap-x grid grid-cols-5 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center ${
+                tailMobile ? '' : 'invisible p-44'
+              }`}
+            >
+              {filteredArray.map((list, index) => (
+                <div
+                  key={index}
+                  id={index.toString()}
+                  className=" bottom-14 snap-start"
+                >
+                  <Carousel cardList={list} />
+                </div>
+              ))}
+            </div>
             <button
-              className="absolute right-0"
-              onClick={() => handleSlideRight()}
+              disabled={handleConditionChange()}
+              className=" right-0 "
+              onClick={() => {
+                handleMobileSlideRight();
+                setClicked('right');
+              }}
             >
-              <Image src={right} alt="right"></Image>
+              <Image
+                src={clicked == 'right' ? glowingRight : right}
+                alt="right"
+                className=""
+                height={650}
+                width={650}
+              ></Image>
             </button>
-            <Card
-              id={cardList[currentIndex].cardid}
-              pic={
-                cardList[currentIndex].img ? cardList[currentIndex].img : null
-              }
-              name={cardList[currentIndex].cardname}
-              type={cardList[currentIndex].type}
-              rarity={cardList[currentIndex].rarity}
-              text={cardList[currentIndex].text}
-              race={cardList[currentIndex].race}
-              playerClass={cardList[currentIndex].playerclass}
-              attack={cardList[currentIndex].attack}
-              health={cardList[currentIndex].health}
-              mechcanics={cardList[currentIndex].mechanics}
-              cardSet={cardList[currentIndex].cardset}
-              fav={cardList[currentIndex].fav}
-            ></Card>
           </div>
         </>
       )}
