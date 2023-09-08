@@ -18,7 +18,7 @@ export async function getCards(className: string) {
     });
     return cards;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }
 

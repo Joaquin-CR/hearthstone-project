@@ -21,7 +21,6 @@ export interface IClasses {
   className: any;
 }
 
-const mana = ['Mana: low to high', 'Mana: high to low'];
 const classes = [
   'Mage',
   'Druid',
@@ -240,18 +239,16 @@ export default function Classes({ cards, className }: IClasses) {
     }
   };
 
-  const [activeFilters, setActiveFilters] = useState(true);
-
   const content = (
     <div
       className={`${getBackgroundClass(
         className
-      )} bg-bgImgDemon w-full flex flex-col items-center bg-fix bg-no-repeat bg-cover min-h-screen overflow-x-hidden bg-center-custom bg-zoomed-in`}
+      )} w-full flex flex-col items-center bg-fix bg-no-repeat bg-cover min-h-screen overflow-x-hidden bg-center-custom bg-zoomed-in`}
     >
       <div
         className={`w-11/12 flex flex-col items-center md:flex-row md:justify-between`}
       >
-        <div className="md:flex items-center md:ml-12 mt-24">
+        <div className="flex items-center md:ml-12 mt-24">
           <Image className="" src={emblem()} alt={'Emblem'} />
           <p className="text-white font-AclonicaR text-4xl md:text-7xl mx-8">
             {getTitlDescription(className).name}

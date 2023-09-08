@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: { class: string } }) {
   }
 
   return (
-    <main className="w-full h-full max-h-screen text-center">
+    <main className="">
       <Classes className={cardClass} cards={cards ? cards : []} />
     </main>
   );
