@@ -55,7 +55,9 @@ export class CardClass {
   @JsonProperty('fav')
   fav: any;
   @JsonProperty('mechanics')
-  mechanics?: string[];
+  mechanics?: any;
+  @JsonProperty('cost')
+  mana?: any;
 }
 
 export class LinkedListNode<T> {
@@ -70,7 +72,7 @@ export class LinkedListNode<T> {
   }
 }
 
-class LinkedList<T> {
+export class LinkedList<T> {
   head: LinkedListNode<T> | null;
   tail: LinkedListNode<T> | null;
   currentIndex: number;
@@ -120,7 +122,6 @@ class LinkedList<T> {
     return this.tail || null;
   }
 
-  // Get the first 8 elements of the list as a regular array
   getItemsBetweenIndexes(startIndex: number, endIndex: number): [CardClass[]] {
     const elements: [any[]] = [[]];
     if (this.head !== null) {
