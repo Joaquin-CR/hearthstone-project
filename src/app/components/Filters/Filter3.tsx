@@ -72,33 +72,6 @@ const keywords = [
   'Deathrattle',
 ];
 
-function getBackgroundClass(classId: string): string {
-  switch (classId) {
-    case 'Mage':
-      return ' bg-bgImgMage';
-    case 'Hunter':
-      return 'bg-bgImgHunters';
-    case 'Druid':
-      return 'bg-bgImgDruid';
-    case 'Priest':
-      return 'bg-bgImgPriest';
-    case 'Rogue':
-      return 'bg-bgImgRouge';
-    case 'Paladin':
-      return 'bg-bgImgPaladin';
-    case 'Shaman':
-      return 'bg-bgImgShaman';
-    case 'DemonHunter':
-      return 'bg-bgImgDemon';
-    case 'Warlock':
-      return 'bg-bgImgWarlock';
-    case 'Warrior':
-      return 'bg-bgImgWarrior';
-    default:
-      return '';
-  }
-}
-
 type FilterProps = {
   cards: CardClass[];
 };
@@ -117,33 +90,16 @@ export default function Filter3({ cards }: FilterProps) {
   const [manafilter, userManafilter] = useState(mana[0]);
   const [toggleButton, setButton] = useState(false);
   const [filterMsg, SetFilter] = useState('');
-  const [windowSize, setWindowSize] = useState<{
-    width?: number;
-    height?: number;
-  }>({});
-
-  // useEffect(() => {
-  //   // only execute all the code below in client side
-  //   function handleResize() {
-  //     setWindowSize({
-  //       width: window.innerWidth,
-  //       height: window.innerHeight,
-  //     });
-  //   }
-
-  //   window.addEventListener('resize', handleResize);
-  //   handleResize();
-
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, []);
 
   //Toggle functions
   function handleToggle() {
     toggle ? setToggle(false) : setToggle(true);
   }
+
   function toggleFilter() {
     filterToggle ? userFilterToggle(false) : userFilterToggle(true);
   }
+
   function toggleMana() {
     userManaToggle(manaToggle ? false : true);
     userAttackToggle(attackToggle ? false : false);
@@ -153,6 +109,7 @@ export default function Filter3({ cards }: FilterProps) {
     userRarityToggle(rarityToggle ? false : false);
     userKeywordsToggle(keywordsToggle ? false : false);
   }
+
   function toggleAttack() {
     userManaToggle(manaToggle ? false : false);
     userAttackToggle(attackToggle ? false : true);
@@ -213,7 +170,7 @@ export default function Filter3({ cards }: FilterProps) {
     userKeywordsToggle(keywordsToggle ? false : true);
   }
 
-  //Filter functions
+  // FILTER FUNCTIONS
   function userManaFilter() {
     if (manafilter === mana[0]) {
       toggleMana();
@@ -632,6 +589,7 @@ export default function Filter3({ cards }: FilterProps) {
               color="bgOptions"
               image={filter}
               funct={toggleFilter}
+              toggle={filterToggle}
             ></HearthButton>
             {filterToggle && (
               <div className="flex flex-col md:grid md:gap-10 max-sm:gap-3 md:p-0 lg:grid-cols-6 md:grid-cols-3">
@@ -643,7 +601,9 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleAttack}
+                    toggle={attackToggle}
                   ></HearthButton>
+                  {attackToggle}
                   {attackToggle && (
                     <HearthScroll2
                       list={atk}
@@ -659,6 +619,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleHealth}
+                    toggle={healthToggle}
                   ></HearthButton>
                   {healthToggle && (
                     <HearthScroll2
@@ -675,6 +636,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleCardType}
+                    toggle={cardTypeToggle}
                   ></HearthButton>
                   {cardTypeToggle && (
                     <HearthScroll2
@@ -691,6 +653,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleMinionType}
+                    toggle={minionTypeToggle}
                   ></HearthButton>
                   {minionTypeToggle && (
                     <HearthScroll2
@@ -707,6 +670,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleRarity}
+                    toggle={rarityToggle}
                   ></HearthButton>
                   {rarityToggle && (
                     <HearthScroll2
@@ -723,6 +687,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleKeywords}
+                    toggle={keywordsToggle}
                   ></HearthButton>
                   {keywordsToggle && (
                     <HearthScroll2
@@ -902,6 +867,7 @@ export default function Filter3({ cards }: FilterProps) {
               color={'button_bg'}
               image2={down}
               funct={toggleMana}
+              toggle={manaToggle}
             ></HearthButton>
             {manaToggle && <HearthScroll2 list={mana} funct={userManaFilter} />}
           </div>
@@ -912,6 +878,7 @@ export default function Filter3({ cards }: FilterProps) {
             color="button_bg"
             image={filter}
             funct={toggleFilter}
+            toggle={filterToggle}
           ></HearthButton>
         </div>
       </div>
@@ -927,6 +894,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleAttack}
+                toggle={attackToggle}
               ></HearthButton>
               {attackToggle && (
                 <HearthScroll2 list={atk} funct={userAttackFilter} />
@@ -940,6 +908,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleHealth}
+                toggle={healthToggle}
               ></HearthButton>
               {healthToggle && (
                 <HearthScroll2 list={health} funct={userHealthFilter} />
@@ -953,6 +922,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleCardType}
+                toggle={cardTypeToggle}
               ></HearthButton>
               {cardTypeToggle && (
                 <HearthScroll2 list={cardType} funct={userTypeFilter} />
@@ -966,6 +936,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleMinionType}
+                toggle={minionTypeToggle}
               ></HearthButton>
               {minionTypeToggle && (
                 <HearthScroll2 list={minionType} funct={userMinionFilter} />
@@ -979,6 +950,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleRarity}
+                toggle={rarityToggle}
               ></HearthButton>
               {rarityToggle && (
                 <HearthScroll2 list={rarity} funct={useRarityFilter} />
@@ -992,6 +964,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleKeywords}
+                toggle={keywordsToggle}
               ></HearthButton>
               {keywordsToggle && (
                 <HearthScroll2 list={keywords} funct={useKewordFilter} />

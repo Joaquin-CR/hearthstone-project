@@ -1,4 +1,8 @@
 import Image from 'next/image';
+import down from '/public/images/KeyboardArrowDown.svg';
+import up from '/public/images/KeyboardArrowUp.svg';
+import filterBlack from '/public/images/filterBlack.svg';
+
 export interface IHearthButton {
   sampleTextProp: string;
 }
@@ -11,6 +15,7 @@ type HearthButtonProps = {
   image?: string;
   image2?: string;
   funct?: () => void;
+  toggle?: boolean;
 };
 
 export default function HearthButton({
@@ -21,6 +26,7 @@ export default function HearthButton({
   image,
   image2,
   funct,
+  toggle,
 }: HearthButtonProps) {
   return (
     <>
@@ -29,13 +35,22 @@ export default function HearthButton({
         onClick={funct}
       >
         <p
-          className={`bg-bgOptions px-2 text-white text-center max-xl:w-32 h-8 xl:w-40 xl:h-10 rounded-full flex flex-row justify-center gap-1 items-center font-AclonicaR`}
+          className={`${
+            toggle ? 'bg-ColorGold' : 'bg-bgOptions text-white'
+          } px-2 text-center max-xl:w-32 h-8 xl:w-40 xl:h-10 rounded-full flex flex-row justify-center gap-1 items-center font-AclonicaR`}
         >
-          {image && <Image src={image} alt="" width={20} height={20}></Image>}
+          {image && (
+            <Image
+              src={toggle ? filterBlack : image}
+              alt=""
+              width={20}
+              height={20}
+            ></Image>
+          )}
           {text}
           {image2 && (
             <Image
-              src={image2}
+              src={toggle ? up : down}
               alt=""
               width={20}
               height={20}
