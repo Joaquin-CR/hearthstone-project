@@ -18,7 +18,6 @@ export interface ICardInfo {
   health: string;
   mechcanics: any;
   cardSet: string;
-  fav: string;
 }
 
 export default function Card({
@@ -34,9 +33,8 @@ export default function Card({
   health,
   mechcanics,
   cardSet,
-  fav,
 }: ICardInfo) {
-  const [favorites, setFavorites] = useState(fav == 'true' ? true : false);
+  const [favorites, setFavorites] = useState(false);
 
   const checkFavorite = async () => {
     const crd = await fetch('http://localhost:3000/api/getCard', {
@@ -121,34 +119,38 @@ export default function Card({
 
   const content = (
     <>
-      <div className="mx-3 flex flex-col items-center mt-12 ">
-        {pic ? (
-          <img src={pic} alt="Card" className="w-3/5" />
-        ) : (
-          <Image
-            className=""
-            src={pic ? pic : book}
-            width={154}
-            height={216}
-            alt="card"
-          ></Image>
-        )}
-        <div className="relative bg-ColorBorder-Card hover:bg-gradient-to-b hover:from-gold hover:via-gold_2 hover:to-gold_3 rounded-2xl p-1 w-full">
-          <div className="bg-bgColor-Card hover:bg-bgColor-CardDescroption rounded-2xl py-3 text-black hover:text-ColorGold text-center">
-            <div className="absolute -top-6 -right-3" onClick={handleFavorite}>
-              <div className=" bg-ColorBorder-Card hover:bg-gradient-to-b hover:from-gold hover:via-gold_2 hover:to-gold_3 rounded-full p-1 w-full">
-                <div className="bg-bgColor-Card hover:bg-bgColor-CardDescroption rounded-full text-black hover:text-ColorGold p-1">
-                  <Image
-                    src={favorites ? FavoriteIcon : FavoriteBorderIcon}
-                    alt=""
-                  />
-                </div>
+      <div className="right-2 flex flex-col items-center mt-12 ">
+        <Image
+          className="relative right-2"
+          src={pic ? pic : book}
+          width={120}
+          height={150}
+          alt="card"
+        ></Image>
+        <div className="flex flex-row items-start">
+          <div className="bg-ColorBorder-Card p-1 rounded-lg">
+            <div className="bg-bgColor-Card w-60 md:w-32 lg:w-40 md:h-40 lg:h-32 flex flex-col justify-center rounded-lg">
+              <h1 className="text-black text-center text-sm font-AclonicaR">
+                {name}
+              </h1>
+              <div className="text-black font-serif text-xs  text-center">
+                <p className="font-MonserratM mt-2">{type}</p>
+                <p className="font-MonserratM mt-1">{rarity}</p>
+                <p className="font-MonserratM mt-1">{text}</p>
               </div>
             </div>
-            <p className="font-AclonicaR ">{name}</p>
-            <p className="font-MonserratM mt-2">{type}</p>
-            <p className="font-MonserratM mt-1">{rarity}</p>
-            <p className="font-MonserratM mt-1">{text}</p>
+          </div>
+          <div className="bg-ColorBorder-Card relative bottom-2 right-3 rounded-full p-0.5">
+            <div className="bg-bgColor-Card flex h-6 w-6 rounded-full">
+              <button className="p-0.5" onClick={handleFavorite}>
+                <Image
+                  src={favorites ? FavoriteIcon : FavoriteBorderIcon}
+                  width={25}
+                  height={25}
+                  alt=""
+                ></Image>
+              </button>
+            </div>
           </div>
         </div>
       </div>
