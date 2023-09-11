@@ -154,7 +154,7 @@ export default function GridContainer({ cards }: CarouselProps) {
       ) : (
         <>
           <div
-            className={`grid grid-cols-8 gap-x-[800px] xl:gap-x-[1600px] lg:gap-x-[1200px] 2xl:gap-x-[2000px] no-scrollbar overflow-x-hidden overflow-y-hidden w-screen items-center h-full ${
+            className={`mt-3 grid grid-cols-8 gap-x-[800px] xl:gap-x-[1600px] lg:gap-x-[1200px] 2xl:gap-x-[2000px] no-scrollbar overflow-x-hidden overflow-y-hidden w-screen items-center h-full ${
               tail === null ? 'invisible' : ''
             }`}
           >

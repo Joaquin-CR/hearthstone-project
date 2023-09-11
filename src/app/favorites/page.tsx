@@ -13,7 +13,7 @@ export default async function Page() {
 
   return (
     <>
-      <div className="flex flex-col items-center bg-bgImgHome bg-scroll bg-no-repeat bg-cover gap-10 min-h-screen relative">
+      <div className="lg:flex lg:flex-col items-center bg-bgImgHome bg-scroll bg-cover gap-10 min-h-screen relative">
         <h1 className="text-center text-white font-AclonicaR font-bold text-5xl md:text-7xl text-shadow shadow-black mt-28">
           Favorites
         </h1>

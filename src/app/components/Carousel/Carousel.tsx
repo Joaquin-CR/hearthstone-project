@@ -7,7 +7,7 @@ type CarouselProps = {
 
 export default function Carousel({ cardList }: CarouselProps) {
   return (
-    <div className="grid lg:grid-cols-5 grid-cols-1 md:px-14 relative lg:px-20 px-2 w-screen">
+    <div className="grid md:grid-cols-5 grid-cols-1 md:mx-10 relative lg:px-20 px-2 w-screen">
       {cardList.map((card, index) => (
         <div key={index}>
           <Card

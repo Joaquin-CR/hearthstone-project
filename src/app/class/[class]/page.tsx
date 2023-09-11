@@ -22,6 +22,33 @@ export async function generateStaticParams(): Promise<any[]> {
   return paths;
 }
 
+function getBackgroundClass(classId: string): string {
+  switch (classId) {
+    case 'Mage':
+      return ' bg-bgImgMage';
+    case 'Hunter':
+      return 'bg-bgImgHunters';
+    case 'Druid':
+      return 'bg-bgImgDruid';
+    case 'Priest':
+      return 'bg-bgImgPriest';
+    case 'Rogue':
+      return 'bg-bgImgRouge';
+    case 'Paladin':
+      return 'bg-bgImgPaladin';
+    case 'Shaman':
+      return 'bg-bgImgShaman';
+    case 'DemonHunter':
+      return 'bg-bgImgDemon';
+    case 'Warlock':
+      return 'bg-bgImgWarlock';
+    case 'Warrior':
+      return 'bg-bgImgWarrior';
+    default:
+      return '';
+  }
+}
+
 export default async function Page({ params }: { params: { class: string } }) {
   const { class: cardClass } = params;
   let cards = null;
@@ -32,7 +59,11 @@ export default async function Page({ params }: { params: { class: string } }) {
   }
 
   return (
-    <main className="">
+    <main
+      className={`${getBackgroundClass(
+        cardClass
+      )} bg-no-repeat bg-fixed bg-cover bg-center`}
+    >
       <Classes className={cardClass} cards={cards ? cards : []} />
     </main>
   );

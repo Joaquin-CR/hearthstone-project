@@ -17,7 +17,7 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
   let [endMobileIndex, setMobileEndIndex] = useState(4);
   let [clicked, setClicked] = useState('');
   const [mobileSlide, setMobileSlide] = useState(-1);
-  const [currentSlide, setCurrentSlide] = useState(1);
+  // const [currentSlide, setCurrentSlide] = useState(1);
   const smallerLists = SplitIntoSmallerLists(cardList, 1);
   const eightMobile = smallerLists.getItemsBetweenIndexes(
     startMobileIndex,
@@ -169,30 +169,39 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
 
   return (
     <>
-      {cardList.length == 0 ? (
+      {cardList.length === 0 ? (
         <>
-          <h1 className="font-AclonicaR text-white mt-9 text-3xl">No Cards</h1>
-          <Image src={NotFound} alt={'Not found'}></Image>
+          <div className="flex flex-col items-center mb-24 pb-11">
+            <h1 className="font-AclonicaR text-white mt-9 text-3xl mb-3">
+              No Cards
+            </h1>
+            <div className="flex md:hidden">
+              <Image src={NotFound} alt={'Not found'} height={250}></Image>
+            </div>
+            <div className="hidden md:flex">
+              <Image src={NotFound} alt={'Not found'}></Image>
+            </div>
+          </div>
         </>
       ) : (
         <>
           <div className="mb-3 flex flex-row justify-center items-center h-full">
-            <button
-              disabled={handleConditionChange()}
-              className=" left-0"
-              onClick={() => {
-                handleMobileSlideLeft();
-                setClicked('left');
-              }}
-            >
-              <Image
-                src={clicked == 'left' ? glowingLeft : left}
-                alt="left"
-                className=""
-                width={800}
-                height={80}
-              ></Image>
-            </button>
+            <div className="left-0">
+              <button
+                disabled={handleConditionChange()}
+                onClick={() => {
+                  handleMobileSlideLeft();
+                  setClicked('left');
+                }}
+              >
+                <Image
+                  src={clicked === 'left' ? glowingLeft : left}
+                  alt="left"
+                  height={650}
+                  width={650}
+                ></Image>
+              </button>
+            </div>
             <div
               ref={mobileRef}
               className={`hidden snap-x md:grid grid-cols-5 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center ${
@@ -209,22 +218,22 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
                 </div>
               ))}
             </div>
-            <button
-              disabled={handleConditionChange()}
-              className=" right-0 "
-              onClick={() => {
-                handleMobileSlideRight();
-                setClicked('right');
-              }}
-            >
-              <Image
-                src={clicked == 'right' ? glowingRight : right}
-                alt="right"
-                className=""
-                height={650}
-                width={650}
-              ></Image>
-            </button>
+            <div className="right-0">
+              <button
+                disabled={handleConditionChange()}
+                onClick={() => {
+                  handleMobileSlideRight();
+                  setClicked('right');
+                }}
+              >
+                <Image
+                  src={clicked === 'right' ? glowingRight : right}
+                  alt="right"
+                  height={650}
+                  width={650}
+                ></Image>
+              </button>
+            </div>
           </div>
           <div
             className={`sm:hidden flex flex-row justify-center items-center rounded-full px-1 py-5 text-white max-sm:text-sm ${
@@ -332,7 +341,6 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
           </div>
         </>
       )}
-      ;
     </>
   );
 }
