@@ -543,7 +543,11 @@ export default function Filter3({ cards }: FilterProps) {
   }
 
   return (
-    <div className={`sm:bg-cover bg-center-custom flex flex-col pt-5`}>
+    <div
+      className={`sm:bg-cover bg-center-custom flex flex-col pt-5 ${
+        cards.length == 0 ? 'lg:mb-56' : 'lg:mb-4'
+      }`}
+    >
       {/* MOBILE */}
       <button
         onClick={handleToggle}
@@ -573,7 +577,9 @@ export default function Filter3({ cards }: FilterProps) {
             &#10005;
           </button>
           <div className="flex flex-col items-start pl-10 text-sm gap-y-4">
-            <p className="font-serif font-thin text-white text-xl">Sort by:</p>
+            <p className="font-MonserratM font-thin text-white text-xl">
+              Sort by:
+            </p>
             <div className="pb-2">
               <HearthButton
                 text={manafilter}
@@ -725,7 +731,9 @@ export default function Filter3({ cards }: FilterProps) {
       <div className="hidden md:flex flex-row w-full justify-around items-start max-lg:flex-col max-lg:gap-5">
         {/* Mana bar */}
         <div className="hidden lg:flex lg:flex-row items-center gap-2 pb-10">
-          <p className="text-cyan-400 text-2xl font-outline-1">Mana</p>
+          <p className="text-cyan-400 text-2xl font-outline-1 font-AclonicaR">
+            Mana
+          </p>
           <div className="flex flex-row justify-center items-center bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 rounded-full px-1 text-white py-0.5">
             <div className=" flex flex-row justify-between bg-button_bg rounded-full  py-0.5">
               <button
@@ -799,7 +807,7 @@ export default function Filter3({ cards }: FilterProps) {
         </div>
         {/*Sortby Row */}
         <div className="hidden md:flex flex-row gap-5 items-start">
-          <p className=" font-serif font-thin text-white text-xl ml-7">
+          <p className=" font-MonserratM font-thin text-white text-xl ml-7">
             Sort by:
           </p>
           <div className=" flex flex-col items-center gap-4 max-xl:text-xs">
