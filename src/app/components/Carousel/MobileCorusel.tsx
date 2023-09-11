@@ -25,9 +25,9 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
   const mobileRef = useRef<HTMLDivElement>(null);
   const tailMobile = smallerListsMobile.getTail();
   let filteredArray = eightMobile.filter((subArray) => subArray.length > 0);
+
   useEffect(() => {
     let f = document.getElementById(mobileSlide.toString());
-    console.log(mobileSlide);
     f?.scrollIntoView({
       behavior: 'smooth',
       inline: 'start',
@@ -35,15 +35,6 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
     });
   }, [mobileSlide]);
 
-  useEffect(() => {
-    let f = document.getElementById(mobileSlide.toString());
-    console.log(mobileSlide);
-    f?.scrollIntoView({
-      behavior: 'smooth',
-      inline: 'start',
-      block: 'nearest',
-    });
-  }, [mobileSlide]);
   const handleConditionChange = () => {
     if (tailMobile === null || tailMobile.index === 0) {
       return true;
@@ -52,7 +43,6 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
     }
   };
 
-  //
   function handleMobileNextIndex() {
     if (endMobileIndex >= tailMobile!.index) {
       setMobileStartIndex(0);
@@ -153,24 +143,6 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
   }
   function handleMobileFifth() {
     setMobileSlide(4);
-  }
-
-  // FINISH NEW CODE
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  function handleSlideRight() {
-    if (currentIndex === cardList.length - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
-  }
-  function handleSlideLeft() {
-    if (currentIndex === 0) {
-      setCurrentIndex(cardList.length - 1);
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
   }
 
   return (
