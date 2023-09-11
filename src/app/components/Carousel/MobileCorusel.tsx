@@ -15,19 +15,25 @@ type CarouselProps = {
 export default function MobileCorusel({ cardList }: CarouselProps) {
   let [startMobileIndex, setMobileStartIndex] = useState(0);
   let [endMobileIndex, setMobileEndIndex] = useState(4);
-  let [clicked, setClicked] = useState('');
   const [mobileSlide, setMobileSlide] = useState(-1);
-  // const [currentSlide, setCurrentSlide] = useState(1);
-  const smallerLists = SplitIntoSmallerLists(cardList, 1);
-  const eightMobile = smallerLists.getItemsBetweenIndexes(
+  let [clicked, setClicked] = useState('');
+  const smallerListsMobile = SplitIntoSmallerLists(cardList, 1);
+  const eightMobile = smallerListsMobile.getItemsBetweenIndexes(
     startMobileIndex,
     endMobileIndex
   );
-
-  // NEW CODE
   const mobileRef = useRef<HTMLDivElement>(null);
-  const tailMobile = smallerLists.getTail();
+  const tailMobile = smallerListsMobile.getTail();
   let filteredArray = eightMobile.filter((subArray) => subArray.length > 0);
+  useEffect(() => {
+    let f = document.getElementById(mobileSlide.toString());
+    console.log(mobileSlide);
+    f?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'start',
+      block: 'nearest',
+    });
+  }, [mobileSlide]);
 
   useEffect(() => {
     let f = document.getElementById(mobileSlide.toString());
@@ -186,25 +192,24 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
       ) : (
         <>
           <div className="mb-3 flex flex-row justify-center items-center h-full">
-            <div className="left-0">
-              <button
-                disabled={handleConditionChange()}
-                onClick={() => {
-                  handleMobileSlideLeft();
-                  setClicked('left');
-                }}
-              >
-                <Image
-                  src={clicked === 'left' ? glowingLeft : left}
-                  alt="left"
-                  height={650}
-                  width={650}
-                ></Image>
-              </button>
-            </div>
+            <button
+              className="left-0"
+              disabled={handleConditionChange()}
+              onClick={() => {
+                handleMobileSlideLeft();
+                setClicked('left');
+              }}
+            >
+              <Image
+                src={clicked === 'left' ? glowingLeft : left}
+                alt="left"
+                height={650}
+                width={650}
+              ></Image>
+            </button>
             <div
               ref={mobileRef}
-              className={`hidden snap-x md:grid grid-cols-5 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center ${
+              className={`sm:hidden snap-x grid grid-cols-5 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center ${
                 tailMobile ? '' : 'invisible p-44'
               }`}
             >
@@ -218,22 +223,21 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
                 </div>
               ))}
             </div>
-            <div className="right-0">
-              <button
-                disabled={handleConditionChange()}
-                onClick={() => {
-                  handleMobileSlideRight();
-                  setClicked('right');
-                }}
-              >
-                <Image
-                  src={clicked === 'right' ? glowingRight : right}
-                  alt="right"
-                  height={650}
-                  width={650}
-                ></Image>
-              </button>
-            </div>
+            <button
+              className="right-0"
+              disabled={handleConditionChange()}
+              onClick={() => {
+                handleMobileSlideRight();
+                setClicked('right');
+              }}
+            >
+              <Image
+                src={clicked === 'right' ? glowingRight : right}
+                alt="right"
+                height={650}
+                width={650}
+              ></Image>
+            </button>
           </div>
           <div
             className={`sm:hidden flex flex-row justify-center items-center rounded-full px-1 py-5 text-white max-sm:text-sm ${
@@ -248,12 +252,20 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
                   mobileSlide === 0 || mobileSlide === -1
                     ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                     : ''
-                } px-3 py-2 drop-shadow-lg`}
+                } p-1 drop-shadow-lg`}
                 onClick={() => handleMobileFirst()}
               >
-                {startMobileIndex === (tailMobile ? tailMobile!.index : 0)
-                  ? startMobileIndex
-                  : startMobileIndex + 1}
+                <div
+                  className={`${
+                    mobileSlide === 0 || mobileSlide === -1
+                      ? 'bg-bgColor-Filters'
+                      : ''
+                  } text-white flex text-center px-2 py-1 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                >
+                  {startMobileIndex === (tailMobile ? tailMobile!.index : 0)
+                    ? startMobileIndex
+                    : startMobileIndex + 1}
+                </div>
               </button>
 
               <button
@@ -263,7 +275,7 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
                     : ''
                 } ${
                   startMobileIndex < -1 ? 'hidden' : ''
-                } rounded-lg mr-1 px-3 py-2 drop-shadow-lg
+                } rounded-lg mr-1 p-1 drop-shadow-lg
             ${
               mobileSlide === 1
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
@@ -271,7 +283,13 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
             } `}
                 onClick={() => handleMobileSecond()}
               >
-                {startMobileIndex + 2}
+                <div
+                  className={`${
+                    mobileSlide === 1 ? 'bg-bgColor-Filters' : ''
+                  } text-white flex text-center px-2 py-1 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                >
+                  {startMobileIndex + 2}
+                </div>
               </button>
 
               <button
@@ -283,10 +301,16 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
                   mobileSlide === 2
                     ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                     : ''
-                } mr-1 px-3 py-2 drop-shadow-lg`}
+                } mr-1 p-1 drop-shadow-lg`}
                 onClick={() => handleMobileThird()}
               >
-                {startMobileIndex + 3}
+                <div
+                  className={`${
+                    mobileSlide === 2 ? 'bg-bgColor-Filters' : ''
+                  } text-white flex text-center px-2 py-1 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                >
+                  {startMobileIndex + 3}
+                </div>
               </button>
 
               <button
@@ -301,7 +325,13 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
                 } mr-1 px-3 py-2 drop-shadow-lg`}
                 onClick={() => handleMobileFourth()}
               >
-                {startMobileIndex + 4}
+                <div
+                  className={`${
+                    mobileSlide === 3 ? 'bg-bgColor-Filters' : ''
+                  } text-white flex text-center px-2 py-1 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                >
+                  {startMobileIndex + 4}
+                </div>
               </button>
               <button
                 className={`${
@@ -315,7 +345,13 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
                 } mr-1 px-3 py-2 drop-shadow-lg`}
                 onClick={() => handleMobileFifth()}
               >
-                {startMobileIndex + 5}
+                <div
+                  className={`${
+                    mobileSlide === 4 ? 'bg-bgColor-Filters' : ''
+                  } text-white flex text-center px-2 py-1 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
+                >
+                  {startMobileIndex + 5}
+                </div>
               </button>
               <button
                 className={`sm:hidden mr-1 px-3 py-2 drop-shadow-lg ${
@@ -323,7 +359,7 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
                 }`}
                 onClick={() => handleMobileNextIndex()}
               >
-                ...
+                <p className="font-AclonicaR">...</p>
               </button>
 
               <button
@@ -331,11 +367,13 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
                   (tailMobile ? tailMobile!.index : 0) < 1 ? 'hidden' : ''
                 }`}
               >
-                {(tailMobile ? tailMobile!.index : -1) < 1
-                  ? 1
-                  : tailMobile
-                  ? tailMobile!.index + 1
-                  : 0}
+                <p className="font-AclonicaR">
+                  {(tailMobile ? tailMobile!.index : -1) < 1
+                    ? 1
+                    : tailMobile
+                    ? tailMobile!.index + 1
+                    : 0}
+                </p>
               </button>
             </div>
           </div>
