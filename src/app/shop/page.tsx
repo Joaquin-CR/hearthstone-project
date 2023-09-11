@@ -9,15 +9,15 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const key = searchParams.lat as string;
-    const key2 = searchParams.lng as string;
-    let places = await getPlaceDetail({
+  const key2 = searchParams.lng as string;
+  let places = await getPlaceDetail({
     lat: key.toString(),
     lng: key2.toString(),
   });
 
   return (
     <>
-      <div className="">
+      <div className="mt-20">
         <ScrollMaps places={places} />
       </div>
     </>

@@ -195,7 +195,7 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
             </button>
             <div
               ref={mobileRef}
-              className={`sm:hidden snap-x grid grid-cols-5 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center ${
+              className={`hidden snap-x md:grid grid-cols-5 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center ${
                 tailMobile ? '' : 'invisible p-44'
               }`}
             >
@@ -226,8 +226,113 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
               ></Image>
             </button>
           </div>
+          <div
+            className={`sm:hidden flex flex-row justify-center items-center rounded-full px-1 py-5 text-white max-sm:text-sm ${
+              tailMobile === null || tailMobile.index === 0 ? 'invisible' : ''
+            }`}
+          >
+            <div className="flex flex-row justify-between max-sm:gap-0 rounded-full ">
+              <button
+                className={`${
+                  startMobileIndex < 0 ? 'hidden' : ''
+                } rounded-lg ${
+                  mobileSlide === 0 || mobileSlide === -1
+                    ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                    : ''
+                } px-3 py-2 drop-shadow-lg`}
+                onClick={() => handleMobileFirst()}
+              >
+                {startMobileIndex === (tailMobile ? tailMobile!.index : 0)
+                  ? startMobileIndex
+                  : startMobileIndex + 1}
+              </button>
+
+              <button
+                className={`${
+                  startMobileIndex + 1 > (tailMobile ? tailMobile!.index : 0)
+                    ? 'hidden'
+                    : ''
+                } ${
+                  startMobileIndex < -1 ? 'hidden' : ''
+                } rounded-lg mr-1 px-3 py-2 drop-shadow-lg
+            ${
+              mobileSlide === 1
+                ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                : ''
+            } `}
+                onClick={() => handleMobileSecond()}
+              >
+                {startMobileIndex + 2}
+              </button>
+
+              <button
+                className={`${
+                  startMobileIndex + 2 > (tailMobile ? tailMobile!.index : 0)
+                    ? 'hidden'
+                    : ''
+                } rounded-lg ${
+                  mobileSlide === 2
+                    ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                    : ''
+                } mr-1 px-3 py-2 drop-shadow-lg`}
+                onClick={() => handleMobileThird()}
+              >
+                {startMobileIndex + 3}
+              </button>
+
+              <button
+                className={`${
+                  startMobileIndex + 3 > (tailMobile ? tailMobile!.index : 0)
+                    ? 'hidden'
+                    : ''
+                } rounded-lg ${
+                  mobileSlide === 3
+                    ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                    : ''
+                } mr-1 px-3 py-2 drop-shadow-lg`}
+                onClick={() => handleMobileFourth()}
+              >
+                {startMobileIndex + 4}
+              </button>
+              <button
+                className={`${
+                  startMobileIndex + 4 > (tailMobile ? tailMobile!.index : 0)
+                    ? 'hidden'
+                    : ''
+                } rounded-lg ${
+                  mobileSlide === 4
+                    ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                    : ''
+                } mr-1 px-3 py-2 drop-shadow-lg`}
+                onClick={() => handleMobileFifth()}
+              >
+                {startMobileIndex + 5}
+              </button>
+              <button
+                className={`sm:hidden mr-1 px-3 py-2 drop-shadow-lg ${
+                  (tailMobile ? tailMobile!.index : 0) < 1 ? 'hidden' : ''
+                }`}
+                onClick={() => handleMobileNextIndex()}
+              >
+                ...
+              </button>
+
+              <button
+                className={`sm:hidden rounded-lg mr-1 px-3 py-2 drop-shadow-lg ${
+                  (tailMobile ? tailMobile!.index : 0) < 1 ? 'hidden' : ''
+                }`}
+              >
+                {(tailMobile ? tailMobile!.index : -1) < 1
+                  ? 1
+                  : tailMobile
+                  ? tailMobile!.index + 1
+                  : 0}
+              </button>
+            </div>
+          </div>
         </>
       )}
+      ;
     </>
   );
 }

@@ -603,7 +603,6 @@ export default function Filter3({ cards }: FilterProps) {
                     funct={toggleAttack}
                     toggle={attackToggle}
                   ></HearthButton>
-                  {attackToggle}
                   {attackToggle && (
                     <HearthScroll2
                       list={atk}
@@ -882,6 +881,7 @@ export default function Filter3({ cards }: FilterProps) {
           ></HearthButton>
         </div>
       </div>
+
       {/* Filters row */}
       {filterToggle && (
         <div className="flex flex-col">
@@ -972,7 +972,7 @@ export default function Filter3({ cards }: FilterProps) {
             </div>
           </div>
           {toggleButton && (
-            <div className="lg:pl pt-4 max-sm:hidden">
+            <div className="pt-4 hidden md:flex">
               <button
                 onClick={() => {
                   setButton(false), userFilteredCards(cards);
@@ -988,7 +988,7 @@ export default function Filter3({ cards }: FilterProps) {
       <div className="hidden md:block overflow-x-hidden mt-4">
         <GridContainer cards={filteredCards}></GridContainer>
       </div>
-      <div className="md:hidden px-8 overflow-x-hidden items-center h-full">
+      <div className="md:hidden px-8">
         <MobileCorusel cardList={filteredCards} />
       </div>
     </div>
