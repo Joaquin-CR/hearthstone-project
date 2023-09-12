@@ -62,7 +62,6 @@ export default function GoogleMaps({
   useEffect(() => {
     if (isLoaded) {
       setIsApiLoaded(true);
-      console.log('Google Maps API loaded');
     }
   }, [isLoaded]);
 

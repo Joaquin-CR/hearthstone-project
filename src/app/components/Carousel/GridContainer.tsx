@@ -81,7 +81,6 @@ export default function GridContainer({ cards }: CarouselProps) {
         handleNextIndex();
       }
     } else if (currentSlide === 3 && startIndex + 3 > tail!.index) {
-      console.log('HERE');
       if (tail!.index < 6) {
         setCurrentSlide(1);
       } else {
