@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CardClass } from '../../../../types';
 import GridContainer from '../Carousel/GridContainer';
 import MobileCorusel from '../Carousel/MobileCorusel';
@@ -89,6 +89,22 @@ export default function Filter3({ cards }: FilterProps) {
   const [manafilter, userManafilter] = useState(mana[0]);
   const [toggleButton, setButton] = useState(false);
   const [filterMsg, SetFilter] = useState('');
+  const [windowSize, setWindowSize] = useState<{
+    width?: number;
+    height?: number;
+  }>({});
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   //Toggle functions
   function handleToggle() {
@@ -937,12 +953,11 @@ export default function Filter3({ cards }: FilterProps) {
           )}
         </div>
       )}
-      <div className="hidden md:flex flex-col w-full overflow-x-hidden">
-        <GridContainer cards={filteredCards}></GridContainer>
-      </div>
-      <div className="md:hidden px-8">
+      {windowSize.width! > 640 ? (
+        <GridContainer cards={filteredCards} />
+      ) : (
         <MobileCorusel cardList={filteredCards} />
-      </div>
+      )}
     </div>
   );
 }
