@@ -22,13 +22,11 @@ export async function getIDS({ lat, lng }: propsPlaces) {
   let IDS: IdClass[] = await data.results.map((place: any) => {
     return deserialize(place, IdClass);
   });
-
   return IDS;
 }
 
 export async function getPlaceDetail({ lat, lng }: propsPlaces) {
   const ids = await getIDS({ lat, lng });
-
   const placeDetailPromises = await ids.map(async (id) => {
     const res = await fetch(
       'https://maps.googleapis.com/maps/api/place/details/json?place_id=' +
