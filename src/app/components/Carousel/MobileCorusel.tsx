@@ -3,7 +3,6 @@ import left from 'public/images/ArrowLeft.svg';
 import right from 'public/images/ArrowRight.svg';
 import glowingRight from 'public/images/GLowingArrowright.png';
 import glowingLeft from 'public/images/GlowingArrowleft.svg';
-import NotFound from 'public/images/no_cards_found/noCardsFound.webp';
 import { useEffect, useRef, useState } from 'react';
 import { CardClass, SplitIntoSmallerLists } from '../../../../types';
 import Carousel from './Carousel';
@@ -147,210 +146,192 @@ export default function MobileCorusel({ cardList }: CarouselProps) {
 
   return (
     <>
-      {cardList.length === 0 ? (
-        <>
-          <div className="flex flex-col items-center mb-24 pb-11">
-            <h1 className="font-AclonicaR text-white mt-9 text-3xl mb-3">
-              No Cards
-            </h1>
-            <div className="flex md:hidden">
-              <Image src={NotFound} alt={'Not found'} height={250}></Image>
-            </div>
-            <div className="hidden md:flex">
-              <Image src={NotFound} alt={'Not found'}></Image>
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="mb-3 flex flex-row justify-center items-center h-full">
-            <button
-              className="left-0"
-              disabled={handleConditionChange()}
-              onClick={() => {
-                handleMobileSlideLeft();
-                setClicked('left');
-              }}
-            >
-              <Image
-                src={clicked === 'left' ? glowingLeft : left}
-                alt="left"
-                height={650}
-                width={650}
-              ></Image>
-            </button>
+      <div className="mb-3 flex flex-row justify-center items-center h-full">
+        {/* LEFT ARROW */}
+        <button
+          className="left-0"
+          disabled={handleConditionChange()}
+          onClick={() => {
+            handleMobileSlideLeft();
+            setClicked('left');
+          }}
+        >
+          <Image
+            src={clicked === 'left' ? glowingLeft : left}
+            alt="left"
+            height={650}
+            width={650}
+          ></Image>
+        </button>
+        <div
+          ref={mobileRef}
+          className={`sm:hidden snap-x grid grid-cols-5 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center ${
+            tailMobile ? '' : 'invisible p-44'
+          }`}
+        >
+          {filteredArray.map((list, index) => (
             <div
-              ref={mobileRef}
-              className={`sm:hidden snap-x grid grid-cols-5 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center ${
-                tailMobile ? '' : 'invisible p-44'
-              }`}
+              key={index}
+              id={index.toString()}
+              className=" bottom-14 snap-start"
             >
-              {filteredArray.map((list, index) => (
-                <div
-                  key={index}
-                  id={index.toString()}
-                  className=" bottom-14 snap-start"
-                >
-                  <Carousel cardList={list} />
-                </div>
-              ))}
+              <Carousel cardList={list} />
             </div>
-            <button
-              className="right-0"
-              disabled={handleConditionChange()}
-              onClick={() => {
-                handleMobileSlideRight();
-                setClicked('right');
-              }}
-            >
-              <Image
-                src={clicked === 'right' ? glowingRight : right}
-                alt="right"
-                height={650}
-                width={650}
-              ></Image>
-            </button>
-          </div>
-          <div
-            className={`sm:hidden flex flex-row justify-center items-center rounded-full px-1 py-5 text-white max-sm:text-sm ${
-              tailMobile === null || tailMobile.index === 0 ? 'invisible' : ''
-            }`}
+          ))}
+        </div>
+        {/* RIGHT ARROW */}
+        <button
+          className="right-0"
+          disabled={handleConditionChange()}
+          onClick={() => {
+            handleMobileSlideRight();
+            setClicked('right');
+          }}
+        >
+          <Image
+            src={clicked === 'right' ? glowingRight : right}
+            alt="right"
+            height={650}
+            width={650}
+          ></Image>
+        </button>
+      </div>
+      <div
+        className={`sm:hidden flex flex-row justify-center items-center rounded-full px-1 py-5 text-white max-sm:text-xs mx-2 ${
+          tailMobile === null || tailMobile.index === 0 ? 'invisible' : ''
+        }`}
+      >
+        <div className="flex flex-row justify-between max-sm:gap-0 rounded-full ">
+          <button
+            className={`${startMobileIndex < 0 ? 'hidden' : ''} rounded-lg ${
+              mobileSlide === 0 || mobileSlide === -1
+                ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                : ''
+            } p-1 drop-shadow-lg`}
+            onClick={() => handleMobileFirst()}
           >
-            <div className="flex flex-row justify-between max-sm:gap-0 rounded-full ">
-              <button
-                className={`${
-                  startMobileIndex < 0 ? 'hidden' : ''
-                } rounded-lg ${
-                  mobileSlide === 0 || mobileSlide === -1
-                    ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
-                    : ''
-                } p-1 drop-shadow-lg`}
-                onClick={() => handleMobileFirst()}
-              >
-                <div
-                  className={`${
-                    mobileSlide === 0 || mobileSlide === -1
-                      ? 'bg-bgColor-Filters'
-                      : ''
-                  } text-white flex text-center px-2 py-1 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
-                >
-                  {startMobileIndex === (tailMobile ? tailMobile!.index : 0)
-                    ? startMobileIndex
-                    : startMobileIndex + 1}
-                </div>
-              </button>
+            <div
+              className={`${
+                mobileSlide === 0 || mobileSlide === -1
+                  ? 'bg-bgColor-Filters'
+                  : ''
+              } text-white flex text-center px-1 py-1 font-AclonicaR text-xs bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              {startMobileIndex === (tailMobile ? tailMobile!.index : 0)
+                ? startMobileIndex
+                : startMobileIndex + 1}
+            </div>
+          </button>
 
-              <button
-                className={`${
-                  startMobileIndex + 1 > (tailMobile ? tailMobile!.index : 0)
-                    ? 'hidden'
-                    : ''
-                } ${
-                  startMobileIndex < -1 ? 'hidden' : ''
-                } rounded-lg mr-1 p-1 drop-shadow-lg
+          <button
+            className={`${
+              startMobileIndex + 1 > (tailMobile ? tailMobile!.index : 0)
+                ? 'hidden'
+                : ''
+            } ${
+              startMobileIndex < -1 ? 'hidden' : ''
+            } rounded-lg p-1 drop-shadow-lg
             ${
               mobileSlide === 1
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
             } `}
-                onClick={() => handleMobileSecond()}
-              >
-                <div
-                  className={`${
-                    mobileSlide === 1 ? 'bg-bgColor-Filters' : ''
-                  } text-white flex text-center px-2 py-1 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
-                >
-                  {startMobileIndex + 2}
-                </div>
-              </button>
-
-              <button
-                className={`${
-                  startMobileIndex + 2 > (tailMobile ? tailMobile!.index : 0)
-                    ? 'hidden'
-                    : ''
-                } rounded-lg ${
-                  mobileSlide === 2
-                    ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
-                    : ''
-                } mr-1 p-1 drop-shadow-lg`}
-                onClick={() => handleMobileThird()}
-              >
-                <div
-                  className={`${
-                    mobileSlide === 2 ? 'bg-bgColor-Filters' : ''
-                  } text-white flex text-center px-2 py-1 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
-                >
-                  {startMobileIndex + 3}
-                </div>
-              </button>
-
-              <button
-                className={`${
-                  startMobileIndex + 3 > (tailMobile ? tailMobile!.index : 0)
-                    ? 'hidden'
-                    : ''
-                } rounded-lg ${
-                  mobileSlide === 3
-                    ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
-                    : ''
-                } mr-1 px-3 py-2 drop-shadow-lg`}
-                onClick={() => handleMobileFourth()}
-              >
-                <div
-                  className={`${
-                    mobileSlide === 3 ? 'bg-bgColor-Filters' : ''
-                  } text-white flex text-center px-2 py-1 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
-                >
-                  {startMobileIndex + 4}
-                </div>
-              </button>
-              <button
-                className={`${
-                  startMobileIndex + 4 > (tailMobile ? tailMobile!.index : 0)
-                    ? 'hidden'
-                    : ''
-                } rounded-lg ${
-                  mobileSlide === 4
-                    ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
-                    : ''
-                } mr-1 px-3 py-2 drop-shadow-lg`}
-                onClick={() => handleMobileFifth()}
-              >
-                <div
-                  className={`${
-                    mobileSlide === 4 ? 'bg-bgColor-Filters' : ''
-                  } text-white flex text-center px-2 py-1 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
-                >
-                  {startMobileIndex + 5}
-                </div>
-              </button>
-              <button
-                className={`sm:hidden mr-1 px-3 py-2 drop-shadow-lg ${
-                  (tailMobile ? tailMobile!.index : 0) < 1 ? 'hidden' : ''
-                }`}
-                onClick={() => handleMobileNextIndex()}
-              >
-                <p className="font-AclonicaR">...</p>
-              </button>
-
-              <button
-                className={`sm:hidden rounded-lg mr-1 px-3 py-2 drop-shadow-lg ${
-                  (tailMobile ? tailMobile!.index : 0) < 1 ? 'hidden' : ''
-                }`}
-              >
-                <p className="font-AclonicaR">
-                  {(tailMobile ? tailMobile!.index : -1) < 1
-                    ? 1
-                    : tailMobile
-                    ? tailMobile!.index + 1
-                    : 0}
-                </p>
-              </button>
+            onClick={() => handleMobileSecond()}
+          >
+            <div
+              className={`${
+                mobileSlide === 1 ? 'bg-bgColor-Filters' : ''
+              } text-white flex text-center px-1 py-1 font-AclonicaR text-xs bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              {startMobileIndex + 2}
             </div>
-          </div>
-        </>
-      )}
+          </button>
+
+          <button
+            className={`${
+              startMobileIndex + 2 > (tailMobile ? tailMobile!.index : 0)
+                ? 'hidden'
+                : ''
+            } rounded-lg ${
+              mobileSlide === 2
+                ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                : ''
+            } px-1 py-2 drop-shadow-lg`}
+            onClick={() => handleMobileThird()}
+          >
+            <div
+              className={`${
+                mobileSlide === 2 ? 'bg-bgColor-Filters' : ''
+              } text-white flex text-center px-1 py-1 font-AclonicaR text-xs bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              {startMobileIndex + 3}
+            </div>
+          </button>
+
+          <button
+            className={`${
+              startMobileIndex + 3 > (tailMobile ? tailMobile!.index : 0)
+                ? 'hidden'
+                : ''
+            } rounded-lg ${
+              mobileSlide === 3
+                ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                : ''
+            } px-1 py-2 drop-shadow-lg`}
+            onClick={() => handleMobileFourth()}
+          >
+            <div
+              className={`${
+                mobileSlide === 3 ? 'bg-bgColor-Filters' : ''
+              } text-white flex text-center px-1 py-1 font-AclonicaR text-xs bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              {startMobileIndex + 4}
+            </div>
+          </button>
+          <button
+            className={`${
+              startMobileIndex + 4 > (tailMobile ? tailMobile!.index : 0)
+                ? 'hidden'
+                : ''
+            } rounded-lg ${
+              mobileSlide === 4
+                ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
+                : ''
+            } px-1 py-2 drop-shadow-lg`}
+            onClick={() => handleMobileFifth()}
+          >
+            <div
+              className={`${
+                mobileSlide === 4 ? 'bg-bgColor-Filters' : ''
+              } text-white flex text-center px-1 py-1 font-AclonicaR text-xs bg-opacity-80 rounded-lg items-center justify-center`}
+            >
+              {startMobileIndex + 5}
+            </div>
+          </button>
+          <button
+            className={`sm:hidden px-3 py-2 drop-shadow-lg ${
+              (tailMobile ? tailMobile!.index : 0) < 1 ? 'hidden' : ''
+            }`}
+            onClick={() => handleMobileNextIndex()}
+          >
+            <p className="font-AclonicaR text-xs">...</p>
+          </button>
+
+          <button
+            className={`sm:hidden rounded-lg px-3 py-2 drop-shadow-lg ${
+              (tailMobile ? tailMobile!.index : 0) < 1 ? 'hidden' : ''
+            }`}
+          >
+            <p className="font-AclonicaR text-xs">
+              {(tailMobile ? tailMobile!.index : -1) < 1
+                ? 1
+                : tailMobile
+                ? tailMobile!.index + 1
+                : 0}
+            </p>
+          </button>
+        </div>
+      </div>
     </>
   );
 }

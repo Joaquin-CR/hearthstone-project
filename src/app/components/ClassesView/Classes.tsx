@@ -212,7 +212,7 @@ export default function Classes({ cards, className }: IClasses) {
     }
   };
 
-  const content = (
+  return (
     <div
       className={`flex flex-col items-center min-h-screen overflow-x-hidden`}
     >
@@ -269,8 +269,9 @@ export default function Classes({ cards, className }: IClasses) {
           </div>
         </div>
       </div>
-      <Filter3 cards={cards} />
+      <div className="flex flex-col w-full">
+        <Filter3 cards={cards} />
+      </div>
     </div>
   );
-  return content;
 }
