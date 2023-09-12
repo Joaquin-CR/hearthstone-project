@@ -1,6 +1,5 @@
 'use client';
-import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CardClass } from '../../../../types';
 import GridContainer from '../Carousel/GridContainer';
 import MobileCorusel from '../Carousel/MobileCorusel';
@@ -9,7 +8,7 @@ import HearthScroll2 from '../scrollOptions/HearthScroll';
 import down from '/public/images/KeyboardArrowDown.svg';
 import filter from '/public/images/filter.svg';
 
-const mana = ['Mana: low to high', 'Mana: high to low'];
+const mana = ['Mana: Low to high', 'Mana: High to low'];
 const atk = [
   'Any Attack',
   'Attack: 0',
@@ -72,33 +71,6 @@ const keywords = [
   'Deathrattle',
 ];
 
-function getBackgroundClass(classId: string): string {
-  switch (classId) {
-    case 'Mage':
-      return ' bg-bgImgMage';
-    case 'Hunter':
-      return 'bg-bgImgHunters';
-    case 'Druid':
-      return 'bg-bgImgDruid';
-    case 'Priest':
-      return 'bg-bgImgPriest';
-    case 'Rogue':
-      return 'bg-bgImgRouge';
-    case 'Paladin':
-      return 'bg-bgImgPaladin';
-    case 'Shaman':
-      return 'bg-bgImgShaman';
-    case 'DemonHunter':
-      return 'bg-bgImgDemon';
-    case 'Warlock':
-      return 'bg-bgImgWarlock';
-    case 'Warrior':
-      return 'bg-bgImgWarrior';
-    default:
-      return '';
-  }
-}
-
 type FilterProps = {
   cards: CardClass[];
 };
@@ -122,28 +94,27 @@ export default function Filter3({ cards }: FilterProps) {
     height?: number;
   }>({});
 
-  // useEffect(() => {
-  //   // only execute all the code below in client side
-  //   function handleResize() {
-  //     setWindowSize({
-  //       width: window.innerWidth,
-  //       height: window.innerHeight,
-  //     });
-  //   }
-
-  //   window.addEventListener('resize', handleResize);
-  //   handleResize();
-
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, []);
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   //Toggle functions
   function handleToggle() {
     toggle ? setToggle(false) : setToggle(true);
   }
+
   function toggleFilter() {
     filterToggle ? userFilterToggle(false) : userFilterToggle(true);
   }
+
   function toggleMana() {
     userManaToggle(manaToggle ? false : true);
     userAttackToggle(attackToggle ? false : false);
@@ -153,6 +124,7 @@ export default function Filter3({ cards }: FilterProps) {
     userRarityToggle(rarityToggle ? false : false);
     userKeywordsToggle(keywordsToggle ? false : false);
   }
+
   function toggleAttack() {
     userManaToggle(manaToggle ? false : false);
     userAttackToggle(attackToggle ? false : true);
@@ -213,7 +185,7 @@ export default function Filter3({ cards }: FilterProps) {
     userKeywordsToggle(keywordsToggle ? false : true);
   }
 
-  //Filter functions
+  // FILTER FUNCTIONS
   function userManaFilter() {
     if (manafilter === mana[0]) {
       toggleMana();
@@ -588,15 +560,28 @@ export default function Filter3({ cards }: FilterProps) {
 
   return (
     <div
-      className={`sm:bg-cover bg-center-custom bg-zoomed-in flex flex-col pt-5`}
+      className={`sm:bg-cover bg-center-custom flex flex-col pt-5 ${
+        cards.length == 0 ? 'lg:mb-56' : 'lg:mb-4'
+      }`}
     >
       {/* MOBILE */}
       <button
         onClick={handleToggle}
-        className="py-1 mt-5 self-center bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 bordergold rounded-full h-16 w-64 flex flex-col justify-center items-center justify-self-end md:hidden"
+        className="py-1 mt-24 self-center bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 bordergold rounded-full h-16 w-64 flex flex-col justify-center items-center justify-self-end md:hidden"
       >
-        <p className="bg-bgColor-Blue w-[250px] h-[58px] text-white text-md text-center p-3 rounded-full flex flex-row justify-center items-center ">
-          Manage Filters <Image src={down} alt="" className=""></Image>
+        <p
+          className={`${
+            toggleButton ? 'hidden' : ''
+          } bg-bgOptions w-[250px] h-[58px] text-white text-md text-center p-3 rounded-full flex flex-row justify-center items-center font-AclonicaR`}
+        >
+          Manage Filters
+        </p>
+        <p
+          className={`${
+            toggleButton ? '' : 'hidden'
+          } bg-ColorGold w-[250px] h-[58px] text-black text-md text-center p-3 rounded-full flex flex-row justify-center items-center font-AclonicaR`}
+        >
+          Manage Filters
         </p>
       </button>
       {toggle && (
@@ -608,7 +593,9 @@ export default function Filter3({ cards }: FilterProps) {
             &#10005;
           </button>
           <div className="flex flex-col items-start pl-10 text-sm gap-y-4">
-            <p className="font-serif font-thin text-white text-xl">Sort by:</p>
+            <p className="font-MonserratM font-thin text-white text-xl">
+              Sort by:
+            </p>
             <div className="pb-2">
               <HearthButton
                 text={manafilter}
@@ -632,6 +619,7 @@ export default function Filter3({ cards }: FilterProps) {
               color="bgOptions"
               image={filter}
               funct={toggleFilter}
+              toggle={filterToggle}
             ></HearthButton>
             {filterToggle && (
               <div className="flex flex-col md:grid md:gap-10 max-sm:gap-3 md:p-0 lg:grid-cols-6 md:grid-cols-3">
@@ -643,6 +631,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleAttack}
+                    toggle={attackToggle}
                   ></HearthButton>
                   {attackToggle && (
                     <HearthScroll2
@@ -659,6 +648,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleHealth}
+                    toggle={healthToggle}
                   ></HearthButton>
                   {healthToggle && (
                     <HearthScroll2
@@ -675,6 +665,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleCardType}
+                    toggle={cardTypeToggle}
                   ></HearthButton>
                   {cardTypeToggle && (
                     <HearthScroll2
@@ -691,6 +682,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleMinionType}
+                    toggle={minionTypeToggle}
                   ></HearthButton>
                   {minionTypeToggle && (
                     <HearthScroll2
@@ -707,6 +699,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleRarity}
+                    toggle={rarityToggle}
                   ></HearthButton>
                   {rarityToggle && (
                     <HearthScroll2
@@ -723,6 +716,7 @@ export default function Filter3({ cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleKeywords}
+                    toggle={keywordsToggle}
                   ></HearthButton>
                   {keywordsToggle && (
                     <HearthScroll2
@@ -750,141 +744,77 @@ export default function Filter3({ cards }: FilterProps) {
       )}
       {/* DESKTOP */}
       {/* Filter Row */}
-      <div className="hidden lg:flex flex-row w-full justify-around items-start max-lg:flex-col max-lg:gap-5">
+      <div className="hidden md:flex flex-row w-full justify-around items-start max-lg:flex-col max-lg:gap-5">
         {/* Mana bar */}
-        <div className="flex flex-row items-center gap-2 pb-10">
-          <p className="text-cyan-400 text-2xl font-outline-1">Mana</p>
+        <div className="hidden lg:flex lg:flex-row items-center gap-2 pb-10">
+          <p className="text-cyan-400 text-2xl font-outline-1 font-AclonicaR">
+            Mana
+          </p>
           <div className="flex flex-row justify-center items-center bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 rounded-full px-1 text-white py-0.5">
             <div className=" flex flex-row justify-between bg-button_bg rounded-full  py-0.5">
               <button
                 className=" font-outline-1 mr-1 px-3 text-xl drop-shadow-lg "
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! === 0 || card.mana! === '0'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 0
               </button>
               <button
                 className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! === 1 || card.mana! === '1'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 1
               </button>
               <button
                 className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! === 2 || card.mana! === '2'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 2
               </button>
               <button
                 className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! === 3 || card.mana! === '3'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 3
               </button>
               <button
                 className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! === 4 || card.mana! === '4'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 4
               </button>
               <button
                 className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! === 5 || card.mana! === '5'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 5
               </button>
               <button
                 className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! === 6 || card.mana! === '6'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 6
               </button>
               <button
                 className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! === 7 || card.mana! === '7'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 7
               </button>
               <button
                 className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! === 8 || card.mana! === '8'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 8
               </button>
               <button
                 className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! === 9 || card.mana! === '9'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 9
               </button>
               <button
                 className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
-                onClick={() => {
-                  // userFilteredCards(
-                  //   filteredCards.filter(
-                  //     (card: any) => card.mana! >= 10 || card.mana! === '10'
-                  //   )
-                  // );
-                }}
+                onClick={() => {}}
               >
                 10+
               </button>
@@ -892,8 +822,10 @@ export default function Filter3({ cards }: FilterProps) {
           </div>
         </div>
         {/*Sortby Row */}
-        <div className="hidden lg:flex flex-row gap-5 items-start">
-          <p className=" font-serif font-thin text-white text-xl">sort by:</p>
+        <div className="hidden md:flex flex-row gap-5 items-start">
+          <p className=" font-MonserratM font-thin text-white text-xl ml-7">
+            Sort by:
+          </p>
           <div className=" flex flex-col items-center gap-4 max-xl:text-xs">
             <HearthButton
               text={manafilter}
@@ -902,6 +834,7 @@ export default function Filter3({ cards }: FilterProps) {
               color={'button_bg'}
               image2={down}
               funct={toggleMana}
+              toggle={manaToggle}
             ></HearthButton>
             {manaToggle && <HearthScroll2 list={mana} funct={userManaFilter} />}
           </div>
@@ -912,13 +845,15 @@ export default function Filter3({ cards }: FilterProps) {
             color="button_bg"
             image={filter}
             funct={toggleFilter}
+            toggle={filterToggle}
           ></HearthButton>
         </div>
       </div>
+
       {/* Filters row */}
       {filterToggle && (
         <div className="flex flex-col">
-          <div className="lg:flex justify-center gap-x-10 2xl:gap-x-20 max-lg:grid grid-cols-3 hidden">
+          <div className="md:flex justify-center gap-x-3 lg:gap-x-10 2xl:gap-x-20 max-lg:grid grid-cols-3 hidden">
             <div className="">
               <HearthButton
                 text={'Attack'}
@@ -927,6 +862,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleAttack}
+                toggle={attackToggle}
               ></HearthButton>
               {attackToggle && (
                 <HearthScroll2 list={atk} funct={userAttackFilter} />
@@ -940,6 +876,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleHealth}
+                toggle={healthToggle}
               ></HearthButton>
               {healthToggle && (
                 <HearthScroll2 list={health} funct={userHealthFilter} />
@@ -953,6 +890,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleCardType}
+                toggle={cardTypeToggle}
               ></HearthButton>
               {cardTypeToggle && (
                 <HearthScroll2 list={cardType} funct={userTypeFilter} />
@@ -966,6 +904,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleMinionType}
+                toggle={minionTypeToggle}
               ></HearthButton>
               {minionTypeToggle && (
                 <HearthScroll2 list={minionType} funct={userMinionFilter} />
@@ -979,6 +918,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleRarity}
+                toggle={rarityToggle}
               ></HearthButton>
               {rarityToggle && (
                 <HearthScroll2 list={rarity} funct={useRarityFilter} />
@@ -992,6 +932,7 @@ export default function Filter3({ cards }: FilterProps) {
                 color={'button_bg'}
                 image2={down}
                 funct={toggleKeywords}
+                toggle={keywordsToggle}
               ></HearthButton>
               {keywordsToggle && (
                 <HearthScroll2 list={keywords} funct={useKewordFilter} />
@@ -999,7 +940,7 @@ export default function Filter3({ cards }: FilterProps) {
             </div>
           </div>
           {toggleButton && (
-            <div className="lg:pl pt-4 max-sm:hidden">
+            <div className="pt-4 hidden md:flex">
               <button
                 onClick={() => {
                   setButton(false), userFilteredCards(cards);
@@ -1012,12 +953,11 @@ export default function Filter3({ cards }: FilterProps) {
           )}
         </div>
       )}
-      <div className="hidden md:block overflow-x-hidden mt-4">
-        <GridContainer cards={filteredCards}></GridContainer>
-      </div>
-      <div className="md:hidden px-8 overflow-x-hidden items-center h-full">
+      {windowSize.width! > 640 ? (
+        <GridContainer cards={filteredCards} />
+      ) : (
         <MobileCorusel cardList={filteredCards} />
-      </div>
+      )}
     </div>
   );
 }

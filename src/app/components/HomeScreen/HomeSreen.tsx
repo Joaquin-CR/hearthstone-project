@@ -44,7 +44,7 @@ export default function HomeSreen() {
   }, []);
 
   const content = (
-    <div className="w-full min-h-screen flex flex-col items-center bg-bgImgHome bg-no-repeat bg-fixed bg-cover">
+    <div className="w-full min-h-screen flex flex-col items-center bg-bgImgHome bg-cover">
       <div className="flex flex-col justify-center items-center mt-11">
         <Image src={LogoHome} alt={''} />
       </div>

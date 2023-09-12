@@ -51,7 +51,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href={{
-                  pathname: `/shop/`,
+                  pathname: `/shop`,
                   query: { lat: center.lat, lng: center.lng },
                 }}
                 className="mx-36"
@@ -95,7 +95,7 @@ export default function Navbar() {
             <p className="text-3xl w-3/5 text-center py-2 my-16 border-b-4 hover:opacity-90 hover:text-Color-MenuHover hover:border-Color-MenuHover font-AclonicaR">
               <Link
                 href={{
-                  pathname: `/shop/`,
+                  pathname: `/shop`,
                   query: { lat: center.lat, lng: center.lng },
                 }}
                 onClick={() => {

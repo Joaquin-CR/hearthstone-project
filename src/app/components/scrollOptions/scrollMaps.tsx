@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import useDraggableScroll from 'use-draggable-scroll';
+import { useEffect, useState } from 'react';
 import LeftArrow from '../../../../public/images/leftArrowGold.svg';
 import { PlaceClass } from '../../../../types';
 import GoogleMaps from '../GoogleMaps/GoogleMaps';
@@ -14,12 +13,9 @@ type MapsScrollProps = {
 
 export default function ScrollMaps({ places }: MapsScrollProps) {
   const [showDetail, setShowDetail] = useState(false);
-  const [showSide, setShowSide] = useState(false);
+  const [showList, setShowList] = useState(true);
   const [place, setPlace] = useState<PlaceClass>();
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
-
-  const ref = useRef(null);
-  const { onMouseDown } = useDraggableScroll(ref);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -42,74 +38,71 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
   const goToList = () => {
     if (showDetail) {
       setShowDetail(!showDetail);
-    } else if (showSide) {
-      setShowSide(!showSide);
+    } else if (showList) {
+      setShowList(!showList);
     }
   };
+  const handleShowList = () => {
+    setShowList(true);
+  };
+  function handleShowDetailsMaps(place: PlaceClass) {
+    goToDetail(place), setShowDetail(true);
+  }
 
   return (
     <>
-      <div
-        className={`${
-          showSide ? 'md:flex' : 'hidden'
-        } w-full fixed top-20 z-10 flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-bgSideShop shadow-black no-scrollbar py-3 text-white md:w-1/4 h-screen`}
-        ref={ref}
-        onMouseDown={onMouseDown}
-      >
-        <div className="flex items-center mt-12 md:justify-center">
-          <Image
-            className="md:hidden mx-9"
-            src={LeftArrow}
-            alt={''}
-            onClick={goToList}
-          />
-          <h1 className="text-5xl flex font-AclonicaR z-10 md:text-7xl text-white drop-shadow-lg">
-            SHOPS
-          </h1>
-        </div>
-        {showDetail ? (
-          <div className="mt-12 mx-9">
-            <ShopDetail
-              place={place as PlaceClass}
-              clickBack={() => {
-                setShowDetail(!showDetail);
-              }}
+      {showList && (
+        <div className="w-full absolute top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-bgImgHome shadow-black no-scrollbar py-3 text-white md:w-1/4 h-[89.5%]">
+          <div className="flex items-center max-sm:ml-5 mt-5 md:mt-12 md:justify-center">
+            <Image
+              className="md:hidden mx-6 md:p-9"
+              src={LeftArrow}
+              alt={'left'}
+              onClick={goToList}
             />
+            <h1 className="text-5xl flex font-AclonicaR z-10 md:text-7xl text-white drop-shadow-lg">
+              SHOPS
+            </h1>
           </div>
-        ) : (
-          <div className="mt-12 mx-9">
-            {places.map((place, index) => (
-              <div key={index}>
-                <ShopCard
-                  name={place.name}
-                  address={place.vicinity}
-                  open={place.opening_hours.open_now ? 'Open' : 'Closed'}
-                  schedule={
-                    place.opening_hours?.weekday_text
-                      ? place.opening_hours?.weekday_text[0].replace(
-                          'Monday:',
-                          ''
-                        )
-                      : 'n/a'
-                  }
-                  phone={place.phone}
-                  clickCard={() => goToDetail(place)}
-                />
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+          {showDetail ? (
+            <div className="md:mt-12 my-5 mx-3 2xl:mx-5 max-sm:ml-5">
+              <ShopDetail
+                place={place as PlaceClass}
+                clickBack={() => {
+                  setShowDetail(!showDetail);
+                }}
+              />
+            </div>
+          ) : (
+            <div className="mt-12 mx-9">
+              {places.map((place, index) => (
+                <div key={index}>
+                  <ShopCard
+                    name={place.name}
+                    address={place.vicinity}
+                    open={place.opening_hours?.open_now ? 'Open' : 'Closed'}
+                    schedule={
+                      place.opening_hours?.weekday_text
+                        ? place.opening_hours?.weekday_text[0].replace(
+                            'Monday:',
+                            ''
+                          )
+                        : 'n/a'
+                    }
+                    phone={place.phone}
+                    clickCard={() => goToDetail(place)}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
       <GoogleMaps
         places={places}
         center={center}
-        clickMarker={(place: any) => {
-          setShowSide(true);
-          goToDetail(place);
-        }}
-        clickMap={() => {
-          setShowSide(false);
-        }}
+        clickBack={handleShowList}
+        showDetails={handleShowDetailsMaps}
       />
     </>
   );

@@ -21,7 +21,6 @@ export interface IClasses {
   className: any;
 }
 
-const mana = ['Mana: low to high', 'Mana: high to low'];
 const classes = [
   'Mage',
   'Druid',
@@ -100,33 +99,6 @@ function changeClass(option: string) {
 
   // Redirect to the new URL
   window.location.href = url;
-}
-
-function getBackgroundClass(classId: string): string {
-  switch (classId) {
-    case 'Mage':
-      return ' bg-bgImgMage';
-    case 'Hunter':
-      return 'bg-bgImgHunters';
-    case 'Druid':
-      return 'bg-bgImgDruid';
-    case 'Priest':
-      return 'bg-bgImgPriest';
-    case 'Rogue':
-      return 'bg-bgImgRouge';
-    case 'Paladin':
-      return 'bg-bgImgPaladin';
-    case 'Shaman':
-      return 'bg-bgImgShaman';
-    case 'DemonHunter':
-      return 'bg-bgImgDemon';
-    case 'Warlock':
-      return 'bg-bgImgWarlock';
-    case 'Warrior':
-      return 'bg-bgImgWarrior';
-    default:
-      return '';
-  }
 }
 
 function getTitlDescription(classId: string) {
@@ -240,65 +212,66 @@ export default function Classes({ cards, className }: IClasses) {
     }
   };
 
-  const [activeFilters, setActiveFilters] = useState(true);
-
-  const content = (
+  return (
     <div
-      className={`${getBackgroundClass(
-        className
-      )} bg-bgImgDemon w-full flex flex-col items-center bg-fix bg-no-repeat bg-cover min-h-screen overflow-x-hidden bg-center-custom bg-zoomed-in`}
+      className={`flex flex-col items-center min-h-screen overflow-x-hidden`}
     >
-      <div
-        className={`w-11/12 flex flex-col items-center md:flex-row md:justify-between`}
-      >
-        <div className="md:flex items-center md:ml-12 mt-24">
-          <Image className="" src={emblem()} alt={'Emblem'} />
-          <p className="text-white font-AclonicaR text-4xl md:text-7xl mx-8">
-            {getTitlDescription(className).name}
-          </p>
-        </div>
-        <div className="md:flex items-center justify-center">
-          <div>
-            <DropDownBTN
-              images={true}
-              label={'Classes'}
-              onOptionClick={(option: any) => {
-                console.log('Option clicked');
-              }}
-              onDropdownClick={function (): void {
-                setactiveDropdown(!activeDropdown);
-              }}
-            />
-            {activeDropdown && (
-              <HearthScroll
-                list={classes}
+      <div className="h-screen">
+        <div
+          className={`w-11/12 flex flex-col items-center md:flex-row md:justify-between`}
+        >
+          <div className="flex items-center md:ml-12 mt-24">
+            <Image className="" src={emblem()} alt={'Emblem'} />
+            <p className="text-white font-AclonicaR text-4xl md:text-7xl mx-8">
+              {getTitlDescription(className).name}
+            </p>
+          </div>
+          <div className="md:flex items-center justify-center">
+            <div>
+              <DropDownBTN
                 images={true}
-                funct={(item) => {
-                  let option = item.target.innerText;
-                  if (option != className) {
-                    if (option == 'Demon Hunter') {
-                      option = 'Demon';
-                    }
-                    changeClass(option);
-                  }
+                label={'Classes'}
+                onOptionClick={(option: any) => {
+                  console.log('Option clicked');
                 }}
-              ></HearthScroll>
-            )}
+                onDropdownClick={function (): void {
+                  setactiveDropdown(!activeDropdown);
+                }}
+              />
+              {activeDropdown && (
+                <HearthScroll
+                  list={classes}
+                  images={true}
+                  funct={(item) => {
+                    let option = item.target.innerText;
+                    if (option != className) {
+                      if (option == 'Demon Hunter') {
+                        option = 'Demon';
+                      }
+                      changeClass(option);
+                    }
+                  }}
+                ></HearthScroll>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="w-full items-center">
+          <div
+            className={`flex flex-col mt-8 md:mt-44 items-center justify-center text-center lg:px-72`}
+          >
+            <div className="text-gold font-AclonicaR text-5xl">
+              {getTitlDescription(className).title}
+            </div>
+            <div className="text-white font-MonserratM text-xl my-6">
+              {getTitlDescription(className).description}
+            </div>
           </div>
         </div>
       </div>
-      <div
-        className={`mt-8 md:mt-28 items-center justify-center text-center w-3/4`}
-      >
-        <div className="text-gold font-AclonicaR text-5xl">
-          {getTitlDescription(className).title}
-        </div>
-        <div className="text-white font-MonserratM text-xl my-6">
-          {getTitlDescription(className).description}
-        </div>
+      <div className="flex flex-col w-full">
+        <Filter3 cards={cards} />
       </div>
-      <Filter3 cards={cards} />
     </div>
   );
-  return content;
 }

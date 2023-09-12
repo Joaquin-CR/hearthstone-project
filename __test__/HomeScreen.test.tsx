@@ -1,16 +1,16 @@
-import Home from '@/app/page';
+import HomeSreen from '@/app/components/HomeScreen/HomeSreen';
 import { render, screen } from '@testing-library/react';
 import { useRouter } from 'next/router';
 
 const pushMock = jest.fn();
 
 useRouter;
-describe('Home', () => {
+describe('HomeSreen', () => {
   it('should render the homepage', () => {
     jest.mock('next/router', () => ({
       useRouter: jest.fn(),
     }));
-    render(<Home />); // ARRANGE
+    render(<HomeSreen />); // ARRANGE
     const myElement = screen.getByText('Mage'); // ACT
 
     expect(myElement).toBeInTheDocument(); // ASSERT

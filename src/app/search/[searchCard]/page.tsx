@@ -16,8 +16,6 @@ export default async function Page({
     cards = [];
   }
 
-  console.log(cards);
-
   return (
     <>
       <div className="flex flex-col items-center bg-bgImgHome bg-no-repeat bg-fixed bg-cover">

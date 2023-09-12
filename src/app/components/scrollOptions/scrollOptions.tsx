@@ -68,7 +68,8 @@ export default function HearthScroll({
               className="hover:text-gold text-white text-left px-2 py-1 font-AclonicaR "
               onClick={funct}
             >
-              <p className="flex items-center">
+              <p className="flex items-center justify-between">
+                {item}
                 {images && (
                   <Image
                     className="mx-3 pointer-events-none"
@@ -77,7 +78,6 @@ export default function HearthScroll({
                     height={50}
                   />
                 )}
-                {item}
               </p>
             </button>
           );

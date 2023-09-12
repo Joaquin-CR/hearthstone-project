@@ -7,9 +7,9 @@ type CarouselProps = {
 
 export default function Carousel({ cardList }: CarouselProps) {
   return (
-    <div className="grid grid-cols-5 w-screen">
+    <div className="grid md:grid-cols-5 grid-cols-1 md:mx-10 relative lg:px-20 px-2 w-screen items-center">
       {cardList.map((card, index) => (
-        <div key={index}>
+        <div key={index} className="items-start flex flex-col justify-center">
           <Card
             id={card.cardid}
             pic={card.img}
@@ -23,7 +23,6 @@ export default function Carousel({ cardList }: CarouselProps) {
             health={card.health}
             mechcanics={card.mechanics}
             cardSet={card.cardset}
-            fav={card.fav}
           />
         </div>
       ))}
