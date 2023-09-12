@@ -55,7 +55,7 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
         <div className="w-full absolute top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-bgImgHome shadow-black no-scrollbar py-3 text-white md:w-1/4 h-[89.5%]">
           <div className="flex items-center max-sm:ml-5 mt-5 md:mt-12 md:justify-center">
             <Image
-              className="md:hidden p-9"
+              className="md:hidden mx-6 md:p-9"
               src={LeftArrow}
               alt={'left'}
               onClick={goToList}
@@ -65,7 +65,7 @@ export default function ScrollMaps({ places }: MapsScrollProps) {
             </h1>
           </div>
           {showDetail ? (
-            <div className="md:mt-12 mt-5 mx-0.5 2xl:mx-5 max-sm:ml-5">
+            <div className="md:mt-12 my-5 mx-3 2xl:mx-5 max-sm:ml-5">
               <ShopDetail
                 place={place as PlaceClass}
                 clickBack={() => {

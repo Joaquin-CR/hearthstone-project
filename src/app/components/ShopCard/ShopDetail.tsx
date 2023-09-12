@@ -30,7 +30,7 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
   return (
     <>
       <div className="text-white font-AclonicaR">
-        <div className="flex">
+        <div className="flex items-center">
           <Image
             className="hidden md:block"
             src={LeftArrow}
@@ -39,11 +39,11 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
           />
           <p className="text-2xl mx-3">{place.name}</p>
         </div>
-        <div className="flex mt-14">
+        <div className="flex mt-14 items-center">
           <Image src={MapPin} alt={'Map Pin'} />
           <p className="mx-3">{place.vicinity}</p>
         </div>
-        <div className="flex mt-5">
+        <div className="flex mt-5 items-center">
           <Image src={Clock} alt={'Clock Icon'} />
           <p
             className={`${
@@ -78,11 +78,17 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
             )}
           </table>
         </div>
-        <div className="flex mt-5">
+        <div className="flex mt-5 items-center">
           <Image src={NetIcon} alt={'Lef Arrow Icon'} />
-          <p className="mx-3">{place.website}</p>
+          <p className="ml-3 text-sm md:text-base">
+            {website.length > 30
+              ? website.slice(0, website.length / 2) +
+                '\n' +
+                website.slice(website.length / 2, website.length)
+              : website}
+          </p>
         </div>
-        <div className="flex mt-12 md:mt-8">
+        <div className="flex mt-12 md:mt-8 items-center">
           <Image src={Phone} alt={'Lef Arrow Icon'} />
           <p className="mx-3">{place.phone}</p>
         </div>
