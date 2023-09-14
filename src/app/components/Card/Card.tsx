@@ -119,7 +119,10 @@ export default function Card({
 
   const content = (
     <>
-      <div className="right-2 flex flex-col items-center mt-12 ">
+      <div
+        className="right-2 flex flex-col items-center mt-12 group"
+        onClick={handleFavorite}
+      >
         <Image
           className="relative right-2"
           src={pic ? pic : book}
@@ -128,20 +131,20 @@ export default function Card({
           alt="card"
         ></Image>
         <div className="flex flex-row items-start">
-          <div className="bg-ColorBorder-Card p-1 rounded-lg">
-            <div className="bg-bgColor-Card w-60 md:w-32 lg:w-40 md:h-40 lg:h-32 flex flex-col justify-center rounded-lg">
-              <h1 className="text-black text-center text-sm font-AclonicaR">
+          <div className="bg-ColorBorder-Card p-1 rounded-lg group-hover:bg-gradient-to-b group-hover:from-gold group-hover:via-gold_2 group-hover:to-gold_3">
+            <div className="bg-bgColor-Card w-60 md:w-32 lg:w-40 md:h-40 lg:h-32 flex flex-col justify-center rounded-lg group-hover:bg-bgColor-CardDescroption">
+              <h1 className="text-black text-center text-sm font-AclonicaR group-hover:text-ColorGold">
                 {name}
               </h1>
-              <div className="text-black font-serif text-xs  text-center">
+              <div className="text-black font-serif text-xs text-center group-hover:text-ColorGold">
                 <p className="font-MonserratM mt-2">{type}</p>
                 <p className="font-MonserratM mt-1">{rarity}</p>
                 <p className="font-MonserratM mt-1">{text}</p>
               </div>
             </div>
           </div>
-          <div className="bg-ColorBorder-Card relative bottom-2 right-3 rounded-full p-0.5">
-            <div className="bg-bgColor-Card flex h-6 w-6 rounded-full">
+          <div className="bg-ColorBorder-Card relative bottom-2 right-3 rounded-full p-0.5 group-hover:bg-gradient-to-b group-hover:from-gold group-hover:via-gold_2 group-hover:to-gold_3">
+            <div className="bg-bgColor-Card flex h-6 w-6 rounded-full group-hover:bg-bgColor-CardDescroption">
               <button className="p-0.5" onClick={handleFavorite}>
                 <Image
                   src={favorites ? FavoriteIcon : FavoriteBorderIcon}
