@@ -1,10 +1,12 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Logo from '../../../../public/images/homepage_logoNavbar.png';
 
 export default function Navbar() {
+  const router = useRouter();
   const [effect, setEffect] = useState(false);
   const [show, setShow] = useState(false);
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
@@ -21,9 +23,7 @@ export default function Navbar() {
     <>
       <header className="bg-bgColor-Blue text-white fixed top-0 z-50 w-full h-20 shadow-lg drop-shadow-lg">
         <section className="mx-auto px-6 pb-1 flex justify-between items-center">
-          <Link href={'/'}>
-            <Image src={Logo} alt={'Logo'} />
-          </Link>
+          <Image src={Logo} alt={'Logo'} onClick={() => router.push('/')} />
           <button
             id="hamburger-button"
             className={`${
@@ -38,17 +38,23 @@ export default function Navbar() {
           </button>
           <nav className="hidden md:block md:mx-6 space-x-8 text-xl text-center items-center w-full">
             <div className="flex justify-center md:mt-5">
-              <Link href={'/'} className="mx-36">
+              <div
+                onClick={() => router.push('/')}
+                className="mx-36 cursor-pointer"
+              >
                 <p className="hover:opacity-90 hover:text-Color-MenuHover font-AclonicaR">
                   HOME
                 </p>
-              </Link>
+              </div>
 
-              <Link href={'/favorites'} className="lg:mx-36">
+              <div
+                onClick={() => router.push('/favorites')}
+                className="lg:mx-36 cursor-pointer"
+              >
                 <p className="hover:opacity-90 hover:text-Color-MenuHover font-AclonicaR">
                   FAVORITES
                 </p>
-              </Link>
+              </div>
               <Link
                 href={{
                   pathname: `/shop`,

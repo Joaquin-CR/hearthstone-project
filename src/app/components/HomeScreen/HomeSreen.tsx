@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Search from '../../../../public/images/Search.svg';
 import DemonHunter from '../../../../public/images/demonHunterEmblem.webp';
@@ -16,6 +16,7 @@ import Warlock from '../../../../public/images/warlockEmblem.webp';
 import Warrior from '../../../../public/images/warriorEmblem.webp';
 
 export default function HomeSreen() {
+  const router = useRouter();
   const [search, setSearch] = useState<string>('');
   const [disable, setDisable] = useState(true);
 
@@ -26,16 +27,7 @@ export default function HomeSreen() {
 
   const searchingData = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    let params = {
-      pathname: `/search/${search}?q=${search}`,
-    };
-
-    // Build the complete URL with the base path, class name, and query parameters
-    const url = `${params.pathname}`;
-
-    // Redirect to the new URL
-    window.location.href = url;
+    router.push(`/search/${search}?q=${search}`);
   };
 
   useEffect(() => {
@@ -74,175 +66,146 @@ export default function HomeSreen() {
       <div className="flex justify-center mb-12">
         <div className="grid lg:grid-cols-5 grid-cols-3 lg:gap-20 gap-4 align-middle justify-items-center items-center mt-7">
           {/* MAGE EMBLEM */}
-          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
-            <Link
-              href={{
-                pathname: '/class/Mage',
-              }}
-            >
-              <Image
-                className="hover:drop-shadow-blue"
-                src={Mage}
-                alt={''}
-                height={150}
-                width={150}
-              />
-            </Link>
+          <div
+            className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover cursor-pointer"
+            onClick={() => router.push('/class/Mage')}
+          >
+            <Image
+              className="hover:drop-shadow-blue"
+              src={Mage}
+              alt={''}
+              height={150}
+              width={150}
+            />
             <p className=" text-center sm:text-2xl font-AclonicaR">Mage</p>
           </div>
           {/* DRUID EMBLEM */}
-          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
-            <Link
-              href={{
-                pathname: '/class/Druid',
-              }}
-            >
-              <Image
-                className="hover:drop-shadow-blue"
-                src={Druid}
-                alt={''}
-                height={150}
-                width={150}
-              />
-            </Link>
+          <div
+            className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover cursor-pointer"
+            onClick={() => router.push('/class/Druid')}
+          >
+            <Image
+              className="hover:drop-shadow-blue"
+              src={Druid}
+              alt={''}
+              height={150}
+              width={150}
+            />
             <p className="text-center sm:text-2xl font-AclonicaR">Druid</p>
           </div>
           {/* HUNTER EMBLEM */}
-          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
-            <Link
-              href={{
-                pathname: '/class/Hunter',
-              }}
-            >
-              <Image
-                className="hover:drop-shadow-blue"
-                src={Hunter}
-                alt={''}
-                height={150}
-                width={150}
-              />
-            </Link>
+          <div
+            className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover cursor-pointer"
+            onClick={() => router.push('/class/Hunter')}
+          >
+            <Image
+              className="hover:drop-shadow-blue"
+              src={Hunter}
+              alt={''}
+              height={150}
+              width={150}
+            />
             <p className="text-center sm:text-2xl font-AclonicaR">Hunter</p>
           </div>
           {/* PRIEST EMBLEM */}
-          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
-            <Link
-              href={{
-                pathname: '/class/Priest',
-              }}
-            >
-              <Image
-                className="hover:drop-shadow-blue"
-                src={Priest}
-                alt={''}
-                height={150}
-                width={150}
-              />
-            </Link>
+          <div
+            className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover cursor-pointer"
+            onClick={() => router.push('/class/Priest')}
+          >
+            <Image
+              className="hover:drop-shadow-blue"
+              src={Priest}
+              alt={''}
+              height={150}
+              width={150}
+            />
             <p className="text-center sm:text-2xl font-AclonicaR">Priest</p>
           </div>
           {/* ROGUE EMBLEM */}
-          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
-            <Link
-              href={{
-                pathname: '/class/Rogue',
-              }}
-            >
-              <Image
-                className="hover:drop-shadow-blue"
-                src={Rouge}
-                alt={''}
-                height={150}
-                width={150}
-              />
-            </Link>
+          <div
+            className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover cursor-pointer"
+            onClick={() => router.push('/class/Rogue')}
+          >
+            <Image
+              className="hover:drop-shadow-blue"
+              src={Rouge}
+              alt={''}
+              height={150}
+              width={150}
+            />
             <p className="text-center sm:text-2xl font-AclonicaR">Rogue</p>
           </div>
           {/* PALADIN EMBLEM */}
-          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
-            <Link
-              href={{
-                pathname: '/class/Paladin',
-              }}
-            >
-              <Image
-                className="hover:drop-shadow-blue"
-                src={Paladin}
-                alt={''}
-                height={150}
-                width={150}
-              />
-            </Link>
+          <div
+            className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover cursor-pointer"
+            onClick={() => router.push('/class/Paladin')}
+          >
+            <Image
+              className="hover:drop-shadow-blue"
+              src={Paladin}
+              alt={''}
+              height={150}
+              width={150}
+            />
+
             <p className="text-center sm:text-2xl font-AclonicaR">Paladin</p>
           </div>
           {/* SHAMAN EMBLEM */}
-          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
-            <Link
-              href={{
-                pathname: '/class/Shaman',
-              }}
-            >
-              <Image
-                className="hover:drop-shadow-blue"
-                src={Shaman}
-                alt={''}
-                height={150}
-                width={150}
-              />
-            </Link>
+          <div
+            className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover cursor-pointer"
+            onClick={() => router.push('/class/Shaman')}
+          >
+            <Image
+              className="hover:drop-shadow-blue"
+              src={Shaman}
+              alt={''}
+              height={150}
+              width={150}
+            />
             <p className="text-center sm:text-2xl font-AclonicaR">Shaman</p>
           </div>
           {/* DEMON HUNTER EMBLEM */}
-          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
-            <Link
-              href={{
-                pathname: '/class/Demon Hunter',
-              }}
-            >
-              <Image
-                className="hover:drop-shadow-blue"
-                src={DemonHunter}
-                alt={''}
-                height={150}
-                width={150}
-              />
-            </Link>
+          <div
+            className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover cursor-pointer"
+            onClick={() => router.push('/class/Demon')}
+          >
+            <Image
+              className="hover:drop-shadow-blue"
+              src={DemonHunter}
+              alt={''}
+              height={150}
+              width={150}
+            />
             <p className="text-center sm:text-2xl font-AclonicaR">
               Demon Hunter
             </p>
           </div>
           {/* WARLOCK EMBLEM */}
-          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
-            <Link
-              href={{
-                pathname: '/class/Warlock',
-              }}
-            >
-              <Image
-                className="hover:drop-shadow-blue"
-                src={Warlock}
-                alt={''}
-                height={150}
-                width={150}
-              />
-            </Link>
+          <div
+            className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover cursor-pointer"
+            onClick={() => router.push('/class/Warlock')}
+          >
+            <Image
+              className="hover:drop-shadow-blue"
+              src={Warlock}
+              alt={''}
+              height={150}
+              width={150}
+            />
             <p className="text-center sm:text-2xl font-AclonicaR">Warlock</p>
           </div>
           {/* WARRIOR EMBLEM */}
-          <div className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover">
-            <Link
-              href={{
-                pathname: '/class/Warrior',
-              }}
-            >
-              <Image
-                className="hover:drop-shadow-blue"
-                src={Warrior}
-                alt={''}
-                height={150}
-                width={150}
-              />
-            </Link>
+          <div
+            className="max-sm:w-3/5 hover:drop-shadow-blue hover:text-white text-Color-MenuHover cursor-pointer"
+            onClick={() => router.push('/class/Warrior')}
+          >
+            <Image
+              className="hover:drop-shadow-blue"
+              src={Warrior}
+              alt={''}
+              height={150}
+              width={150}
+            />
             <p className="text-center sm:text-2xl font-AclonicaR">Warrior</p>
           </div>
         </div>

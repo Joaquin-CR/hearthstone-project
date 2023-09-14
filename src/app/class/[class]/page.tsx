@@ -38,7 +38,7 @@ function getBackgroundClass(classId: string): string {
       return 'bg-bgImgPaladin';
     case 'Shaman':
       return 'bg-bgImgShaman';
-    case 'DemonHunter':
+    case 'Demon':
       return 'bg-bgImgDemon';
     case 'Warlock':
       return 'bg-bgImgWarlock';
