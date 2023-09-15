@@ -145,7 +145,7 @@ export default function Card({
           </div>
           <div className="bg-ColorBorder-Card relative bottom-2 right-3 rounded-full p-0.5 group-hover:bg-gradient-to-b group-hover:from-gold group-hover:via-gold_2 group-hover:to-gold_3">
             <div className="bg-bgColor-Card flex h-6 w-6 rounded-full group-hover:bg-bgColor-CardDescroption">
-              <button className="p-0.5" onClick={handleFavorite}>
+              <button className="p-0.5">
                 <Image
                   src={favorites ? FavoriteIcon : FavoriteBorderIcon}
                   width={25}
