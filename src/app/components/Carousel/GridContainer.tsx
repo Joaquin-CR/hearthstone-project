@@ -49,6 +49,19 @@ export default function GridContainer({ cards }: CarouselProps) {
       setCurrentSlide(1);
     }
   }
+  function handleEndIndex() {
+    let residuo = Math.floor(cards.length / 10) % 5;
+    if (residuo != 0) {
+      setStartIndex(Math.floor(cards.length / 10) - residuo);
+      setEndIndex(Math.floor(cards.length / 10) - residuo + 5);
+      setCurrentSlide(residuo + 1);
+    } else {
+      setStartIndex(Math.floor(cards.length / 10) - 5);
+      setEndIndex(Math.floor(cards.length / 10));
+      setCurrentSlide(5);
+    }
+  }
+
   function handlePreviousIndex() {
     if (tail!.index < 6) {
       return null;
@@ -110,7 +123,7 @@ export default function GridContainer({ cards }: CarouselProps) {
   }
 
   function handleSlideLeft() {
-    if (startIndex <= 0 && currentSlide === 0) {
+    if (startIndex <= 0 && currentSlide <= 1) {
       return null;
     } else {
       if (currentSlide === -1) {
@@ -168,7 +181,9 @@ export default function GridContainer({ cards }: CarouselProps) {
             ))}
             <button
               disabled={handleConditionChange()}
-              className="absolute left-0 z-10 hover:drop-shadow-blue"
+              className={`${
+                startIndex <= 0 && currentSlide <= 1 && 'cursor-not-allowed'
+              } absolute left-0 z-10 hover:drop-shadow-blue`}
               onClick={() => handleSlideLeft()}
             >
               <Image src={left} alt="left"></Image>
@@ -196,16 +211,14 @@ export default function GridContainer({ cards }: CarouselProps) {
                     currentSlide === 1 ? 'bg-bgColor-Filters' : ''
                   } text-white flex text-center p-2 font-AclonicaR bg-opacity-80 rounded-lg items-center justify-center`}
                 >
-                  {startIndex === (tail ? tail!.index : 0)
-                    ? currentSlide
-                    : startIndex + 1}{' '}
+                  {startIndex + 1}
                 </div>
               </button>
               <button
                 disabled={startIndex === (tail ? tail!.index : 0)}
                 className={`font-outline-1 rounded-lg mr-1 w-12 text-xl drop-shadow-lg p-1 ${
-                  startIndex < 0 ? 'hidden' : ''
-                } ${
+                  startIndex + 1 > (tail ? tail!.index : 0) ? 'hidden' : ''
+                } ${startIndex < 0 ? 'hidden' : ''} ${
                   currentSlide === 2
                     ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                     : ''
@@ -222,7 +235,10 @@ export default function GridContainer({ cards }: CarouselProps) {
               </button>
               <button
                 disabled={startIndex === (tail ? tail!.index : 0)}
-                className={`${startIndex < 0 ? 'hidden' : ''} ${
+                className={`${
+                  startIndex + 2 > (tail ? tail!.index : 0) ? 'hidden' : ''
+                }
+                ${startIndex < 0 ? 'hidden' : ''} ${
                   currentSlide === 3
                     ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                     : ''
@@ -239,7 +255,9 @@ export default function GridContainer({ cards }: CarouselProps) {
               </button>
               <button
                 disabled={startIndex === (tail ? tail!.index : 0)}
-                className={`${startIndex < 0 ? 'hidden' : ''} ${
+                className={`${
+                  startIndex + 3 > (tail ? tail!.index : 0) ? 'hidden' : ''
+                } ${startIndex < 0 ? 'hidden' : ''} ${
                   currentSlide === 4
                     ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                     : ''
@@ -256,7 +274,9 @@ export default function GridContainer({ cards }: CarouselProps) {
               </button>
               <button
                 disabled={startIndex === (tail ? tail!.index : 0)}
-                className={`${startIndex < 0 ? 'hidden' : ''} ${
+                className={`${
+                  startIndex + 4 > (tail ? tail!.index : 0) ? 'hidden' : ''
+                } ${startIndex < 0 ? 'hidden' : ''} ${
                   currentSlide === 5
                     ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                     : ''
@@ -284,7 +304,8 @@ export default function GridContainer({ cards }: CarouselProps) {
                 </div>
               </button>
               <button
-                className={` rounded-lg text-white mr-1 py-1 px-3 text-lg drop-shadow-lg font-AclonicaR ${
+                onClick={handleEndIndex}
+                className={`rounded-lg text-white mr-1 py-1 px-3 text-lg drop-shadow-lg font-AclonicaR hover:bg-bgColor-Filters ${
                   (tail ? tail!.index - 1 : 0) < 1 ? 'hidden' : ''
                 }`}
               >
