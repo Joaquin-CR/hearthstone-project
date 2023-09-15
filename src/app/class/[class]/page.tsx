@@ -59,11 +59,7 @@ export default async function Page({ params }: { params: { class: string } }) {
   }
 
   return (
-    <main
-      className={`${getBackgroundClass(
-        cardClass
-      )} bg-no-repeat bg-fixed bg-cover bg-center`}
-    >
+    <main className={`${getBackgroundClass(cardClass)} bg-fixed bg-cover`}>
       <Classes className={cardClass} cards={cards ? cards : []} />
     </main>
   );
